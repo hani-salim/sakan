@@ -19,16 +19,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  var unitController = TextEditingController();
-  var universityController = TextEditingController();
-  var facultyController = TextEditingController();
-  var nameController = TextEditingController();
-  var emailController = TextEditingController();
+  var firstNameController = TextEditingController();
+  var lastNameController = TextEditingController();
+  var fatherNameController = TextEditingController();
+  var motherNameController = TextEditingController();
   var phoneController = TextEditingController();
-  var nationalController = TextEditingController();
-  var addressController = TextEditingController();
+  var emailController = TextEditingController();
+  var idNationalNumberController = TextEditingController();
+  var jobController = "طالب أو موظف";
+  var typeJobController = "اختر نوع الوظيفة";
+  var univercityController = "اختر الجامعة";
+  var facultyController = "اختر الكلية";
+  var sectionController = "اختر الاختصاص (إن وجد)";
+  var campusHousingController = "اختر السكن";
+  var unitController = "اختر رقم الوحدة";
+  var cityController = "اختر المحافظة";
+  var yearController = "اختر السنة الدراسية";
   var passwordController = TextEditingController();
-  var campusHousingController = TextEditingController();
 
   bool checkboxValue = false;
   bool showPassword = true;
@@ -101,7 +108,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Container(
                           decoration: inputBoxDecorationShaddow(),
                           child: TextFormField(
-                            controller: nameController,
+                            controller: firstNameController,
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return validate;
@@ -109,14 +116,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               return null;
                             },
                             decoration: textInputDecoration(
-                                labelText: 'الاسم', hintText: 'ادخل اسمك'),
+                                labelText: 'الاسم الأول',
+                                hintText: 'ادخل الاسم الأول'),
                           ),
                         ),
                         const SizedBox(height: 20.0),
                         Container(
                           decoration: inputBoxDecorationShaddow(),
                           child: TextFormField(
-                            controller: nameController,
+                            controller: lastNameController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return validate;
+                              }
+                              return null;
+                            },
+                            decoration: textInputDecoration(
+                                labelText: 'الاسم الأخير',
+                                hintText: 'ادخل الاسم الأخير'),
+                          ),
+                        ),
+                        const SizedBox(height: 20.0),
+                        Container(
+                          decoration: inputBoxDecorationShaddow(),
+                          child: TextFormField(
+                            controller: fatherNameController,
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return validate;
@@ -132,22 +156,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Container(
                           decoration: inputBoxDecorationShaddow(),
                           child: TextFormField(
-                            controller: nameController,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return validate;
-                              }
-                              return null;
-                            },
-                            decoration: textInputDecoration(
-                                labelText: 'النسبة', hintText: "ادخل النسبة"),
-                          ),
-                        ),
-                        const SizedBox(height: 20.0),
-                        Container(
-                          decoration: inputBoxDecorationShaddow(),
-                          child: TextFormField(
-                            controller: nameController,
+                            controller: motherNameController,
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return validate;
@@ -179,146 +188,42 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         const SizedBox(height: 20.0),
                         Container(
+                          decoration: inputBoxDecorationShaddow(),
+                          child: TextFormField(
+                            controller: idNationalNumberController,
+                            decoration: textInputDecoration(
+                                labelText: "رقم الهوية الوطني",
+                                hintText: "ادخل رقم الهوية الوطني"),
+                            keyboardType: TextInputType.phone,
+                            validator: (value) {
+                              if ((value!.isEmpty) ||
+                                  !RegExp(r"^(\d+)*$").hasMatch(value)) {
+                                return "ادخل رقم صالح";
+                              }
+                              return null;
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 20.0),
+                        Container(
                             decoration: inputBoxDecorationShaddow(),
-                            child: DropdownButton2(
-                              isExpanded: true,
-                              value: "tishreen",
-                              items: const [
-                                DropdownMenuItem(
-                                  child: Text("tishreen univrecity"),
-                                  value: "tishreen",
-                                ),
-                                DropdownMenuItem(
-                                  child: Text("aleppo univrecity"),
-                                  value: "aleppo",
-                                ),
+                            child: DropdownButtonFormField(
+                              decoration: textInputDecoration(
+                                  hintText: "ادخل العمل", labelText: "العمل"),
+                              value:jobController,
+                              items: [
+                                DropdownMenuItem(child: Container(),value: "3",),
+                                DropdownMenuItem(child: Container(),value: "3",),
                               ],
+                    
                               onChanged: (Object? value) {},
                             )),
                         const SizedBox(height: 20.0),
-                        Container(
-                          decoration: inputBoxDecorationShaddow(),
-                          child: TextFormField(
-                            controller: facultyController,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return validate;
-                              }
-                              return null;
-                            },
-                            decoration: textInputDecoration(
-                                labelText: 'الكلية',
-                                hintText: 'ادخل اسم الكلية'),
-                          ),
-                        ),
-                        const SizedBox(height: 20.0),
-                        Container(
-                          decoration: inputBoxDecorationShaddow(),
-                          child: TextFormField(
-                            controller: facultyController,
-                            decoration: textInputDecoration(
-                                labelText: 'الاختصاص (إن وجد)',
-                                hintText: 'ادخل الاختصاص'),
-                          ),
-                        ),
-                        const SizedBox(height: 20.0),
-                        Container(
-                          decoration: inputBoxDecorationShaddow(),
-                          child: TextFormField(
-                            keyboardType: TextInputType.none,
-                            controller: campusHousingController,
-                            onTap: () {
-                              setState(() {
-                                showCupertinoModalPopup(
-                                    context: context,
-                                    builder: (context) => ListView.separated(
-                                          itemBuilder: (context, index) =>
-                                              options(
-                                                  context: context,
-                                                  title: '',
-                                                  controller:
-                                                      campusHousingController),
-                                          separatorBuilder: (context, index) =>
-                                              const Divider(color: Colors.grey),
-                                          itemCount: 3,
-                                        ));
-                              });
-                            },
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return validate;
-                              }
-                              return null;
-                            },
-                            decoration: textInputDecoration(
-                                labelText: 'السكن',
-                                hintText: 'اختر سكن قديم أو جديد'),
-                          ),
-                        ),
-                        const SizedBox(height: 20.0),
-                        Container(
-                          decoration: inputBoxDecorationShaddow(),
-                          child: TextFormField(
-                            keyboardType: TextInputType.none,
-                            controller: unitController,
-                            onTap: () {
-                              showCupertinoModalPopup(
-                                  context: context,
-                                  builder: (context) => ListView.separated(
-                                      itemBuilder: (context, index) => options(
-                                          context: context,
-                                          title: '',
-                                          controller: unitController),
-                                      separatorBuilder: (context, index) =>
-                                          const Divider(
-                                            color: Colors.grey,
-                                          ),
-                                      itemCount: 3));
-                            },
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return validate;
-                              }
-                              return null;
-                            },
-                            decoration: textInputDecoration(
-                                labelText: 'رقم الوحدة',
-                                hintText: 'ادخل رقم الوحدة'),
-                          ),
-                        ),
-                        const SizedBox(height: 20.0),
-                        Container(
-                          decoration: inputBoxDecorationShaddow(),
-                          child: TextFormField(
-                            controller: addressController,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return validate;
-                              }
-                              return null;
-                            },
-                            decoration: textInputDecoration(
-                                labelText: 'المحافظة',
-                                hintText: 'ادخل اسم المحافظة'),
-                          ),
-                        ),
-                        const SizedBox(height: 20.0),
-                        Container(
-                          decoration: inputBoxDecorationShaddow(),
-                          child: TextFormField(
-                            controller: addressController,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return validate;
-                              }
-                              return null;
-                            },
-                            decoration: textInputDecoration(
-                                labelText: 'السنة الدراسية الحالية',
-                                hintText: 'ادخل السنة الدراسية'),
-                          ),
-                        ),
-                        const SizedBox(height: 20.0),
+                        Visibility(
+                            visible: jobController == "طالب" ? true : false,
+                            child: Column(
+                              children: [],
+                            )),
                         Container(
                           decoration: inputBoxDecorationShaddow(),
                           child: TextFormField(
