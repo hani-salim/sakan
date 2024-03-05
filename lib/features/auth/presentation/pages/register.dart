@@ -6,6 +6,7 @@ import 'package:sakan/core/constant/constant.dart';
 import 'package:sakan/core/widgets/widgets.dart';
 import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_bloc.dart';
 import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_state.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -72,7 +73,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   ),
                                 if (profileImage == null)
                                   CircleAvatar(
-                                    backgroundColor: const Color.fromARGB(255, 129, 128, 128),
+                                    backgroundColor: const Color.fromARGB(
+                                        255, 129, 128, 128),
                                     radius: 64,
                                     child: Icon(
                                       color: Theme.of(context)
@@ -177,99 +179,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         const SizedBox(height: 20.0),
                         Container(
-                          decoration: inputBoxDecorationShaddow(),
-                          child: TextFormField(
-                            controller: nationalController,
-                            decoration: textInputDecoration(
-                                labelText: "رقم الهوية الوطني",
-                                hintText: "ادخل رقم الهوية الوطني"),
-                            keyboardType: TextInputType.phone,
-                            validator: (value) {
-                              if ((value!.isEmpty) ||
-                                  !RegExp(r"^(\d+)*$").hasMatch(value)) {
-                                return "ادخل رقم صالح";
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                        const SizedBox(height: 20.0),
-                        Container(
-                          decoration: inputBoxDecorationShaddow(),
-                          child: TextFormField(
-                            controller: nationalController,
-                            decoration: textInputDecoration(
-                                labelText: "رقم الهوية ",
-                                hintText: "ادخل رقم الهوية"),
-                            keyboardType: TextInputType.phone,
-                            validator: (value) {
-                              if ((value!.isEmpty) ||
-                                  !RegExp(r"^(\d+)*$").hasMatch(value)) {
-                                return "ادخل رقم صالح";
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                        const SizedBox(height: 20.0),
-                        Container(
-                          decoration: inputBoxDecorationShaddow(),
-                          child: TextFormField(
-                            controller: universityController,
-                            onTap: () {
-                              showCupertinoModalPopup(
-                                  context: context,
-                                  builder: (context) => Center(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(30.0),
-                                          child: Container(
-                                            width: double.infinity,
-                                            decoration: buttonBoxDecoration(
-                                                context: context),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(20.0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  TextButton(
-                                                      onPressed: () {
-                                                        setState(() {
-                                                          universityController
-                                                                  .text =
-                                                              'جامعة تشرين';
-                                                          Navigator.pop(
-                                                              context);
-                                                        });
-                                                      },
-                                                      child: const Text(
-                                                        'جامعة تشرين',
-                                                        style: TextStyle(
-                                                            fontSize: 20,
-                                                            color:
-                                                                Colors.white),
-                                                      )),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ));
-                            },
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return validate;
-                              }
-                              return null;
-                            },
-                            keyboardType: TextInputType.none,
-                            decoration: textInputDecoration(
-                                labelText: 'الجامعة',
-                                hintText: 'ادخل اسم الجامعة'),
-                          ),
-                        ),
+                            decoration: inputBoxDecorationShaddow(),
+                            child: DropdownButton2(
+                              isExpanded: true,
+                              value: "tishreen",
+                              items: const [
+                                DropdownMenuItem(
+                                  child: Text("tishreen univrecity"),
+                                  value: "tishreen",
+                                ),
+                                DropdownMenuItem(
+                                  child: Text("aleppo univrecity"),
+                                  value: "aleppo",
+                                ),
+                              ],
+                              onChanged: (Object? value) {},
+                            )),
                         const SizedBox(height: 20.0),
                         Container(
                           decoration: inputBoxDecorationShaddow(),

@@ -18,6 +18,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   var numberController = TextEditingController();
+  var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var formKey = GlobalKey<FormState>();
 
@@ -56,48 +57,55 @@ class _LoginScreenState extends State<LoginScreen> {
                         key: formKey,
                         child: Column(
                           children: [
+                            Container(decoration: inputBoxDecorationShaddow(),
+                            child: 
                             TextFormField(
-                              controller: numberController,
-                              keyboardType: TextInputType.number,
+                              controller: emailController,
                               decoration: textInputDecoration(
-                                  labelText: 'رقم الموبايل',
-                                  hintText: 'ادخل رقم الموبايل'),
+                                  labelText: "البريد الالكتروني",
+                                  hintText: "ادخل البريد الالكتروني"),
+                              keyboardType: TextInputType.emailAddress,
                               validator: (value) {
-                                if (value!.isEmpty) {
-                                  return 'رقم الهاتف لا يجب أن يكون فارغ';
+                                if ((value!.isEmpty) ||
+                                    !RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
+                                        .hasMatch(value)) {
+                                  return "Enter a valid email address";
                                 }
                                 return null;
                               },
-                            ),
+                            ),),
                             const SizedBox(
                               height: 30.0,
                             ),
-                            TextFormField(
-                              controller: passwordController,
-                              keyboardType: TextInputType.visiblePassword,
-                              obscureText: !showPassword,
-                              decoration: textInputDecoration(
-                                obSecure: true,
-                                showPassword: showPassword,
-                                suffixIcon: IconButton(
-                                  icon: Icon(showPassword
-                                      ? Icons.visibility
-                                      : Icons.visibility_off),
-                                  onPressed: () {
-                                    setState(() {
-                                      showPassword = !showPassword;
-                                    });
-                                  },
+                            Container(
+                              decoration: inputBoxDecorationShaddow(),
+                              child: TextFormField(
+                                controller: passwordController,
+                                keyboardType: TextInputType.visiblePassword,
+                                obscureText: !showPassword,
+                                decoration: textInputDecoration(
+                                  obSecure: true,
+                                  showPassword: showPassword,
+                                  suffixIcon: IconButton(
+                                    icon: Icon(showPassword
+                                        ? Icons.visibility
+                                        : Icons.visibility_off),
+                                    onPressed: () {
+                                      setState(() {
+                                        showPassword = !showPassword;
+                                      });
+                                    },
+                                  ),
+                                  labelText: 'كلمة المرور',
+                                  hintText: 'ادخل كلمة المرور',
                                 ),
-                                labelText: 'كلمة المرور',
-                                hintText: 'ادخل كلمة المرور',
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'كلمة المرور لا يجب أن تكون فارغة';
+                                  }
+                                  return null;
+                                },
                               ),
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return 'كلمة المرور لا يجب أن تكون فارغة';
-                                }
-                                return null;
-                              },
                             ),
                             const SizedBox(
                               height: 15,
@@ -138,36 +146,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                           ),
                                   ),
                                   onPressed: () async {
-                                    //
-                                    // var headers = {
-                                    //   'Content-Type': 'application/json'
-                                    // };
-                                    // var request = http.Request(
-                                    //     'POST',
-                                    //     Uri.parse(
-                                    //         'http://10.0.2.2:8000/api/login/'));
-                                    // request.body =
-                                    //     '''{\r\n    "phone":"0999",\r\n    "password":"123"\r\n}''';
-                                    // request.headers.addAll(headers);
-                                    //
-                                    // http.StreamedResponse response =
-                                    //     await request.send();
-                                    //
-                                    // if (response.statusCode == 200) {
-                                    //   print(await response.stream
-                                    //       .bytesToString());
-                                    // } else {
-                                    //   print(response.reasonPhrase);
-                                    // }
-
                                     DioHelper.postData(url: "login/", data: {
-                                      "phone": "0999",
+                                      "email": "hanisailm870@gmail.com",
                                       "password": "123"
-                                    }).then((value) {
-                                      print(value.data);
-                                    }).catchError((errpr) {
-                                      print(errpr.toString());
-                                    });
+                                    }).then((value) {}).catchError((errpr) {});
 
                                     if (formKey.currentState!.validate()) {}
                                   }),

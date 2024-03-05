@@ -7,7 +7,7 @@ import 'package:sakan/features/auth/data/models/user.dart';
 abstract class UserApiService {
   DataState login({required String number, required String password});
   DataState register({required UserModel userModel});
-    getUnivercities();
+  getUnivercities();
   getUnits({required String univercityName});
   getRoomsNumber({required String unitNumber,required String univercityName});
 }
@@ -16,7 +16,7 @@ class UserApiServiceWitDio implements UserApiService {
   @override
   login({required String number, required String password}) async {
     final response = await DioHelper.postData(
-        url: 'login/', data: {"password": number, "phone": password});
+        url: 'login/', data: {"password": password, "phone": number});
     return chekResponse(response: response);
   }
 

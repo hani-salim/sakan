@@ -1,5 +1,6 @@
 import 'package:sakan/core/resource/dart_state.dart';
 import 'package:sakan/features/auth/data/data_sources/remote/user_api_service.dart';
+import 'package:sakan/features/auth/data/models/user.dart';
 import 'package:sakan/features/auth/domain/entities/user.dart';
 import 'package:sakan/features/auth/domain/repository/user_repository.dart';
 
@@ -8,12 +9,7 @@ class UserRepositoryImpl implements UserRepository {
 
   UserRepositoryImpl(this._userApiService);
 
-  @override
-  Future<DataState<UserEntities>> login(
-      {required String number, required String password}) {
-    // TODO: implement login
-    throw UnimplementedError();
-  }
+  
 
   @override
   register({required UserEntities userEntities}) {
@@ -36,6 +32,12 @@ class UserRepositoryImpl implements UserRepository {
   @override
   getUnivercities() {
     // TODO: implement getUnivercities
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<DataState<UserEntities>> login({required String number, required String password}) {
+    // TODO: implement login
     throw UnimplementedError();
   }
 }

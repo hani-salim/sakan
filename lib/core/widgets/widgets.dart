@@ -22,27 +22,27 @@ AppBar appBar({required text, required BuildContext context}) {
     ),
   );
 }
+
 //box decoration
-  BoxDecoration inputBoxDecorationShaddow() {
-    return BoxDecoration(boxShadow: [
-      BoxShadow(
-        color: Colors.black.withOpacity(0.1),
-        blurRadius: 20,
-        offset: const Offset(0, 5),
-      )
-    ]);
-  }
+BoxDecoration inputBoxDecorationShaddow() {
+  return BoxDecoration(boxShadow: [
+    BoxShadow(
+      color: Colors.black.withOpacity(0.1),
+      blurRadius: 20,
+      offset: const Offset(0, 5),
+    )
+  ]);
+}
+
 //text input decoration
 InputDecoration textInputDecoration(
     {String labelText = "",
     String hintText = "",
     bool showPassword = true,
     bool obSecure = false,
-    IconButton ?  suffixIcon}) {
+    IconButton? suffixIcon}) {
   return InputDecoration(
-    suffixIcon: obSecure
-        ? suffixIcon
-        : null,
+    suffixIcon: obSecure ? suffixIcon : null,
     labelText: labelText,
     hintText: hintText,
     fillColor: Colors.white,
@@ -50,7 +50,7 @@ InputDecoration textInputDecoration(
     contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
     focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(100.0),
-        borderSide:  BorderSide(color:MyColors.primaryColor)),
+        borderSide: BorderSide(color: MyColors.primaryColor)),
     enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(100.0),
         borderSide: BorderSide(color: Colors.grey.shade400)),
@@ -64,7 +64,8 @@ InputDecoration textInputDecoration(
 }
 
 //button box decoration
-BoxDecoration buttonBoxDecoration( {required BuildContext context,Color? color1,Color? color2}) {
+BoxDecoration buttonBoxDecoration(
+    {required BuildContext context, Color? color1, Color? color2}) {
   Color c1 = MyColors.primaryColor;
   Color c2 = MyColors.secondaryColor;
   if (color1 != null) {
@@ -101,7 +102,8 @@ ButtonStyle buttonStyle() {
       ),
     ),
     minimumSize: MaterialStateProperty.all(const Size(50, 50)),
-    backgroundColor: MaterialStateProperty.all(const Color.fromARGB(0, 255, 4, 4)),
+    backgroundColor:
+        MaterialStateProperty.all(const Color.fromARGB(0, 255, 4, 4)),
     shadowColor: MaterialStateProperty.all(Colors.transparent),
   );
 }
