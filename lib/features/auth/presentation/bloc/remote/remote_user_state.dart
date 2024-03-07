@@ -25,3 +25,5 @@ class RemoteUserErrorState extends RemoteUserState {
   const RemoteUserErrorState(DioException exception)
       : super(exception: exception);
 }
+
+class RemoteChangeJob extends RemoteUserState{}

@@ -1,6 +1,5 @@
 import 'package:sakan/core/resource/dart_state.dart';
 import 'package:sakan/features/auth/data/data_sources/remote/user_api_service.dart';
-import 'package:sakan/features/auth/data/models/user.dart';
 import 'package:sakan/features/auth/domain/entities/user.dart';
 import 'package:sakan/features/auth/domain/repository/user_repository.dart';
 

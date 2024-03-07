@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 if ((value!.isEmpty) ||
                                     !RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
                                         .hasMatch(value)) {
-                                  return "Enter a valid email address";
+                                  return "ادخل إيميل صالح";
                                 }
                                 return null;
                               },

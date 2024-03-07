@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:sakan/core/colors/colors.dart';
+
 
 AppBar appBar({required text, required BuildContext context}) {
   //app bar
@@ -179,7 +181,32 @@ MaterialButton buildAccountOption({required String title, Function? onTap}) {
   );
 }
 
-// Show toast
+//DropDownTextField
+DropdownButtonFormField dropdownButtonFormField({
+  required List<String> items,
+ required String? selectedItem,
+ required String labelText,
+ var event,
+}) {
+  return DropdownButtonFormField(
+    decoration: textInputDecoration(labelText: labelText),
+    value: selectedItem,
+    items: items
+        .map((e) => DropdownMenuItem(
+              value: e,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: Text(e),
+              ),
+            ))
+        .toList(),
+    onChanged: (value) {
+      selectedItem = value;
+      event;
+    },
+  );
+}
+//Show toast
 // Future<bool?> showToast(
 //     {required Color color, required String msg, Toast? toastLength}) {
 //   return Fluttertoast.showToast(

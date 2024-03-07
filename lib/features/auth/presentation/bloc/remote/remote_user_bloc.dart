@@ -8,10 +8,12 @@ import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_state.d
 class RemoteUserBloc extends Bloc<RemoteUserEvent, RemoteUserState> {
   final LoginUseCase _loginUseCase;
   final RegisterUseCase _registerUseCase;
+
   RemoteUserBloc(this._loginUseCase, this._registerUseCase)
       : super(RemoteUserInitilalState()) {
     on<Login>(onLogin);
     on<Register>(onRegister);
+    on<ChangeJob>(onChangeJob);
   }
 
   void onLogin(Login event, Emitter<RemoteUserState> emit) async {
@@ -35,5 +37,9 @@ class RemoteUserBloc extends Bloc<RemoteUserEvent, RemoteUserState> {
     if (dataState is DataFailed) {
       emit(RemoteUserErrorState(dataState.error!));
     }
+  }
+  void onChangeJob(ChangeJob event,Emitter<RemoteUserState> emit){
+    print("object");
+    emit(RemoteChangeJob());
   }
 }

@@ -5,8 +5,8 @@ import 'package:sakan/config/theme/header_widget.dart';
 import 'package:sakan/core/constant/constant.dart';
 import 'package:sakan/core/widgets/widgets.dart';
 import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_bloc.dart';
+import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_event.dart';
 import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_state.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -26,16 +26,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var phoneController = TextEditingController();
   var emailController = TextEditingController();
   var idNationalNumberController = TextEditingController();
-  var jobController = "طالب أو موظف";
-  var typeJobController = "اختر نوع الوظيفة";
-  var univercityController = "اختر الجامعة";
-  var facultyController = "اختر الكلية";
-  var sectionController = "اختر الاختصاص (إن وجد)";
-  var campusHousingController = "اختر السكن";
-  var unitController = "اختر رقم الوحدة";
-  var cityController = "اختر المحافظة";
-  var yearController = "اختر السنة الدراسية";
-  var passwordController = TextEditingController();
+  String? jobController;
+  String? typeJobController;
+  String? univercityController;
+  String? facultyController ;
+  String? sectionController ;
+  String? campusHousingController ;
+  String? unitController ;
+  String? cityController ;
+  String? yearController ;
+  TextEditingController passwordController = TextEditingController();
 
   bool checkboxValue = false;
   bool showPassword = true;
@@ -43,7 +43,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RemoteUserBloc, RemoteUserState>(
-      listener: (context, state) {},
+      listener: (context, state) 
+      {
+        if(state is RemoteChangeJob)
+        print("change job ");
+      },
       builder: (context, state) {
         return Scaffold(
           key: _scaffoldKey,
@@ -187,6 +191,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         const SizedBox(height: 20.0),
+                             Container(decoration: inputBoxDecorationShaddow(),
+                            child: 
+                            TextFormField(
+                              controller: emailController,
+                              decoration: textInputDecoration(
+                                  labelText: "البريد الالكتروني",
+                                  hintText: "ادخل البريد الالكتروني"),
+                              keyboardType: TextInputType.emailAddress,
+                              validator: (value) {
+                                if ((value!.isEmpty) ||
+                                    !RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
+                                        .hasMatch(value)) {
+                                  return "ادخل إيميل صالح";
+                                }
+                                return null;
+                              },
+                            ),),
+                            const SizedBox(
+                              height: 30.0,
+                            ),
                         Container(
                           decoration: inputBoxDecorationShaddow(),
                           child: TextFormField(
@@ -205,25 +229,52 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         const SizedBox(height: 20.0),
-                        Container(
-                            decoration: inputBoxDecorationShaddow(),
-                            child: DropdownButtonFormField(
-                              decoration: textInputDecoration(
-                                  hintText: "ادخل العمل", labelText: "العمل"),
-                              value:jobController,
-                              items: [
-                                DropdownMenuItem(child: Container(),value: "3",),
-                                DropdownMenuItem(child: Container(),value: "3",),
-                              ],
-                    
-                              onChanged: (Object? value) {},
-                            )),
-                        const SizedBox(height: 20.0),
+                        dropdownButtonFormField(
+                            items: items,
+                            selectedItem: jobController,
+                            labelText: "العمل"),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         Visibility(
                             visible: jobController == "طالب" ? true : false,
                             child: Column(
-                              children: [],
+                              children: [
+                                dropdownButtonFormField(
+                                    items: items,
+                                    selectedItem: univercityController,
+                                    labelText: "الجامعة"),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                dropdownButtonFormField(
+                                    items: items,
+                                    selectedItem: facultyController,
+                                    labelText: "الكلية"),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                dropdownButtonFormField(
+                                    items: items,
+                                    selectedItem: sectionController,
+                                    labelText: "الاختصاص (إن وجد)"),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                              ],
                             )),
+                        Visibility(
+                            visible: jobController == "موظف" ? true : false,
+                            child: Column(children: [
+                              dropdownButtonFormField(
+                                event: ChangeJob(),
+                                  items: items,
+                                  selectedItem: typeJobController,
+                                  labelText: "نوع العمل"),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                            ])),
                         Container(
                           decoration: inputBoxDecorationShaddow(),
                           child: TextFormField(
@@ -353,3 +404,5 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 }
+
+List<String> items = ["طالب", "موظف"];
