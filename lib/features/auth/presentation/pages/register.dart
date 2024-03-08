@@ -29,12 +29,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String? jobController;
   String? typeJobController;
   String? univercityController;
-  String? facultyController ;
-  String? sectionController ;
-  String? campusHousingController ;
-  String? unitController ;
-  String? cityController ;
-  String? yearController ;
+  String? facultyController;
+  String? sectionController;
+  String? campusHousingController;
+  String? unitController;
+  String? cityController;
+  String? yearController;
   TextEditingController passwordController = TextEditingController();
 
   bool checkboxValue = false;
@@ -43,11 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RemoteUserBloc, RemoteUserState>(
-      listener: (context, state) 
-      {
-        if(state is RemoteChangeJob)
-        print("change job ");
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
           key: _scaffoldKey,
@@ -191,26 +187,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         const SizedBox(height: 20.0),
-                             Container(decoration: inputBoxDecorationShaddow(),
-                            child: 
-                            TextFormField(
-                              controller: emailController,
-                              decoration: textInputDecoration(
-                                  labelText: "البريد الالكتروني",
-                                  hintText: "ادخل البريد الالكتروني"),
-                              keyboardType: TextInputType.emailAddress,
-                              validator: (value) {
-                                if ((value!.isEmpty) ||
-                                    !RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
-                                        .hasMatch(value)) {
-                                  return "ادخل إيميل صالح";
-                                }
-                                return null;
-                              },
-                            ),),
-                            const SizedBox(
-                              height: 30.0,
-                            ),
+                        Container(
+                          decoration: inputBoxDecorationShaddow(),
+                          child: TextFormField(
+                            controller: emailController,
+                            decoration: textInputDecoration(
+                                labelText: "البريد الالكتروني",
+                                hintText: "ادخل البريد الالكتروني"),
+                            keyboardType: TextInputType.emailAddress,
+                            validator: (value) {
+                              if ((value!.isEmpty) ||
+                                  !RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
+                                      .hasMatch(value)) {
+                                return "ادخل إيميل صالح";
+                              }
+                              return null;
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30.0,
+                        ),
                         Container(
                           decoration: inputBoxDecorationShaddow(),
                           child: TextFormField(
@@ -229,10 +226,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         const SizedBox(height: 20.0),
-                        dropdownButtonFormField(
-                            items: items,
-                            selectedItem: jobController,
-                            labelText: "العمل"),
+                        Container(
+                          decoration: inputBoxDecorationShaddow(),
+                          child: DropdownButtonFormField(
+                            decoration: textInputDecoration(labelText: "العمل"),
+                            value: jobController,
+                            items: items
+                                .map((e) => DropdownMenuItem(
+                                      value: e,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(right: 20),
+                                        child: Text(e),
+                                      ),
+                                    ))
+                                .toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                jobController = value;
+                              });
+                            },
+                          ),
+                        ),
                         const SizedBox(
                           height: 20,
                         ),
@@ -240,24 +254,93 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             visible: jobController == "طالب" ? true : false,
                             child: Column(
                               children: [
-                                dropdownButtonFormField(
-                                    items: items,
-                                    selectedItem: univercityController,
-                                    labelText: "الجامعة"),
+                                Container(
+                                  decoration: inputBoxDecorationShaddow(),
+                                  child: DropdownButtonFormField(
+                                    decoration:
+                                        textInputDecoration(labelText: "الجامعة"),
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return validate;
+                                      }
+                                      return null;
+                                    },
+                                    value: univercityController,
+                                    items: items
+                                        .map((e) => DropdownMenuItem(
+                                              value: e,
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 20),
+                                                child: Text(e),
+                                              ),
+                                            ))
+                                        .toList(),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        univercityController = value;
+                                      });
+                                    },
+                                  ),
+                                ),
                                 const SizedBox(
                                   height: 20,
                                 ),
-                                dropdownButtonFormField(
-                                    items: items,
-                                    selectedItem: facultyController,
-                                    labelText: "الكلية"),
+                                Container(
+                                  decoration: inputBoxDecorationShaddow(),
+                                  child: DropdownButtonFormField(
+                                    decoration:
+                                        textInputDecoration(labelText: "الكلية"),
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return validate;
+                                      }
+                                      return null;
+                                    },
+                                    value: facultyController,
+                                    items: items
+                                        .map((e) => DropdownMenuItem(
+                                              value: e,
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 20),
+                                                child: Text(e),
+                                              ),
+                                            ))
+                                        .toList(),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        facultyController = value;
+                                      });
+                                    },
+                                  ),
+                                ),
                                 const SizedBox(
                                   height: 20,
                                 ),
-                                dropdownButtonFormField(
-                                    items: items,
-                                    selectedItem: sectionController,
-                                    labelText: "الاختصاص (إن وجد)"),
+                                Container(
+                                  decoration: inputBoxDecorationShaddow(),
+                                  child: DropdownButtonFormField(
+                                    decoration: textInputDecoration(
+                                        labelText: "الاختصاص (إن وجد)"),
+                                    value: sectionController,
+                                    items: items
+                                        .map((e) => DropdownMenuItem(
+                                              value: e,
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 20),
+                                                child: Text(e),
+                                              ),
+                                            ))
+                                        .toList(),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        sectionController = value;
+                                      });
+                                    },
+                                  ),
+                                ),
                                 const SizedBox(
                                   height: 20,
                                 ),
@@ -266,11 +349,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Visibility(
                             visible: jobController == "موظف" ? true : false,
                             child: Column(children: [
-                              dropdownButtonFormField(
-                                event: ChangeJob(),
-                                  items: items,
-                                  selectedItem: typeJobController,
-                                  labelText: "نوع العمل"),
+                              Container(
+                                decoration: inputBoxDecorationShaddow(),
+                                child: DropdownButtonFormField(
+                                  decoration:
+                                      textInputDecoration(labelText: "نوع العمل"),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return validate;
+                                    }
+                                    return null;
+                                  },
+                                  value: typeJobController,
+                                  items: items
+                                      .map((e) => DropdownMenuItem(
+                                            value: e,
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 20),
+                                              child: Text(e),
+                                            ),
+                                          ))
+                                      .toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      typeJobController = value;
+                                    });
+                                  },
+                                ),
+                              ),
                               const SizedBox(
                                 height: 20,
                               ),
@@ -379,9 +486,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           color: Colors.white,
                                         ),
                                       )
-                                    : Text(
-                                        "تسجيل".toUpperCase(),
-                                        style: const TextStyle(
+                                    : const Text(
+                                        "تسجيل",
+                                        style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,

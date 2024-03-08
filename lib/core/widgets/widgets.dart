@@ -1,7 +1,5 @@
-
 import 'package:flutter/material.dart';
 import 'package:sakan/core/colors/colors.dart';
-
 
 AppBar appBar({required text, required BuildContext context}) {
   //app bar
@@ -184,12 +182,14 @@ MaterialButton buildAccountOption({required String title, Function? onTap}) {
 //DropDownTextField
 DropdownButtonFormField dropdownButtonFormField({
   required List<String> items,
- required String? selectedItem,
- required String labelText,
- var event,
+  required String? selectedItem,
+  required String labelText,
 }) {
   return DropdownButtonFormField(
-    decoration: textInputDecoration(labelText: labelText),
+    focusColor: Colors.white,
+    decoration: textInputDecoration(
+      labelText: labelText,
+    ),
     value: selectedItem,
     items: items
         .map((e) => DropdownMenuItem(
@@ -202,7 +202,6 @@ DropdownButtonFormField dropdownButtonFormField({
         .toList(),
     onChanged: (value) {
       selectedItem = value;
-      event;
     },
   );
 }
