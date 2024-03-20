@@ -9,14 +9,14 @@ import '../../../../core/network/remote/dio_helper.dart';
 import '../../../../core/widgets/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginPageState extends State<LoginPage> {
   var numberController = TextEditingController();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
@@ -57,23 +57,24 @@ class _LoginScreenState extends State<LoginScreen> {
                         key: formKey,
                         child: Column(
                           children: [
-                            Container(decoration: inputBoxDecorationShaddow(),
-                            child: 
-                            TextFormField(
-                              controller: emailController,
-                              decoration: textInputDecoration(
-                                  labelText: "البريد الالكتروني",
-                                  hintText: "ادخل البريد الالكتروني"),
-                              keyboardType: TextInputType.emailAddress,
-                              validator: (value) {
-                                if ((value!.isEmpty) ||
-                                    !RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
-                                        .hasMatch(value)) {
-                                  return "ادخل إيميل صالح";
-                                }
-                                return null;
-                              },
-                            ),),
+                            Container(
+                              decoration: inputBoxDecorationShaddow(),
+                              child: TextFormField(
+                                controller: emailController,
+                                decoration: textInputDecoration(
+                                    labelText: "البريد الالكتروني",
+                                    hintText: "ادخل البريد الالكتروني"),
+                                keyboardType: TextInputType.emailAddress,
+                                validator: (value) {
+                                  if ((value!.isEmpty) ||
+                                      !RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
+                                          .hasMatch(value)) {
+                                    return "ادخل إيميل صالح";
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
                             const SizedBox(
                               height: 30.0,
                             ),
@@ -123,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                   onPressed: () {
                                     Navigator.pushNamed(
-                                        context, forgotPasswordScreen);
+                                        context, forgotPasswordPage);
                                   }),
                             ),
                             Container(
@@ -150,13 +151,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                       "email": "hanisailm870@gmail.com",
                                       "password": "12345678"
                                     }).then((value) {
-                                      print("success mohammad ismaiel : $value");
-                                      Navigator.push(context,MaterialPageRoute(builder: (context)=>Container()));
+                                      print(
+                                          "success mohammad ismaiel : $value");
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  Container()));
                                     }).catchError((errpr) {
                                       print("the error is : $errpr");
                                     });
 
-                                    if (formKey.currentState!.validate()) {}
+                                    if (formKey.currentState!.validate()) {
+                                      Navigator.pushNamed(context, homePage);
+                                    }
                                   }),
                             ),
                             Container(
@@ -171,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
                                         Navigator.pushNamed(
-                                            context, registerScreen);
+                                            context, registerPage);
                                       },
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,

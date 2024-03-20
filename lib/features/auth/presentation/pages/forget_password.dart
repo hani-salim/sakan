@@ -4,10 +4,10 @@ import 'package:sakan/config/theme/header_widget.dart';
 import 'package:sakan/core/constant/constant.dart';
 import 'package:sakan/core/widgets/widgets.dart';
 
-class ForgotPasswordScreen extends StatelessWidget {
+class ForgotPasswordPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
-  ForgotPasswordScreen({super.key});
+  ForgotPasswordPage({super.key});
 
   final phoneController = TextEditingController();
   @override
@@ -103,7 +103,8 @@ class ForgotPasswordScreen extends StatelessWidget {
                                 ),
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
-                                    Navigator.pushNamed(context,forgotPasswwordVerificationScreen);
+                                    Navigator.pushNamed(context,
+                                        forgotPasswwordVerificationPage);
                                   }
                                 },
                               ),
@@ -117,8 +118,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                                     text: 'تسجيل الدخول',
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
-                                        Navigator.pushNamed(
-                                            context, loginScreen);
+                                        Navigator.pushNamed(context, loginPage);
                                       },
                                     style: TextStyle(
                                       color: Theme.of(context)

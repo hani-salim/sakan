@@ -8,14 +8,14 @@ import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_bloc.da
 import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_event.dart';
 import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_state.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -29,12 +29,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String? jobController;
   String? typeJobController;
   String? univercityController;
-  String? facultyController ;
-  String? sectionController ;
-  String? campusHousingController ;
-  String? unitController ;
-  String? cityController ;
-  String? yearController ;
+  String? facultyController;
+  String? sectionController;
+  String? campusHousingController;
+  String? unitController;
+  String? cityController;
+  String? yearController;
   TextEditingController passwordController = TextEditingController();
 
   bool checkboxValue = false;
@@ -43,10 +43,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RemoteUserBloc, RemoteUserState>(
-      listener: (context, state) 
-      {
-        if(state is RemoteChangeJob)
-        print("change job ");
+      listener: (context, state) {
+        if (state is RemoteChangeJob) print("change job ");
       },
       builder: (context, state) {
         return Scaffold(
@@ -191,26 +189,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         const SizedBox(height: 20.0),
-                             Container(decoration: inputBoxDecorationShaddow(),
-                            child: 
-                            TextFormField(
-                              controller: emailController,
-                              decoration: textInputDecoration(
-                                  labelText: "البريد الالكتروني",
-                                  hintText: "ادخل البريد الالكتروني"),
-                              keyboardType: TextInputType.emailAddress,
-                              validator: (value) {
-                                if ((value!.isEmpty) ||
-                                    !RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
-                                        .hasMatch(value)) {
-                                  return "ادخل إيميل صالح";
-                                }
-                                return null;
-                              },
-                            ),),
-                            const SizedBox(
-                              height: 30.0,
-                            ),
+                        Container(
+                          decoration: inputBoxDecorationShaddow(),
+                          child: TextFormField(
+                            controller: emailController,
+                            decoration: textInputDecoration(
+                                labelText: "البريد الالكتروني",
+                                hintText: "ادخل البريد الالكتروني"),
+                            keyboardType: TextInputType.emailAddress,
+                            validator: (value) {
+                              if ((value!.isEmpty) ||
+                                  !RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
+                                      .hasMatch(value)) {
+                                return "ادخل إيميل صالح";
+                              }
+                              return null;
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30.0,
+                        ),
                         Container(
                           decoration: inputBoxDecorationShaddow(),
                           child: TextFormField(
@@ -267,7 +266,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             visible: jobController == "موظف" ? true : false,
                             child: Column(children: [
                               dropdownButtonFormField(
-                                event: ChangeJob(),
+                                  event: ChangeJob(),
                                   items: items,
                                   selectedItem: typeJobController,
                                   labelText: "نوع العمل"),

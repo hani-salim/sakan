@@ -12,7 +12,7 @@ import 'features/auth/presentation/pages/login.dart';
 void main() async {
   await DioHelper.init();
   await initializDependencies();
-   Bloc.observer = MyBlocObserver();
+  Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }
 
@@ -28,6 +28,6 @@ class MyApp extends StatelessWidget {
             routes: routes,
             debugShowCheckedModeBanner: false,
             theme: appTheme,
-            home: const LoginScreen()));
+            home: const LoginPage()));
   }
 }

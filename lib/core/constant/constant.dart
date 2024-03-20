@@ -1,21 +1,23 @@
 //this is constant file
 
-
 import 'package:flutter/material.dart';
+import 'package:sakan/features/services/presentation/pages/services.dart';
+
 //api
 const String baseUrl = "http://10.0.2.2:8000/api/";
 // const String baseUrl = "http://127.0.0.1:8000/api/";
 
-//screens
-const String loginScreen = "LoginScreen";
-const String registerScreen = "RegisterScreen";
-const String forgotPasswordScreen = "forgotPasswordScreen";
-const String forgotPasswwordVerificationScreen =
-    "forgotPasswwordVerificationScreen";
+//pages
+const String loginPage = "LoginPage";
+const String registerPage = "RegisterPage";
+const String forgotPasswordPage = "forgotPasswordPage";
+const String forgotPasswwordVerificationPage =
+    "forgotPasswwordVerificationPage";
+const String homePage = "homePage";
 
 //constant
 const String validate = "❗❗ حقل مطلوب";
-const int currentIndex = 2;
+const int currentIndex = 0;
 
 //buttom nivacation bar
 const List<String> titles = [
@@ -28,7 +30,7 @@ const List<String> titles = [
 const List<Widget> screens = [
   // ProfileImageScreen(),
   // NewsScreen(),
-  // ServicesScreen(),
+  ServicesPage(),
   // HistoryScreen(),
   // SettingScreen()
 ];
