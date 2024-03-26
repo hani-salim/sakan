@@ -13,7 +13,7 @@ class RemoteUserBloc extends Bloc<RemoteUserEvent, RemoteUserState> {
       : super(RemoteUserInitilalState()) {
     on<Login>(onLogin);
     on<Register>(onRegister);
-    on<ChangeJob>(onChangeJob);
+
   }
 
   void onLogin(Login event, Emitter<RemoteUserState> emit) async {
@@ -37,9 +37,5 @@ class RemoteUserBloc extends Bloc<RemoteUserEvent, RemoteUserState> {
     if (dataState is DataFailed) {
       emit(RemoteUserErrorState(dataState.error!));
     }
-  }
-  void onChangeJob(ChangeJob event,Emitter<RemoteUserState> emit){
-    print("object");
-    emit(RemoteChangeJob());
   }
 }

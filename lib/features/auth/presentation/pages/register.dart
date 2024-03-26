@@ -43,8 +43,10 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RemoteUserBloc, RemoteUserState>(
-      listener: (context, state) {
-        if (state is RemoteChangeJob) print("change job ");
+      listener: (context, state) 
+      {
+        if(state is RemoteChangeJob)
+        print("change job ");
       },
       builder: (context, state) {
         return Scaffold(
@@ -228,10 +230,27 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ),
                         const SizedBox(height: 20.0),
-                        dropdownButtonFormField(
-                            items: items,
-                            selectedItem: jobController,
-                            labelText: "العمل"),
+                        Container(
+                          decoration: inputBoxDecorationShaddow(),
+                          child: DropdownButtonFormField(
+                            decoration: textInputDecoration(labelText: "العمل"),
+                            value: jobController,
+                            items: items
+                                .map((e) => DropdownMenuItem(
+                                      value: e,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(right: 20),
+                                        child: Text(e),
+                                      ),
+                                    ))
+                                .toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                jobController = value;
+                              });
+                            },
+                          ),
+                        ),
                         const SizedBox(
                           height: 20,
                         ),
@@ -239,24 +258,93 @@ class _RegisterPageState extends State<RegisterPage> {
                             visible: jobController == "طالب" ? true : false,
                             child: Column(
                               children: [
-                                dropdownButtonFormField(
-                                    items: items,
-                                    selectedItem: univercityController,
-                                    labelText: "الجامعة"),
+                                Container(
+                                  decoration: inputBoxDecorationShaddow(),
+                                  child: DropdownButtonFormField(
+                                    decoration:
+                                        textInputDecoration(labelText: "الجامعة"),
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return validate;
+                                      }
+                                      return null;
+                                    },
+                                    value: univercityController,
+                                    items: items
+                                        .map((e) => DropdownMenuItem(
+                                              value: e,
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 20),
+                                                child: Text(e),
+                                              ),
+                                            ))
+                                        .toList(),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        univercityController = value;
+                                      });
+                                    },
+                                  ),
+                                ),
                                 const SizedBox(
                                   height: 20,
                                 ),
-                                dropdownButtonFormField(
-                                    items: items,
-                                    selectedItem: facultyController,
-                                    labelText: "الكلية"),
+                                Container(
+                                  decoration: inputBoxDecorationShaddow(),
+                                  child: DropdownButtonFormField(
+                                    decoration:
+                                        textInputDecoration(labelText: "الكلية"),
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return validate;
+                                      }
+                                      return null;
+                                    },
+                                    value: facultyController,
+                                    items: items
+                                        .map((e) => DropdownMenuItem(
+                                              value: e,
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 20),
+                                                child: Text(e),
+                                              ),
+                                            ))
+                                        .toList(),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        facultyController = value;
+                                      });
+                                    },
+                                  ),
+                                ),
                                 const SizedBox(
                                   height: 20,
                                 ),
-                                dropdownButtonFormField(
-                                    items: items,
-                                    selectedItem: sectionController,
-                                    labelText: "الاختصاص (إن وجد)"),
+                                Container(
+                                  decoration: inputBoxDecorationShaddow(),
+                                  child: DropdownButtonFormField(
+                                    decoration: textInputDecoration(
+                                        labelText: "الاختصاص (إن وجد)"),
+                                    value: sectionController,
+                                    items: items
+                                        .map((e) => DropdownMenuItem(
+                                              value: e,
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 20),
+                                                child: Text(e),
+                                              ),
+                                            ))
+                                        .toList(),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        sectionController = value;
+                                      });
+                                    },
+                                  ),
+                                ),
                                 const SizedBox(
                                   height: 20,
                                 ),
@@ -266,7 +354,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             visible: jobController == "موظف" ? true : false,
                             child: Column(children: [
                               dropdownButtonFormField(
-                                  event: ChangeJob(),
+                                event: ChangeJob(),
                                   items: items,
                                   selectedItem: typeJobController,
                                   labelText: "نوع العمل"),
@@ -378,9 +466,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                           color: Colors.white,
                                         ),
                                       )
-                                    : Text(
-                                        "تسجيل".toUpperCase(),
-                                        style: const TextStyle(
+                                    : const Text(
+                                        "تسجيل",
+                                        style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,

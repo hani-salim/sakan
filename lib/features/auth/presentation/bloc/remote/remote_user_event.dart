@@ -15,4 +15,4 @@ class Register extends RemoteUserEvent {
   Register({required this.userEntities});
 }
 
-class ChangeJob extends RemoteUserEvent {}
+
