@@ -1,9 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:sakan/core/colors/colors.dart';
 
-
-AppBar appBar({required text, required BuildContext context}) {
+AppBar appBar(
+    {required text,
+    required BuildContext context,
+    Widget? leading,
+    List<Widget>? action}) {
   //app bar
   return AppBar(
     title: Text(
@@ -22,6 +24,8 @@ AppBar appBar({required text, required BuildContext context}) {
             MyColors.secondaryColor,
           ])),
     ),
+    leading: leading,
+    actions: action,
   );
 }
 
@@ -184,9 +188,9 @@ MaterialButton buildAccountOption({required String title, Function? onTap}) {
 //DropDownTextField
 DropdownButtonFormField dropdownButtonFormField({
   required List<String> items,
- required String? selectedItem,
- required String labelText,
- var event,
+  required String? selectedItem,
+  required String labelText,
+  var event,
 }) {
   return DropdownButtonFormField(
     decoration: textInputDecoration(labelText: labelText),
@@ -206,6 +210,7 @@ DropdownButtonFormField dropdownButtonFormField({
     },
   );
 }
+
 //Show toast
 // Future<bool?> showToast(
 //     {required Color color, required String msg, Toast? toastLength}) {

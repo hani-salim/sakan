@@ -4,10 +4,10 @@ import 'package:sakan/bloc_observer.dart';
 import 'package:sakan/config/routes/routes.dart';
 import 'package:sakan/core/network/remote/dio_helper.dart';
 import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_bloc.dart';
+import 'package:sakan/features/main/presentation/pages/home_page.dart';
 import 'package:sakan/injection_container.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'config/theme/app_theme.dart';
-import 'features/auth/presentation/pages/login.dart';
 
 void main() async {
   await DioHelper.init();
@@ -28,6 +28,6 @@ class MyApp extends StatelessWidget {
             routes: routes,
             debugShowCheckedModeBanner: false,
             theme: appTheme,
-            home: const LoginPage()));
+            home: const HomePage()));
   }
 }

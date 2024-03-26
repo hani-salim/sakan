@@ -5,7 +5,6 @@ import 'package:sakan/core/constant/constant.dart';
 import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_bloc.dart';
 import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_state.dart';
 import '../../../../config/theme/header_widget.dart';
-import '../../../../core/network/remote/dio_helper.dart';
 import '../../../../core/widgets/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -147,24 +146,23 @@ class _LoginPageState extends State<LoginPage> {
                                           ),
                                   ),
                                   onPressed: () async {
-                                    DioHelper.postData(url: "login/", data: {
-                                      "email": "hanisailm870@gmail.com",
-                                      "password": "12345678"
-                                    }).then((value) {
-                                      print(
-                                          "success mohammad ismaiel : $value");
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  Container()));
-                                    }).catchError((errpr) {
-                                      print("the error is : $errpr");
-                                    });
+                                    Navigator.pushNamed(context, homePage);
 
-                                    if (formKey.currentState!.validate()) {
-                                      Navigator.pushNamed(context, homePage);
-                                    }
+                                    // DioHelper.postData(url: "login/", data: {
+                                    //   "email": "hanisailm870@gmail.com",
+                                    //   "password": "12345678"
+                                    // }).then((value) {
+                                    //   print(
+                                    //       "success mohammad ismaiel : $value");
+                                    //   Navigator.push(
+                                    //       context,
+                                    //       MaterialPageRoute(
+                                    //           builder: (context) =>
+                                    //               Container()));
+                                    // }).catchError((errpr) {
+                                    //   print("the error is : $errpr");
+                                    // });
+                                    if (formKey.currentState!.validate()) {}
                                   }),
                             ),
                             Container(
