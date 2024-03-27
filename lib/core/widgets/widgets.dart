@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sakan/core/colors/colors.dart';
 
 
-AppBar appBar({required text, required BuildContext context}) {
+AppBar appBar({required text, required BuildContext context, List<Widget>? action,Widget? leading}) {
   //app bar
   return AppBar(
     title: Text(
