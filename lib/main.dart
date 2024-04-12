@@ -21,13 +21,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<RemoteUserBloc>(
-        create: (context) => sl(),
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider<RemoteUserBloc>(
+            create: (context) => sl(),
+          ),
+        ],
         child: GetMaterialApp(
-            textDirection: TextDirection.rtl,
-            routes: routes,
-            debugShowCheckedModeBanner: false,
-            theme: appTheme,
-            home: const HomePage()));
+          textDirection: TextDirection.rtl,
+          routes: routes,
+          debugShowCheckedModeBanner: false,
+          theme: appTheme,
+          home: const HomePage(),
+        ));
   }
 }

@@ -2,10 +2,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sakan/core/colors/colors.dart';
 import 'package:sakan/core/constant/constant.dart';
+import 'package:sakan/core/widgets/box_decoration.dart';
+import 'package:sakan/core/widgets/button_box_decoration.dart';
+import 'package:sakan/core/widgets/button_style.dart';
+import 'package:sakan/core/widgets/text_input_decoration.dart';
 import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_bloc.dart';
 import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_state.dart';
 import '../../../../config/theme/header_widget.dart';
-import '../../../../core/widgets/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatefulWidget {
@@ -33,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 const SizedBox(
                   height: 250.0,
-                  child: HeaderWidget(250.0, true, Icons.login_rounded),
+                  child: HeaderWidget(250.0, true, Icon(Icons.login_rounded)),
                 ),
                 SafeArea(
                     child: Container(
@@ -57,10 +60,10 @@ class _LoginPageState extends State<LoginPage> {
                         child: Column(
                           children: [
                             Container(
-                              decoration: inputBoxDecorationShaddow(),
+                              decoration: inputBoxDecorationShaddowWidget(),
                               child: TextFormField(
                                 controller: emailController,
-                                decoration: textInputDecoration(
+                                decoration: textInputDecorationWidget(
                                     labelText: "البريد الالكتروني",
                                     hintText: "ادخل البريد الالكتروني"),
                                 keyboardType: TextInputType.emailAddress,
@@ -78,12 +81,12 @@ class _LoginPageState extends State<LoginPage> {
                               height: 30.0,
                             ),
                             Container(
-                              decoration: inputBoxDecorationShaddow(),
+                              decoration: inputBoxDecorationShaddowWidget(),
                               child: TextFormField(
                                 controller: passwordController,
                                 keyboardType: TextInputType.visiblePassword,
                                 obscureText: !showPassword,
-                                decoration: textInputDecoration(
+                                decoration: textInputDecorationWidget(
                                   obSecure: true,
                                   showPassword: showPassword,
                                   suffixIcon: IconButton(
@@ -127,9 +130,10 @@ class _LoginPageState extends State<LoginPage> {
                                   }),
                             ),
                             Container(
-                              decoration: buttonBoxDecoration(context: context),
+                              decoration:
+                                  buttonBoxDecorationWidget(),
                               child: ElevatedButton(
-                                  style: buttonStyle(),
+                                  style: buttonStyleWidget(),
                                   child: Padding(
                                     padding: const EdgeInsets.fromLTRB(
                                         40, 10, 40, 10),

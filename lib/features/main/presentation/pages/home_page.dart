@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
             menuBackgroundColor: MyColors.drawerColor,
             showShadow: true,
             isRtl: true,
-            drawerShadowsBackgroundColor: Colors.greenAccent,
+            drawerShadowsBackgroundColor: MyColors.primaryColor,
             mainScreenAbsorbPointer: false,
             menuScreen: MenuPage(
                 currentItem: BlocProvider.of<WidgetBloc>(context).currentItem,

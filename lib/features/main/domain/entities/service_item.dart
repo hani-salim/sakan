@@ -2,17 +2,18 @@ import 'dart:ui';
 
 import 'package:equatable/equatable.dart';
 
+
 // ignore: must_be_immutable
-class CardEntities extends Equatable {
+class ServiceEntities extends Equatable {
   final Color color;
   final String title;
-  bool isTapped;
+   bool isTapped ;
   final String url;
   final double height;
-  CardEntities(
+  ServiceEntities(
       {required this.color,
       required this.title,
-      required this.isTapped,
+      this.isTapped=false,
       required this.url,
       required this.height});
 

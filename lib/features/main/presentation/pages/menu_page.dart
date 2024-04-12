@@ -39,7 +39,6 @@ class MenuPage extends StatelessWidget {
               height: 25,
             ),
             ...MenuItems.all.map((item) => buildMenuItem(item, context)),
-             
           ],
         ),
       )),
@@ -52,7 +51,7 @@ class MenuPage extends StatelessWidget {
         child: ListTile(
           textColor: Colors.white,
           iconColor: Colors.white,
-          selectedColor: Colors.greenAccent,
+          selectedColor: MyColors.primaryColor,
           selected: currentItem == item,
           leading: Icon(
             item.icon,
@@ -72,6 +71,7 @@ class MenuItems {
   static const notification =
       MenuItem(icon: Icons.notifications, title: "الإشعارات");
   static const settings = MenuItem(icon: Icons.settings, title: "الإعدادات");
+  static const themes = MenuItem(icon: Icons.color_lens, title: "الثيمات");
   static const help = MenuItem(icon: Icons.help, title: "مساعدة");
   static const aboutUs =
       MenuItem(icon: Icons.question_answer, title: "حول التطبيق");
@@ -80,6 +80,7 @@ class MenuItems {
     services,
     notification,
     settings,
+    themes,
     help,
     aboutUs
   ];

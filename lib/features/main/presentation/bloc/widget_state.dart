@@ -7,6 +7,8 @@ sealed class WidgetState extends Equatable {
   List<Object> get props => [];
 }
 
-final class WidgetInitial extends WidgetState {}
+final class WidgetInitialState extends WidgetState {}
 
-final class ChangeSelectedItem extends WidgetState {}
+final class ChangeSelectedItemState extends WidgetState {}
+
+final class ChangeThemeState extends WidgetState {}

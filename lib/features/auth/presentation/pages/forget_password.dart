@@ -2,7 +2,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sakan/config/theme/header_widget.dart';
 import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/core/widgets/widgets.dart';
+import 'package:sakan/core/widgets/box_decoration.dart';
+import 'package:sakan/core/widgets/button_box_decoration.dart';
+import 'package:sakan/core/widgets/button_style.dart';
+import 'package:sakan/core/widgets/text_input_decoration.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -20,7 +23,7 @@ class ForgotPasswordPage extends StatelessWidget {
             children: [
               SizedBox(
                 height: headerHeight,
-                child: HeaderWidget(headerHeight, true, Icons.password_rounded),
+                child: HeaderWidget(headerHeight, true, Icon(Icons.password_rounded)),
               ),
               SafeArea(
                 child: Container(
@@ -69,10 +72,10 @@ class ForgotPasswordPage extends StatelessWidget {
                         child: Column(
                           children: <Widget>[
                             Container(
-                              decoration: inputBoxDecorationShaddow(),
+                              decoration: inputBoxDecorationShaddowWidget(),
                               child: TextFormField(
                                 controller: phoneController,
-                                decoration: textInputDecoration(
+                                decoration: textInputDecorationWidget(
                                     labelText: "رقم الهاتف",
                                     hintText: "ادخل رقم الهاتف"),
                                 keyboardType: TextInputType.emailAddress,
@@ -87,9 +90,10 @@ class ForgotPasswordPage extends StatelessWidget {
                             ),
                             const SizedBox(height: 40.0),
                             Container(
-                              decoration: buttonBoxDecoration(context: context),
+                              decoration:
+                                  buttonBoxDecorationWidget(),
                               child: ElevatedButton(
-                                style: buttonStyle(),
+                                style: buttonStyleWidget(),
                                 child: const Padding(
                                   padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
                                   child: Text(

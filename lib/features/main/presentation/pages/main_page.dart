@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sakan/core/colors/colors.dart';
 import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/core/widgets/widgets.dart';
 import 'package:sakan/features/main/presentation/bloc/widget_bloc.dart';
-import 'package:sakan/features/main/presentation/widgets/menu_widget.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -17,19 +15,6 @@ class MainPage extends StatelessWidget {
       builder: (context, state) {
         int selectedPage = BlocProvider.of<WidgetBloc>(context).selectedPage;
         return Scaffold(
-          appBar: appBar(
-              text: titles[selectedPage],
-              context: context,
-              leading: const MenuWidget(),
-              action: [
-                IconButton(
-                    padding: const EdgeInsets.all(10),
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.notifications,
-                      size: iconAppBarSize,
-                    ))
-              ]),
           body: pages[selectedPage],
           bottomNavigationBar: ConvexAppBar(
             initialActiveIndex: selectedPage,

@@ -1,12 +1,16 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:sakan/core/colors/colors.dart';
+import 'package:sakan/core/constant/constant.dart';
 import 'package:sakan/features/main/domain/entities/menu_item.dart';
+import 'package:sakan/features/main/domain/entities/theme_item.dart';
 import 'package:sakan/features/main/presentation/pages/about_us_page.dart';
 import 'package:sakan/features/main/presentation/pages/help_page.dart';
 import 'package:sakan/features/main/presentation/pages/main_page.dart';
 import 'package:sakan/features/main/presentation/pages/menu_page.dart';
 import 'package:sakan/features/main/presentation/pages/notification_page.dart';
+import 'package:sakan/features/main/presentation/pages/theme_page.dart';
 
 part 'widget_event.dart';
 part 'widget_state.dart';
@@ -15,12 +19,29 @@ class WidgetBloc extends Bloc<WidgetEvent, WidgetState> {
   int selectedPage = 2;
   Widget mainPage = const MainPage();
   MenuItem currentItem = MenuItems.notification;
-  WidgetBloc() : super(WidgetInitial()) {
+  WidgetBloc() : super(WidgetInitialState()) {
     on<ChangeDrwerItem>(onChangeDrawerItem);
     on<ChangeBottomNavicaitonBar>(onChangeBottomNavicationBar);
+    on<ChangeTheme>(onChangeTheme);
   }
+
+  onChangeTheme(ChangeTheme event, Emitter<WidgetState> emit) {
+    emit(WidgetInitialState());
+    for (ThemeEntities e in themes) {
+      if (e == event.item) {
+        event.item.isTapped = true;
+        MyColors.primaryColor = event.item.primaryColor;
+        MyColors.secondaryColor = event.item.secondaryColor;
+      } else {
+        e.isTapped = false;
+      }
+
+      emit(ChangeThemeState());
+    }
+  }
+
   onChangeDrawerItem(ChangeDrwerItem event, Emitter<WidgetState> emit) {
-    emit(WidgetInitial());
+    emit(WidgetInitialState());
     switch (event.item) {
       case MenuItems.services:
         mainPage = const MainPage();
@@ -31,6 +52,10 @@ class WidgetBloc extends Bloc<WidgetEvent, WidgetState> {
         selectedPage = 4;
         currentItem = event.item;
         mainPage = const MainPage();
+        break;
+      case MenuItems.themes:
+        currentItem = event.item;
+        mainPage = const ThemePage();
         break;
       case MenuItems.notification:
         currentItem = event.item;
@@ -45,13 +70,13 @@ class WidgetBloc extends Bloc<WidgetEvent, WidgetState> {
         mainPage = const AboutUsPage();
         break;
     }
-    emit(ChangeSelectedItem());
+    emit(ChangeSelectedItemState());
   }
 
   onChangeBottomNavicationBar(
       ChangeBottomNavicaitonBar event, Emitter<WidgetState> emit) {
-    emit(WidgetInitial());
+    emit(WidgetInitialState());
     selectedPage = event.selectedPage;
-    emit(ChangeSelectedItem());
+    emit(ChangeSelectedItemState());
   }
 }

@@ -1,11 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sakan/config/theme/header_widget.dart';
 import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/core/widgets/widgets.dart';
+import 'package:sakan/core/widgets/box_decoration.dart';
+import 'package:sakan/core/widgets/button_box_decoration.dart';
+import 'package:sakan/core/widgets/button_style.dart';
+import 'package:sakan/core/widgets/drop_down_text_field.dart';
+import 'package:sakan/core/widgets/text_input_decoration.dart';
 import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_bloc.dart';
-import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_event.dart';
 import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_state.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -43,11 +45,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RemoteUserBloc, RemoteUserState>(
-      listener: (context, state) 
-      {
-        if(state is RemoteChangeJob)
-        print("change job ");
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
           key: _scaffoldKey,
@@ -57,8 +55,8 @@ class _RegisterPageState extends State<RegisterPage> {
               children: [
                 const SizedBox(
                   height: 150,
-                  child:
-                      HeaderWidget(150, false, Icons.person_add_alt_1_rounded),
+                  child: HeaderWidget(
+                      150, false, Icon(Icons.person_add_alt_1_rounded)),
                 ),
                 Container(
                   margin: const EdgeInsets.fromLTRB(25, 50, 25, 10),
@@ -110,7 +108,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           height: 30,
                         ),
                         Container(
-                          decoration: inputBoxDecorationShaddow(),
+                          decoration: inputBoxDecorationShaddowWidget(),
                           child: TextFormField(
                             controller: firstNameController,
                             validator: (value) {
@@ -119,14 +117,14 @@ class _RegisterPageState extends State<RegisterPage> {
                               }
                               return null;
                             },
-                            decoration: textInputDecoration(
+                            decoration: textInputDecorationWidget(
                                 labelText: 'الاسم الأول',
                                 hintText: 'ادخل الاسم الأول'),
                           ),
                         ),
                         const SizedBox(height: 20.0),
                         Container(
-                          decoration: inputBoxDecorationShaddow(),
+                          decoration: inputBoxDecorationShaddowWidget(),
                           child: TextFormField(
                             controller: lastNameController,
                             validator: (value) {
@@ -135,14 +133,14 @@ class _RegisterPageState extends State<RegisterPage> {
                               }
                               return null;
                             },
-                            decoration: textInputDecoration(
+                            decoration: textInputDecorationWidget(
                                 labelText: 'الاسم الأخير',
                                 hintText: 'ادخل الاسم الأخير'),
                           ),
                         ),
                         const SizedBox(height: 20.0),
                         Container(
-                          decoration: inputBoxDecorationShaddow(),
+                          decoration: inputBoxDecorationShaddowWidget(),
                           child: TextFormField(
                             controller: fatherNameController,
                             validator: (value) {
@@ -151,14 +149,14 @@ class _RegisterPageState extends State<RegisterPage> {
                               }
                               return null;
                             },
-                            decoration: textInputDecoration(
+                            decoration: textInputDecorationWidget(
                                 labelText: 'اسم الأب',
                                 hintText: 'ادخل اسم الأب'),
                           ),
                         ),
                         const SizedBox(height: 20.0),
                         Container(
-                          decoration: inputBoxDecorationShaddow(),
+                          decoration: inputBoxDecorationShaddowWidget(),
                           child: TextFormField(
                             controller: motherNameController,
                             validator: (value) {
@@ -167,17 +165,17 @@ class _RegisterPageState extends State<RegisterPage> {
                               }
                               return null;
                             },
-                            decoration: textInputDecoration(
+                            decoration: textInputDecorationWidget(
                                 labelText: 'اسم و نسبةالأم',
                                 hintText: "ادخل اسم و نسبة الأم"),
                           ),
                         ),
                         const SizedBox(height: 20.0),
                         Container(
-                          decoration: inputBoxDecorationShaddow(),
+                          decoration: inputBoxDecorationShaddowWidget(),
                           child: TextFormField(
                             controller: phoneController,
-                            decoration: textInputDecoration(
+                            decoration: textInputDecorationWidget(
                                 labelText: "رقم الهاتف",
                                 hintText: "ادخل رقم الهاتف"),
                             keyboardType: TextInputType.phone,
@@ -192,10 +190,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         const SizedBox(height: 20.0),
                         Container(
-                          decoration: inputBoxDecorationShaddow(),
+                          decoration: inputBoxDecorationShaddowWidget(),
                           child: TextFormField(
                             controller: emailController,
-                            decoration: textInputDecoration(
+                            decoration: textInputDecorationWidget(
                                 labelText: "البريد الالكتروني",
                                 hintText: "ادخل البريد الالكتروني"),
                             keyboardType: TextInputType.emailAddress,
@@ -213,10 +211,10 @@ class _RegisterPageState extends State<RegisterPage> {
                           height: 30.0,
                         ),
                         Container(
-                          decoration: inputBoxDecorationShaddow(),
+                          decoration: inputBoxDecorationShaddowWidget(),
                           child: TextFormField(
                             controller: idNationalNumberController,
-                            decoration: textInputDecoration(
+                            decoration: textInputDecorationWidget(
                                 labelText: "رقم الهوية الوطني",
                                 hintText: "ادخل رقم الهوية الوطني"),
                             keyboardType: TextInputType.phone,
@@ -231,15 +229,17 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         const SizedBox(height: 20.0),
                         Container(
-                          decoration: inputBoxDecorationShaddow(),
+                          decoration: inputBoxDecorationShaddowWidget(),
                           child: DropdownButtonFormField(
-                            decoration: textInputDecoration(labelText: "العمل"),
+                            decoration:
+                                textInputDecorationWidget(labelText: "العمل"),
                             value: jobController,
                             items: items
                                 .map((e) => DropdownMenuItem(
                                       value: e,
                                       child: Padding(
-                                        padding: const EdgeInsets.only(right: 20),
+                                        padding:
+                                            const EdgeInsets.only(right: 20),
                                         child: Text(e),
                                       ),
                                     ))
@@ -259,10 +259,10 @@ class _RegisterPageState extends State<RegisterPage> {
                             child: Column(
                               children: [
                                 Container(
-                                  decoration: inputBoxDecorationShaddow(),
+                                  decoration: inputBoxDecorationShaddowWidget(),
                                   child: DropdownButtonFormField(
-                                    decoration:
-                                        textInputDecoration(labelText: "الجامعة"),
+                                    decoration: textInputDecorationWidget(
+                                        labelText: "الجامعة"),
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return validate;
@@ -291,10 +291,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                   height: 20,
                                 ),
                                 Container(
-                                  decoration: inputBoxDecorationShaddow(),
+                                  decoration: inputBoxDecorationShaddowWidget(),
                                   child: DropdownButtonFormField(
-                                    decoration:
-                                        textInputDecoration(labelText: "الكلية"),
+                                    decoration: textInputDecorationWidget(
+                                        labelText: "الكلية"),
                                     validator: (value) {
                                       if (value!.isEmpty) {
                                         return validate;
@@ -323,9 +323,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                   height: 20,
                                 ),
                                 Container(
-                                  decoration: inputBoxDecorationShaddow(),
+                                  decoration: inputBoxDecorationShaddowWidget(),
                                   child: DropdownButtonFormField(
-                                    decoration: textInputDecoration(
+                                    decoration: textInputDecorationWidget(
                                         labelText: "الاختصاص (إن وجد)"),
                                     value: sectionController,
                                     items: items
@@ -353,8 +353,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         Visibility(
                             visible: jobController == "موظف" ? true : false,
                             child: Column(children: [
-                              dropdownButtonFormField(
-                                event: ChangeJob(),
+                              dropdownButtonFormFieldWidget(
                                   items: items,
                                   selectedItem: typeJobController,
                                   labelText: "نوع العمل"),
@@ -363,7 +362,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               ),
                             ])),
                         Container(
-                          decoration: inputBoxDecorationShaddow(),
+                          decoration: inputBoxDecorationShaddowWidget(),
                           child: TextFormField(
                             controller: passwordController,
                             keyboardType: TextInputType.visiblePassword,
@@ -454,9 +453,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         const SizedBox(height: 20.0),
                         Container(
-                          decoration: buttonBoxDecoration(context: context),
+                          decoration: buttonBoxDecorationWidget(),
                           child: ElevatedButton(
-                            style: buttonStyle(),
+                            style: buttonStyleWidget(),
                             child: Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(40, 10, 40, 10),

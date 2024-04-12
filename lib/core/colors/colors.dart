@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class MyColors {
-  static Color primaryColor = const Color.fromARGB(255, 0, 255, 13);
-  static Color secondaryColor = const Color.fromARGB(255, 46, 49, 47);
-  static Color thirdyColor = const Color.fromARGB(255, 0, 0, 0);
-  static Color drawerColor = Color.fromARGB(255, 38, 38, 39);
+  static Color primaryColor = HexColor("#cc2b5e");
+  static Color secondaryColor = HexColor("#753a88");
+  static Color drawerColor = Colors.indigo;
+  //static Color drawerShadowsBackgroundColor = primaryColor;
+  static Color white = Colors.white;
+  static Color black = MyColors.black;
 }

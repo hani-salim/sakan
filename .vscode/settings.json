@@ -1,3 +1,8 @@
 {
-    "cmake.sourceDirectory": "C:/Users/Lenovo/StudioProjects/sakan/linux"
+    "cmake.sourceDirectory": "C:/Users/Lenovo/StudioProjects/sakan/linux",
+    // "explorer.fileNesting.enabled": true,
+    // "explorer.fileNesting.expand": false,
+    // "explorer.fileNesting.patterns": {
+    // "pubspec.ymal": ".packages, .metadata, pubspec.lock,analysis_options.ymal",},
+   // "editor.codeActionsOnSave": {"source.fixAll": "always"}
 }

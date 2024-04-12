@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/core/widgets/widgets.dart';
+import 'package:sakan/core/widgets/appbar.dart';
 import 'package:sakan/features/main/presentation/widgets/menu_widget.dart';
 
 class NotificationPage extends StatelessWidget {
@@ -9,7 +9,7 @@ class NotificationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(
+      appBar: appBarWidget(
           text: titles[5], context: context, leading: const MenuWidget()),
       body: const Center(
         child: Icon(
