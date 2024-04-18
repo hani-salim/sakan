@@ -22,9 +22,12 @@ class ForgotPasswordPage extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                height: headerHeight,
-                child: HeaderWidget(headerHeight, true, Icon(Icons.password_rounded)),
-              ),
+                  height: headerHeight,
+                  child: HeaderWidget(
+                    height: 200,
+                    lottieFilePath: "assets/lottieFiles/forgetPassword.json",
+                    showAnimated: true,
+                  )),
               SafeArea(
                 child: Container(
                   margin: const EdgeInsets.fromLTRB(25, 10, 25, 10),
@@ -90,8 +93,7 @@ class ForgotPasswordPage extends StatelessWidget {
                             ),
                             const SizedBox(height: 40.0),
                             Container(
-                              decoration:
-                                  buttonBoxDecorationWidget(),
+                              decoration: buttonBoxDecorationWidget(),
                               child: ElevatedButton(
                                 style: buttonStyleWidget(),
                                 child: const Padding(

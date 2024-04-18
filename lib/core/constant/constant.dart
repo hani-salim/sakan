@@ -1,8 +1,8 @@
 //this is constant file
 
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:sakan/core/colors/colors.dart';
+import 'package:sakan/features/main/domain/entities/card_detailes_item.dart';
 import 'package:sakan/features/main/domain/entities/service_item.dart';
 import 'package:sakan/features/main/domain/entities/theme_item.dart';
 import 'package:sakan/features/main/presentation/pages/about_us_page.dart';
@@ -11,7 +11,7 @@ import 'package:sakan/features/main/presentation/pages/log_page.dart';
 import 'package:sakan/features/main/presentation/pages/news_page.dart';
 import 'package:sakan/features/main/presentation/pages/notification_page.dart';
 import 'package:sakan/features/main/presentation/pages/profile_page.dart';
-import 'package:sakan/features/main/presentation/pages/services.dart';
+import 'package:sakan/features/main/presentation/pages/services_page.dart';
 import 'package:sakan/features/main/presentation/pages/setting_page.dart';
 
 //api
@@ -62,22 +62,15 @@ List<ServiceEntities> services = [
 
 //list of themes
 List<ThemeEntities> themes = [
-  ThemeEntities(
-      primaryColor: HexColor("#cc2b5e"), secondaryColor: HexColor('#753a88')),
-  ThemeEntities(
-      primaryColor: HexColor("#ee9ca7"), secondaryColor: HexColor('#ffdde1')),
-ThemeEntities(
-      primaryColor: HexColor("#eb3349"), secondaryColor: HexColor('#f45c43 ')),
-  ThemeEntities(
-      primaryColor: HexColor("#56ab2f"), secondaryColor: HexColor('#a8e063')),
-  ThemeEntities(
-      primaryColor: HexColor("#02aab0"), secondaryColor: HexColor('#00cdac')),
-  ThemeEntities(
-      primaryColor: HexColor("#000428"), secondaryColor: HexColor('#004e92')),
-  ThemeEntities(
-      primaryColor: HexColor("#7b4397"), secondaryColor: HexColor('#dc2430')),
-  ThemeEntities(
-      primaryColor: HexColor("#ff512f"), secondaryColor: HexColor('#dd2476')),
+  ThemeEntities(primaryColor: ("#00ff08"), secondaryColor: ('#1f2b1f')),
+  ThemeEntities(primaryColor: ("#ff05e2"), secondaryColor: ('#0e1469')),
+  ThemeEntities(primaryColor: ("#000428"), secondaryColor: ('#004e92')),
+  ThemeEntities(primaryColor: ("#00f2ff"), secondaryColor: ('#ba0d0d')),
+  ThemeEntities(primaryColor: ("#ff6600"), secondaryColor: ('#9af21f')),
+  ThemeEntities(primaryColor: ("#9000ff"), secondaryColor: ('#3e1880')),
+  ThemeEntities(primaryColor: ("#4c5224"), secondaryColor: ('#d4cd11')),
+  ThemeEntities(primaryColor: ("#ff0026"), secondaryColor: ('#0022ff')),
+  ThemeEntities(primaryColor: ("#05ff1a"), secondaryColor: ('#ff7b00')),
 ];
 //main card
 ServiceEntities mainCard = ServiceEntities(
@@ -109,4 +102,51 @@ final List<String> titles = [
   "الإشعارات",
   "مساعدة",
   "حول التطبيق",
+];
+//list of card detailes
+List<CardDetailesEntities> listTiles = [
+  CardDetailesEntities(
+      title: 'العنوان',
+      subTiltle: 'الشيخ بدر',
+      leading: const Icon(Icons.room)),
+  CardDetailesEntities(
+      title: 'البريد الإلكتروني',
+      subTiltle: 'hanisalm@gmail.com',
+      leading: const Icon(Icons.email)),
+  CardDetailesEntities(
+      title: 'رقم الهاتف',
+      subTiltle: '0982668276',
+      leading: const Icon(Icons.phone)),
+  CardDetailesEntities(
+      title: 'الجامعة',
+      subTiltle: 'تشرين',
+      leading: const Icon(Icons.location_city)),
+  CardDetailesEntities(
+      title: 'الوحدة',
+      subTiltle: 'الثامنة عشر ذكور (داخل الحرم)',
+      leading: const Icon(Icons.house_siding_sharp)),
+  CardDetailesEntities(
+      title: 'رقم الغرفة',
+      subTiltle: '517',
+      leading: const Icon(Icons.numbers_rounded)),
+  CardDetailesEntities(
+      title: 'رقم الغرفة',
+      subTiltle: '517',
+      leading: const Icon(Icons.numbers_rounded)),
+  CardDetailesEntities(
+      title: 'رقم الغرفة',
+      subTiltle: '517',
+      leading: const Icon(Icons.numbers_rounded)),
+  CardDetailesEntities(
+      title: 'رقم الغرفة',
+      subTiltle: '517',
+      leading: const Icon(Icons.numbers_rounded)),
+  CardDetailesEntities(
+      title: 'رقم الغرفة',
+      subTiltle: '517',
+      leading: const Icon(Icons.numbers_rounded)),
+  CardDetailesEntities(
+      title: 'رقم الغرفة',
+      subTiltle: '517',
+      leading: const Icon(Icons.numbers_rounded)),
 ];

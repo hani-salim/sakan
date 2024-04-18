@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sakan/config/theme/header_widget.dart';
-import 'package:sakan/core/colors/colors.dart';
 import 'package:sakan/core/constant/constant.dart';
 import 'package:sakan/features/main/presentation/bloc/widget_bloc.dart';
+import 'package:sakan/features/main/presentation/widgets/sliver_app_bar.dart';
 import 'package:sakan/features/main/presentation/widgets/theme_widget.dart';
 
 class ThemePage extends StatelessWidget {
@@ -14,43 +14,52 @@ class ThemePage extends StatelessWidget {
     return BlocConsumer<WidgetBloc, WidgetState>(
       listener: (context, state) {},
       builder: (contextm, state) => Scaffold(
-        body: Container(
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-              MyColors.primaryColor.withOpacity(0.3),
-              MyColors.secondaryColor.withOpacity(0.3),
+        body: Stack(
+          children: [
+            // Container(
+            //   decoration: BoxDecoration(
+            //       gradient: LinearGradient(colors: [
+            //     MyColors.primaryColor.withOpacity(0.3),
+            //     MyColors.secondaryColor.withOpacity(0.4)
+            //   ])),
+            // ),
+            CustomScrollView(slivers: [
+              SliverAppBarWidget(
+                title: 'الثيمات',
+                collapsedHeight: MediaQuery.of(context).size.height / 4,
+                pinned: true,
+              ),
+              _buildThemeItems()
             ]),
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 200,
-                  child: HeaderWidget(200, true, Icon(Icons.color_lens)),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: GridView.count(
-                    crossAxisCount: 2,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    children: [
-                      ...themes.map((e) => ThemeWidget(
-                            primaryColor: e.primaryColor,
-                            secondaryColor: e.secondaryColor,
-                            item: e,
-                          )),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
+          ],
         ),
       ),
     );
   }
+
+  Widget _buildThemeItems() => SliverToBoxAdapter(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: GridView.count(
+                crossAxisCount: 2,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                children: [
+                  ...themes.map((e) => ThemeWidget(
+                        primaryColor: e.primaryColor,
+                        secondaryColor: e.secondaryColor,
+                        item: e,
+                      )),
+                ]
+                    .animate(interval: Durations.short1)
+                    .moveX(curve: Curves.easeIn, begin: -200, end: 0),
+              ),
+            ),
+          ],
+        ),
+      );
 }

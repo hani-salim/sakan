@@ -24,7 +24,7 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   getUnits({required String univercityName}) {
-    // TODO: implement getUnits
+    
     throw UnimplementedError();
   }
 

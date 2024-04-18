@@ -53,11 +53,13 @@ class _RegisterPageState extends State<RegisterPage> {
           body: SingleChildScrollView(
             child: Stack(
               children: [
-                const SizedBox(
-                  height: 150,
-                  child: HeaderWidget(
-                      150, false, Icon(Icons.person_add_alt_1_rounded)),
-                ),
+                SizedBox(
+                    height: 150,
+                    child: HeaderWidget(
+                      height: 200,
+                      lottieFilePath: "assets/lottieFiles/theme.json",
+                      showAnimated: false,
+                    )),
                 Container(
                   margin: const EdgeInsets.fromLTRB(25, 50, 25, 10),
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),

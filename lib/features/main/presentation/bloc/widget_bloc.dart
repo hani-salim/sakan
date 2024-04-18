@@ -1,8 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:sakan/core/colors/colors.dart';
 import 'package:sakan/core/constant/constant.dart';
+import 'package:sakan/core/network/local/local_storage.dart';
 import 'package:sakan/features/main/domain/entities/menu_item.dart';
 import 'package:sakan/features/main/domain/entities/theme_item.dart';
 import 'package:sakan/features/main/presentation/pages/about_us_page.dart';
@@ -18,7 +20,7 @@ part 'widget_state.dart';
 class WidgetBloc extends Bloc<WidgetEvent, WidgetState> {
   int selectedPage = 2;
   Widget mainPage = const MainPage();
-  MenuItem currentItem = MenuItems.notification;
+  MenuItem? currentItem = MenuItems.services;
   WidgetBloc() : super(WidgetInitialState()) {
     on<ChangeDrwerItem>(onChangeDrawerItem);
     on<ChangeBottomNavicaitonBar>(onChangeBottomNavicationBar);
@@ -30,8 +32,12 @@ class WidgetBloc extends Bloc<WidgetEvent, WidgetState> {
     for (ThemeEntities e in themes) {
       if (e == event.item) {
         event.item.isTapped = true;
-        MyColors.primaryColor = event.item.primaryColor;
-        MyColors.secondaryColor = event.item.secondaryColor;
+        MyColors.primaryColor = HexColor(event.item.primaryColor);
+        MyColors.secondaryColor = HexColor(event.item.secondaryColor);
+        LocalStorage.putData(
+            key: 'primaryColor', value: event.item.primaryColor);
+        LocalStorage.putData(
+            key: "secondaryColor", value: event.item.secondaryColor);
       } else {
         e.isTapped = false;
       }
@@ -77,6 +83,13 @@ class WidgetBloc extends Bloc<WidgetEvent, WidgetState> {
       ChangeBottomNavicaitonBar event, Emitter<WidgetState> emit) {
     emit(WidgetInitialState());
     selectedPage = event.selectedPage;
+    if (selectedPage == 2) {
+      currentItem = MenuItems.services;
+    } else if (selectedPage == 4) {
+      currentItem = MenuItems.settings;
+    } else {
+      currentItem = null;
+    }
     emit(ChangeSelectedItemState());
   }
 }

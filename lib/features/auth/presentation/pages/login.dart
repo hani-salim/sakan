@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:sakan/core/colors/colors.dart';
 import 'package:sakan/core/constant/constant.dart';
 import 'package:sakan/core/widgets/box_decoration.dart';
@@ -34,10 +35,13 @@ class _LoginPageState extends State<LoginPage> {
           return SingleChildScrollView(
             child: Column(
               children: [
-                const SizedBox(
-                  height: 250.0,
-                  child: HeaderWidget(250.0, true, Icon(Icons.login_rounded)),
-                ),
+                SizedBox(
+                    height: 250.0,
+                    child: HeaderWidget(
+                      height: 200,
+                      lottieFilePath: "assets/lottieFiles/login.json",
+                      showAnimated: true,
+                    )),
                 SafeArea(
                     child: Container(
                   padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
@@ -130,8 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                                   }),
                             ),
                             Container(
-                              decoration:
-                                  buttonBoxDecorationWidget(),
+                              decoration: buttonBoxDecorationWidget(),
                               child: ElevatedButton(
                                   style: buttonStyleWidget(),
                                   child: Padding(

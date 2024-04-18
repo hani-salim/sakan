@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import 'package:sakan/core/colors/colors.dart';
 import 'package:sakan/features/main/presentation/bloc/widget_bloc.dart';
+import 'package:sakan/features/main/presentation/pages/main_page.dart';
 
 class HeaderWidget extends StatelessWidget {
-  final double _height;
-  final bool _showIcon;
-  final Widget _icon;
+  final double height;
+  final bool? showAnimated;
+  final String? lottieFilePath;
 
-  const HeaderWidget(this._height, this._showIcon, this._icon, {super.key});
+  const HeaderWidget({
+    required this.height,
+    this.showAnimated,
+    this.lottieFilePath,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +24,14 @@ class HeaderWidget extends StatelessWidget {
     return BlocConsumer<WidgetBloc, WidgetState>(
       listener: (context, state) {},
       builder: (context, state) => Stack(
+        alignment: Alignment.center,
         children: [
           ClipPath(
             clipper: ShapeClipper([
-              Offset(width / 5, _height),
-              Offset(width / 10 * 5, _height - 60),
-              Offset(width / 5 * 4, _height + 20),
-              Offset(width, _height - 18)
+              Offset(width / 5, height),
+              Offset(width / 10 * 5, height - 60),
+              Offset(width / 5 * 4, height + 20),
+              Offset(width, height - 18)
             ]),
             child: Container(
               decoration: BoxDecoration(
@@ -40,10 +49,10 @@ class HeaderWidget extends StatelessWidget {
           ),
           ClipPath(
             clipper: ShapeClipper([
-              Offset(width / 3, _height + 20),
-              Offset(width / 10 * 8, _height - 60),
-              Offset(width / 5 * 4, _height - 60),
-              Offset(width, _height - 20)
+              Offset(width / 3, height + 20),
+              Offset(width / 10 * 8, height - 60),
+              Offset(width / 5 * 4, height - 60),
+              Offset(width, height - 20)
             ]),
             child: Container(
               decoration: BoxDecoration(
@@ -61,10 +70,10 @@ class HeaderWidget extends StatelessWidget {
           ),
           ClipPath(
             clipper: ShapeClipper([
-              Offset(width / 5, _height),
-              Offset(width / 2, _height - 40),
-              Offset(width / 5 * 4, _height - 80),
-              Offset(width, _height - 20)
+              Offset(width / 5, height),
+              Offset(width / 2, height - 40),
+              Offset(width / 5 * 4, height - 80),
+              Offset(width, height - 20)
             ]),
             child: Container(
               decoration: BoxDecoration(
@@ -81,14 +90,42 @@ class HeaderWidget extends StatelessWidget {
             ),
           ),
           Visibility(
-            visible: _showIcon,
+            visible: showAnimated ?? false,
             child: SizedBox(
-              height: _height,
-              child: Center(child: _icon),
+              height: height,
+              child: Column(
+                children: [
+                  Center(
+                    child: Lottie.asset(
+                        lottieFilePath ?? 'assets/lottieFiles/sakan.json',
+                        width: MediaQuery.of(context).size.width / 4,
+                        height: MediaQuery.of(context).size.width / 4),
+                  ),
+                  Visibility(
+                    visible: BlocProvider.of<WidgetBloc>(context).mainPage
+                            is MainPage &&
+                        BlocProvider.of<WidgetBloc>(context).selectedPage == 2,
+                    child: Column(
+                      children: [
+                        const Text(
+                          "يجب التسجيل على السكن للحصول على الخدمات",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        TextButton(
+                            onPressed: () {},
+                            child: Text("التسجيل الآن",
+                                    style: TextStyle(color: Colors.amber[400]))
+                                .animate()
+                                .shake()),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
-      ),
+      ).animate().slideY(),
     );
   }
 }

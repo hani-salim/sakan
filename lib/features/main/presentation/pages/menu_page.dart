@@ -5,7 +5,7 @@ import 'package:sakan/features/main/domain/entities/menu_item.dart';
 import 'package:sakan/features/main/presentation/bloc/widget_bloc.dart';
 
 class MenuPage extends StatelessWidget {
-  final MenuItem currentItem;
+  final MenuItem? currentItem;
   final ValueChanged<MenuItem> onSelectedItem;
   const MenuPage(
       {super.key, required this.currentItem, required this.onSelectedItem});

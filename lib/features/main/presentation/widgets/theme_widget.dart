@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:lottie/lottie.dart';
 import 'package:sakan/features/main/domain/entities/theme_item.dart';
 import 'package:sakan/features/main/presentation/bloc/widget_bloc.dart';
 
 class ThemeWidget extends StatelessWidget {
-  final HexColor primaryColor;
-  final HexColor secondaryColor;
+  final String primaryColor;
+  final String secondaryColor;
   final ThemeEntities item;
   const ThemeWidget(
       {super.key,
@@ -28,17 +29,17 @@ class ThemeWidget extends StatelessWidget {
               decoration: BoxDecoration(
                   border: item.isTapped
                       ? Border.all(
-                          color: Colors.green, style: BorderStyle.solid)
+                          color: Colors.green,
+                          style: BorderStyle.solid,
+                          width: 5)
                       : null,
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
-                  gradient:
-                      LinearGradient(colors: [primaryColor, secondaryColor])),
+                  gradient: LinearGradient(colors: [
+                    HexColor(primaryColor),
+                    HexColor(secondaryColor)
+                  ])),
               child: item.isTapped
-                  ? const Icon(
-                      Icons.check,
-                      color: Colors.green,
-                      size: 40,
-                    )
+                  ? Lottie.asset('assets/lottieFiles/theme.json')
                   : null),
         );
       },

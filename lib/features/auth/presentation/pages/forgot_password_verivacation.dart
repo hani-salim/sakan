@@ -27,10 +27,12 @@ class _ForgotPasswordVerificationPageState
           child: Column(
             children: [
               SizedBox(
-                height: headerHeight,
-                child: HeaderWidget(
-                    headerHeight, true, Icon(Icons.privacy_tip_outlined)),
-              ),
+                  height: headerHeight,
+                  child: HeaderWidget(
+                    height: 200,
+                    lottieFilePath: "assets/lottieFiles/verification.json",
+                    showAnimated: true,
+                  )),
               SafeArea(
                 child: Container(
                   margin: const EdgeInsets.fromLTRB(25, 10, 25, 10),
@@ -117,7 +119,6 @@ class _ForgotPasswordVerificationPageState
                               decoration: _pinSuccess
                                   ? buttonBoxDecorationWidget()
                                   : buttonBoxDecorationWidget(
-                                      
                                       color1: Colors.white,
                                       color2: Colors.grey,
                                     ),
