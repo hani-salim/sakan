@@ -3,8 +3,9 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sakan/core/colors/colors.dart';
+import 'package:sakan/core/constant/constant.dart';
 import 'package:sakan/features/main/presentation/bloc/widget_bloc.dart';
-import 'package:sakan/features/main/presentation/pages/main_page.dart';
+import 'package:sakan/features/main/presentation/pages/main_pages/main_page.dart';
 
 class HeaderWidget extends StatelessWidget {
   final double height;
@@ -89,43 +90,48 @@ class HeaderWidget extends StatelessWidget {
               ),
             ),
           ),
-          Visibility(
-            visible: showAnimated ?? false,
-            child: SizedBox(
-              height: height,
+          _showAnimated(context),
+        ],
+      ).animate().slideY(),
+    );
+  }
+
+  Visibility _showAnimated(BuildContext context) {
+    return Visibility(
+      visible: showAnimated ?? false,
+      child: SizedBox(
+        height: height,
+        child: Column(
+          children: [
+            Center(
+              child: Lottie.asset(
+                  lottieFilePath ?? 'assets/lottieFiles/sakan.json',
+                  width: MediaQuery.of(context).size.width / 4,
+                  height: MediaQuery.of(context).size.width / 4),
+            ),
+            Visibility(
+              visible:
+                  BlocProvider.of<WidgetBloc>(context).mainPage is MainPage &&
+                      BlocProvider.of<WidgetBloc>(context).selectedPage == 2 &&
+                      ModalRoute.of(context)!.settings.name == homePage,
               child: Column(
                 children: [
-                  Center(
-                    child: Lottie.asset(
-                        lottieFilePath ?? 'assets/lottieFiles/sakan.json',
-                        width: MediaQuery.of(context).size.width / 4,
-                        height: MediaQuery.of(context).size.width / 4),
+                  const Text(
+                    "يجب التسجيل على السكن للحصول على الخدمات",
+                    style: TextStyle(color: Colors.white),
                   ),
-                  Visibility(
-                    visible: BlocProvider.of<WidgetBloc>(context).mainPage
-                            is MainPage &&
-                        BlocProvider.of<WidgetBloc>(context).selectedPage == 2,
-                    child: Column(
-                      children: [
-                        const Text(
-                          "يجب التسجيل على السكن للحصول على الخدمات",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        TextButton(
-                            onPressed: () {},
-                            child: Text("التسجيل الآن",
-                                    style: TextStyle(color: Colors.amber[400]))
-                                .animate()
-                                .shake()),
-                      ],
-                    ),
-                  ),
+                  TextButton(
+                      onPressed: () {},
+                      child: Text("التسجيل الآن",
+                              style: TextStyle(color: Colors.amber[400]))
+                          .animate()
+                          .shake()),
                 ],
               ),
             ),
-          ),
-        ],
-      ).animate().slideY(),
+          ],
+        ),
+      ),
     );
   }
 }

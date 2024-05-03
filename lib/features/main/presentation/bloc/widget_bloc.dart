@@ -7,12 +7,12 @@ import 'package:sakan/core/constant/constant.dart';
 import 'package:sakan/core/network/local/local_storage.dart';
 import 'package:sakan/features/main/domain/entities/menu_item.dart';
 import 'package:sakan/features/main/domain/entities/theme_item.dart';
-import 'package:sakan/features/main/presentation/pages/about_us_page.dart';
-import 'package:sakan/features/main/presentation/pages/help_page.dart';
-import 'package:sakan/features/main/presentation/pages/main_page.dart';
-import 'package:sakan/features/main/presentation/pages/menu_page.dart';
-import 'package:sakan/features/main/presentation/pages/notification_page.dart';
-import 'package:sakan/features/main/presentation/pages/theme_page.dart';
+import 'package:sakan/features/main/presentation/pages/main_pages/about_us_page.dart';
+import 'package:sakan/features/main/presentation/pages/main_pages/help_page.dart';
+import 'package:sakan/features/main/presentation/pages/main_pages/main_page.dart';
+import 'package:sakan/features/main/presentation/pages/main_pages/menu_page.dart';
+import 'package:sakan/features/main/presentation/pages/main_pages/notification_page.dart';
+import 'package:sakan/features/main/presentation/pages/main_pages/theme_page.dart';
 
 part 'widget_event.dart';
 part 'widget_state.dart';

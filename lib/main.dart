@@ -5,7 +5,8 @@ import 'package:sakan/config/routes/routes.dart';
 import 'package:sakan/core/network/local/local_storage.dart';
 import 'package:sakan/core/network/remote/dio_helper.dart';
 import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_bloc.dart';
-import 'package:sakan/features/main/presentation/pages/home_page.dart';
+import 'package:sakan/features/auth/presentation/pages/login_page.dart';
+import 'package:sakan/features/main/presentation/bloc/widget_bloc.dart';
 import 'package:sakan/injection_container.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'config/theme/app_theme.dart';
@@ -29,13 +30,14 @@ class MyApp extends StatelessWidget {
           BlocProvider<RemoteUserBloc>(
             create: (context) => sl(),
           ),
+          BlocProvider<WidgetBloc>(create: (context) => WidgetBloc())
         ],
         child: GetMaterialApp(
           textDirection: TextDirection.rtl,
           routes: routes,
           debugShowCheckedModeBanner: false,
           theme: appTheme,
-          home: const HomePage(),
+          home: const LoginPage(),
         ));
   }
 }

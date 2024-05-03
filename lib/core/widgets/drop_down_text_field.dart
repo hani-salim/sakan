@@ -5,8 +5,11 @@ DropdownButtonFormField dropdownButtonFormFieldWidget({
   required List<String> items,
   required String? selectedItem,
   required String labelText,
+  String? Function(dynamic)? validator
+  
 }) {
   return DropdownButtonFormField(
+    validator: validator,
     focusColor: Colors.white,
     decoration: textInputDecorationWidget(
       labelText: labelText,

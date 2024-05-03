@@ -28,7 +28,7 @@ class _ForgotPasswordVerificationPageState
             children: [
               SizedBox(
                   height: headerHeight,
-                  child: HeaderWidget(
+                  child: const HeaderWidget(
                     height: 200,
                     lottieFilePath: "assets/lottieFiles/verification.json",
                     showAnimated: true,

@@ -46,7 +46,7 @@ class SliverAppBarWidget extends StatelessWidget {
         color: Colors.white,
         child: Stack(
           alignment: Alignment.topCenter,
-          children: [_headerWidget(), _profileImasge(context)],
+          children: [_headerWidget(context: context), _profileImasge(context)],
         ),
       ),
     );
@@ -92,11 +92,11 @@ class SliverAppBarWidget extends StatelessWidget {
     );
   }
 
-  SizedBox _headerWidget() {
+  SizedBox _headerWidget({required BuildContext context}) {
     return SizedBox(
-      height: 200,
+      height: MediaQuery.of(context).size.height / 4,
       child: HeaderWidget(
-        height: 200,
+        height: MediaQuery.of(context).size.height / 4,
         lottieFilePath: lottieFilePath,
         showAnimated: showAnimated,
       ),

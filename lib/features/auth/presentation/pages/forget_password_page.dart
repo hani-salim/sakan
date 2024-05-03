@@ -15,7 +15,7 @@ class ForgotPasswordPage extends StatelessWidget {
   final phoneController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    double headerHeight = 300;
+    double headerHeight = 200;
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
@@ -23,7 +23,7 @@ class ForgotPasswordPage extends StatelessWidget {
             children: [
               SizedBox(
                   height: headerHeight,
-                  child: HeaderWidget(
+                  child: const HeaderWidget(
                     height: 200,
                     lottieFilePath: "assets/lottieFiles/forgetPassword.json",
                     showAnimated: true,

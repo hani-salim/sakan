@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:sakan/core/colors/colors.dart';
 import 'package:sakan/features/main/presentation/bloc/widget_bloc.dart';
-import 'package:sakan/features/main/presentation/pages/menu_page.dart';
+import 'package:sakan/features/main/presentation/pages/main_pages/menu_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

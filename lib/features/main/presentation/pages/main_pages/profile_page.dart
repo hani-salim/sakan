@@ -31,6 +31,7 @@ SliverAppBarWidget _sliverAppBar() {
     title: 'الملف الشخصي',
     expandHeight: 300,
     isProfilePage: true,
+  
   );
 }
 
@@ -65,7 +66,9 @@ SliverToBoxAdapter _userInformation() {
                           leading: e.leading,
                         ))
                   ])
-                ].animate(interval: Durations.short4).moveX(),
+                ]
+                    .animate(interval: Durations.short4)
+                    .moveX(curve: Curves.easeIn, begin: -100, end: 0),
               ),
             ),
           ),

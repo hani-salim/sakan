@@ -5,14 +5,14 @@ import 'package:sakan/core/colors/colors.dart';
 import 'package:sakan/features/main/domain/entities/card_detailes_item.dart';
 import 'package:sakan/features/main/domain/entities/service_item.dart';
 import 'package:sakan/features/main/domain/entities/theme_item.dart';
-import 'package:sakan/features/main/presentation/pages/about_us_page.dart';
-import 'package:sakan/features/main/presentation/pages/help_page.dart';
-import 'package:sakan/features/main/presentation/pages/log_page.dart';
-import 'package:sakan/features/main/presentation/pages/news_page.dart';
-import 'package:sakan/features/main/presentation/pages/notification_page.dart';
-import 'package:sakan/features/main/presentation/pages/profile_page.dart';
-import 'package:sakan/features/main/presentation/pages/services_page.dart';
-import 'package:sakan/features/main/presentation/pages/setting_page.dart';
+import 'package:sakan/features/main/presentation/pages/main_pages/about_us_page.dart';
+import 'package:sakan/features/main/presentation/pages/main_pages/help_page.dart';
+import 'package:sakan/features/main/presentation/pages/main_pages/log_page.dart';
+import 'package:sakan/features/main/presentation/pages/main_pages/news_page.dart';
+import 'package:sakan/features/main/presentation/pages/main_pages/notification_page.dart';
+import 'package:sakan/features/main/presentation/pages/main_pages/profile_page.dart';
+import 'package:sakan/features/main/presentation/pages/main_pages/services_page.dart';
+import 'package:sakan/features/main/presentation/pages/main_pages/setting_page.dart';
 
 //api
 const String baseUrl = "http://10.0.2.2:8000/api/";
@@ -25,9 +25,12 @@ const String forgotPasswordPage = "forgotPasswordPage";
 const String forgotPasswwordVerificationPage =
     "forgotPasswwordVerificationPage";
 const String homePage = "homePage";
+const String breadRequestPage = "breadRequestPage";
+const String sevicesPage = "servicesPage";
 
 //constant
 const String validate = "❗❗ حقل مطلوب";
+
 const int currentIndex = 0;
 const double iconAppBarSize = 30;
 
@@ -36,7 +39,7 @@ const double height = 100;
 List<ServiceEntities> services = [
   ServiceEntities(
       color: Colors.greenAccent,
-      title: "a",
+      title: "طلب الحصول على خبز",
       url: 'assets/images/bread.png',
       isTapped: false,
       height: height),

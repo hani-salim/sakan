@@ -62,6 +62,10 @@ class _ServiceWidgetState extends State<ServiceWidget> {
       for (int i = 0; i < services.length; i++) {
         if (item == services[i]) {
           item.isTapped = isTapped;
+          switch (item.title) {
+            case "طلب الحصول على خبز":
+            Navigator.pushNamed(context, breadRequestPage);
+          }
         }
       }
       if (item == mainCard) {
