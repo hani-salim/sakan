@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sakan/core/colors/colors.dart';
-import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/features/main/domain/entities/service_item.dart';
+import '../../../../core/colors/colors.dart';
+import '../../../../core/constant/constant.dart';
+import '../../domain/entities/service_item.dart';
 
 class ServiceWidget extends StatefulWidget {
   final ServiceEntities serviceEntities;
@@ -46,11 +46,14 @@ class _ServiceWidgetState extends State<ServiceWidget> {
           ),
           Text(
             widget.serviceEntities.title,
+            maxLines: 2,
+            textAlign: TextAlign.center,
             style: TextStyle(
                 color: !widget.serviceEntities.isTapped
-                    ? MyColors.primaryColor
+                    ? MyColors.secondaryColor
                     : MyColors.white,
-                fontSize: 16),
+                fontSize: 16,
+                fontWeight: FontWeight.bold),
           ),
         ],
       ),
@@ -61,11 +64,22 @@ class _ServiceWidgetState extends State<ServiceWidget> {
     setState(() {
       for (int i = 0; i < services.length; i++) {
         if (item == services[i]) {
+
           item.isTapped = isTapped;
+        if(isTapped){
           switch (item.title) {
             case "طلب الحصول على خبز":
-            Navigator.pushNamed(context, breadRequestPage);
+            Navigator.pushNamed(context, breadRequestPage); break;
+            case "تقديم إذن عمل":
+            Navigator.pushNamed(context, workPermitPage); break;
+            case "تقديم شكوى":
+            Navigator.pushNamed(context, complaintPage); break;
+          case "تقديم طلب صيانة":
+            Navigator.pushNamed(context, repaireRequestPage); break;
+          
           }
+        }
+          
         }
       }
       if (item == mainCard) {

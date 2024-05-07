@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:sakan/core/network/local/local_storage.dart';
+import '../network/local/local_storage.dart';
 
 class MyColors {
   static Color primaryColor =

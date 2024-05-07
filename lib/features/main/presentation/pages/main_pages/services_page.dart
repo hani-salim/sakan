@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/core/widgets/card_box_decoration.dart';
-import 'package:sakan/features/main/presentation/widgets/service_widget.dart';
-import 'package:sakan/features/main/presentation/widgets/sliver_app_bar.dart';
+import '../../../../../core/constant/constant.dart';
+import '../../../../../core/widgets/card_box_decoration.dart';
+import '../../widgets/service_widget.dart';
+import '../../widgets/sliver_app_bar.dart';
 
 class ServicesPage extends StatelessWidget {
   const ServicesPage({super.key});
@@ -43,7 +43,7 @@ Widget _servicesList() => SliverToBoxAdapter(
               mainAxisSpacing: 10,
               children: [
                 ...services.map((e) => ServiceWidget(serviceEntities: e))
-              ].animate(interval: const Duration(milliseconds: 150)).flip(),
+              ].animate(interval: Durations.short1).flip(),
             ),
           ),
         ),

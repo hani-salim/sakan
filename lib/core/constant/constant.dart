@@ -15,10 +15,9 @@ import 'package:sakan/features/main/presentation/pages/main_pages/services_page.
 import 'package:sakan/features/main/presentation/pages/main_pages/setting_page.dart';
 
 //api
-const String baseUrl = "http://10.0.2.2:8000/api/";
-// const String baseUrl = "http://127.0.0.1:8000/api/";
+const String baseUrl = "http://20.20.127.214:9000/api/";
 
-//pages
+//pages for routes
 const String loginPage = "LoginPage";
 const String registerPage = "RegisterPage";
 const String forgotPasswordPage = "forgotPasswordPage";
@@ -27,6 +26,9 @@ const String forgotPasswwordVerificationPage =
 const String homePage = "homePage";
 const String breadRequestPage = "breadRequestPage";
 const String sevicesPage = "servicesPage";
+const String complaintPage = "complaintPage";
+const String workPermitPage = "workPermitPage";
+const String repaireRequestPage = "repaireRequestPage";
 
 //constant
 const String validate = "❗❗ حقل مطلوب";
@@ -45,19 +47,19 @@ List<ServiceEntities> services = [
       height: height),
   ServiceEntities(
       color: const Color(0xFFFFC107),
-      title: "b ",
+      title: "تقديم إذن عمل",
       url: 'assets/images/job.png',
       isTapped: false,
       height: height),
   ServiceEntities(
       color: Colors.indigoAccent,
-      title: "c ",
+      title: "تقديم طلب صيانة",
       url: 'assets/images/malfunction.png',
       isTapped: false,
       height: height),
   ServiceEntities(
       color: Colors.redAccent,
-      title: "d",
+      title: "تقديم شكوى",
       url: 'assets/images/complaint.png',
       isTapped: false,
       height: height),

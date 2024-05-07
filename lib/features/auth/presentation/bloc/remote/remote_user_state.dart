@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
-import 'package:sakan/features/auth/domain/entities/user.dart';
+import '../../../domain/entities/user.dart';
 
 abstract class RemoteUserState extends Equatable {
   final UserEntities? userEntities;

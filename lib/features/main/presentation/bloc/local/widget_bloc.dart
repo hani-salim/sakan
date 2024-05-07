@@ -2,17 +2,17 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:sakan/core/colors/colors.dart';
-import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/core/network/local/local_storage.dart';
-import 'package:sakan/features/main/domain/entities/menu_item.dart';
-import 'package:sakan/features/main/domain/entities/theme_item.dart';
-import 'package:sakan/features/main/presentation/pages/main_pages/about_us_page.dart';
-import 'package:sakan/features/main/presentation/pages/main_pages/help_page.dart';
-import 'package:sakan/features/main/presentation/pages/main_pages/main_page.dart';
-import 'package:sakan/features/main/presentation/pages/main_pages/menu_page.dart';
-import 'package:sakan/features/main/presentation/pages/main_pages/notification_page.dart';
-import 'package:sakan/features/main/presentation/pages/main_pages/theme_page.dart';
+import '../../../../../core/colors/colors.dart';
+import '../../../../../core/constant/constant.dart';
+import '../../../../../core/network/local/local_storage.dart';
+import '../../../domain/entities/menu_item.dart';
+import '../../../domain/entities/theme_item.dart';
+import '../../pages/main_pages/about_us_page.dart';
+import '../../pages/main_pages/help_page.dart';
+import '../../pages/main_pages/main_page.dart';
+import '../../pages/main_pages/menu_page.dart';
+import '../../pages/main_pages/notification_page.dart';
+import '../../pages/main_pages/theme_page.dart';
 
 part 'widget_event.dart';
 part 'widget_state.dart';
@@ -21,10 +21,16 @@ class WidgetBloc extends Bloc<WidgetEvent, WidgetState> {
   int selectedPage = 2;
   Widget mainPage = const MainPage();
   MenuItem? currentItem = MenuItems.services;
+  bool isShowBottomSheet = false;
+  Icon bottomSheetIcon = const Icon(Icons.add,color: Colors.white,);
+  bool isFloatingActionbuttonShow=true;
+
   WidgetBloc() : super(WidgetInitialState()) {
     on<ChangeDrwerItem>(onChangeDrawerItem);
     on<ChangeBottomNavicaitonBar>(onChangeBottomNavicationBar);
     on<ChangeTheme>(onChangeTheme);
+    on<ChangeBottomSheet>(onChangeBottomSheet);
+    on<AddBreadRequeset>(onAddBreadRequest);
   }
 
   onChangeTheme(ChangeTheme event, Emitter<WidgetState> emit) {
@@ -76,7 +82,7 @@ class WidgetBloc extends Bloc<WidgetEvent, WidgetState> {
         mainPage = const AboutUsPage();
         break;
     }
-    emit(ChangeSelectedItemState());
+    emit(ChangeBottomNavicaitonBarState());
   }
 
   onChangeBottomNavicationBar(
@@ -90,6 +96,26 @@ class WidgetBloc extends Bloc<WidgetEvent, WidgetState> {
     } else {
       currentItem = null;
     }
-    emit(ChangeSelectedItemState());
+    emit(ChangeBottomNavicaitonBarState());
+  }
+
+  onChangeBottomSheet(ChangeBottomSheet event, Emitter<WidgetState> emit) {
+    emit(WidgetInitialState());
+    
+    if (event.isShow) {
+      isShowBottomSheet = event.isShow;
+      bottomSheetIcon = const Icon(Icons.edit,color: Colors.white,);
+      emit(ChangeBottomSheetState());
+    } else {
+      isShowBottomSheet = event.isShow;
+      bottomSheetIcon = const Icon(Icons.add,color: Colors.white,);
+      emit(ChangeBottomSheetState());
+    }
+  }
+
+  onAddBreadRequest(AddBreadRequeset event, Emitter<WidgetState> emit){
+    emit(AddBreadRequesetLoadingState());
+    isFloatingActionbuttonShow = false;
+    emit(AddBreadRequesetSuccessState());
   }
 }

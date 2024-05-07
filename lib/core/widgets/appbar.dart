@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sakan/core/colors/colors.dart';
+import '../colors/colors.dart';
 
 AppBar appBarWidget(
     {required text,

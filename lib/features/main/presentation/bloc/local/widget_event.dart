@@ -24,3 +24,15 @@ class ChangeTheme extends WidgetEvent {
   const ChangeTheme({required this.item});
 }
 
+class ChangeBottomSheet extends WidgetEvent{
+  final bool isShow;
+  const ChangeBottomSheet({required this.isShow}); 
+}
+
+class AddBreadRequeset extends WidgetEvent{
+  final String date;
+  final String time;
+  final String numberOfBread;
+
+  const AddBreadRequeset({required this.date, required this.time, required this.numberOfBread});
+}

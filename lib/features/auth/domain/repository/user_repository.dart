@@ -1,5 +1,5 @@
-import 'package:sakan/core/resource/dart_state.dart';
-import 'package:sakan/features/auth/domain/entities/user.dart';
+import '../../../../core/resource/dart_state.dart';
+import '../entities/user.dart';
 
 abstract class UserRepository {
   Future<DataState<UserEntities>> login(

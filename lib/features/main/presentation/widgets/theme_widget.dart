@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:lottie/lottie.dart';
-import 'package:sakan/features/main/domain/entities/theme_item.dart';
-import 'package:sakan/features/main/presentation/bloc/widget_bloc.dart';
+import '../../domain/entities/theme_item.dart';
+import '../bloc/local/widget_bloc.dart';
 
 class ThemeWidget extends StatelessWidget {
   final String primaryColor;

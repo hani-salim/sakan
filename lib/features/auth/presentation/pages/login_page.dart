@@ -1,14 +1,15 @@
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:sakan/core/colors/colors.dart';
-import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/core/widgets/box_decoration.dart';
-import 'package:sakan/core/widgets/button_box_decoration.dart';
-import 'package:sakan/core/widgets/button_style.dart';
-import 'package:sakan/core/widgets/text_input_decoration.dart';
-import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_bloc.dart';
-import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_state.dart';
+import '../../../../core/colors/colors.dart';
+import '../../../../core/constant/constant.dart';
+import '../../../../core/widgets/box_decoration.dart';
+import '../../../../core/widgets/button_box_decoration.dart';
+import '../../../../core/widgets/button_style.dart';
+import '../../../../core/widgets/text_input_decoration.dart';
+import '../bloc/remote/remote_user_bloc.dart';
+import '../bloc/remote/remote_user_state.dart';
 import '../../../../config/theme/header_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -34,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
         builder: (context, state) {
           return SingleChildScrollView(
             child: Column(
-              children: [_headerWidget(), _body(context, state)],
+              children: [_headerWidget(context), _body(context, state)],
             ),
           );
         },
@@ -42,6 +43,22 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+
+ SizedBox _headerWidget(BuildContext context) {
+    return   SizedBox(
+        height: MediaQuery.of(context).size.height/3,
+        child:  HeaderWidget(
+          height: MediaQuery.of(context).size.height/3,
+          showAnimated: true,
+          lottieFilePath: "assets/lottieFiles/login.json",
+        ));
+  }
+
+  SizedBox _sizedBox() {
+    return const SizedBox(
+      height: 30.0,
+    );
+  }
   SafeArea _body(BuildContext context, RemoteUserState state) {
     return SafeArea(
         child: Container(
@@ -81,20 +98,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  SizedBox _headerWidget() {
-    return const SizedBox(
-        height: 200.0,
-        child: HeaderWidget(
-          height: 200,
-          showAnimated: false,
-        ));
-  }
-
-  SizedBox _sizedBox() {
-    return const SizedBox(
-      height: 30.0,
-    );
-  }
+ 
 
   Container _createNewAccount(BuildContext context) {
     return Container(
@@ -138,24 +142,13 @@ class _LoginPageState extends State<LoginPage> {
                   ),
           ),
           onPressed: () async {
-            Navigator.pushNamedAndRemoveUntil(
-                context, homePage, (route) => false);
+            Navigator.pushNamed(context, homePage);
+            //  DioHelper.postData(url: "login/", data: {
+            //     "email": "garethbale26221@gmail.com",
+            //     "password": "1234567"
+            //   });
 
-            // DioHelper.postData(url: "login/", data: {
-            //   "email": "hanisailm870@gmail.com",
-            //   "password": "12345678"
-            // }).then((value) {
-            //   print(
-            //       "success mohammad ismaiel : $value");
-            //   Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //           builder: (context) =>
-            //               Container()));
-            // }).catchError((errpr) {
-            //   print("the error is : $errpr");
-            // });
-            if (formKey.currentState!.validate()) {}
+            //   if (formKey.currentState!.validate()) {}
           }),
     );
   }

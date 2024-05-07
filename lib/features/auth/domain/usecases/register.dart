@@ -1,6 +1,6 @@
-import 'package:sakan/core/resource/dart_state.dart';
-import 'package:sakan/features/auth/domain/entities/user.dart';
-import 'package:sakan/features/auth/domain/repository/user_repository.dart';
+import '../../../../core/resource/dart_state.dart';
+import '../entities/user.dart';
+import '../repository/user_repository.dart';
 
 class RegisterUseCase {
   final UserRepository _userRepository;

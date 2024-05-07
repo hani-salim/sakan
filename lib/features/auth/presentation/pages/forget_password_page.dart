@@ -1,11 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:sakan/config/theme/header_widget.dart';
-import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/core/widgets/box_decoration.dart';
-import 'package:sakan/core/widgets/button_box_decoration.dart';
-import 'package:sakan/core/widgets/button_style.dart';
-import 'package:sakan/core/widgets/text_input_decoration.dart';
+import '../../../../config/theme/header_widget.dart';
+import '../../../../core/constant/constant.dart';
+import '../../../../core/widgets/box_decoration.dart';
+import '../../../../core/widgets/button_box_decoration.dart';
+import '../../../../core/widgets/button_style.dart';
+import '../../../../core/widgets/text_input_decoration.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -15,7 +15,7 @@ class ForgotPasswordPage extends StatelessWidget {
   final phoneController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    double headerHeight = 200;
+    double headerHeight = MediaQuery.of(context).size.height/3;
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
@@ -23,8 +23,8 @@ class ForgotPasswordPage extends StatelessWidget {
             children: [
               SizedBox(
                   height: headerHeight,
-                  child: const HeaderWidget(
-                    height: 200,
+                  child:  HeaderWidget(
+                    height: headerHeight,
                     lottieFilePath: "assets/lottieFiles/forgetPassword.json",
                     showAnimated: true,
                   )),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/features/main/presentation/widgets/sliver_app_bar.dart';
+import '../../../../../core/constant/constant.dart';
+import '../../widgets/sliver_app_bar.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -18,7 +18,7 @@ Widget _body({required BuildContext context}) {
     children: [
       CustomScrollView(
         slivers: [
-          _sliverAppBar(),
+          _sliverAppBar(context: context),
           _userInformation(),
         ],
       ),
@@ -26,8 +26,8 @@ Widget _body({required BuildContext context}) {
   );
 }
 
-SliverAppBarWidget _sliverAppBar() {
-  return const SliverAppBarWidget(
+SliverAppBarWidget _sliverAppBar({required BuildContext context}) {
+  return  const SliverAppBarWidget(
     title: 'الملف الشخصي',
     expandHeight: 300,
     isProfilePage: true,
@@ -67,7 +67,7 @@ SliverToBoxAdapter _userInformation() {
                         ))
                   ])
                 ]
-                    .animate(interval: Durations.short4)
+                    .animate(interval: Durations.short1)
                     .moveX(curve: Curves.easeIn, begin: -100, end: 0),
               ),
             ),

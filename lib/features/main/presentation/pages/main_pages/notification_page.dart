@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/core/widgets/appbar.dart';
-import 'package:sakan/features/main/presentation/widgets/menu_widget.dart';
+import '../../../../../core/constant/constant.dart';
+import '../../../../../core/widgets/appbar.dart';
+import '../../widgets/menu_widget.dart';
 
 class NotificationPage extends StatelessWidget {
   const NotificationPage({super.key});

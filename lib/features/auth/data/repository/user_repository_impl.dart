@@ -1,7 +1,7 @@
-import 'package:sakan/core/resource/dart_state.dart';
-import 'package:sakan/features/auth/data/data_sources/remote/user_api_service.dart';
-import 'package:sakan/features/auth/domain/entities/user.dart';
-import 'package:sakan/features/auth/domain/repository/user_repository.dart';
+import '../../../../core/resource/dart_state.dart';
+import '../data_sources/remote/user_api_service.dart';
+import '../../domain/entities/user.dart';
+import '../../domain/repository/user_repository.dart';
 
 class UserRepositoryImpl implements UserRepository {
   final UserApiService _userApiService;

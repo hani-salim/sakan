@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/features/main/presentation/bloc/widget_bloc.dart';
-import 'package:sakan/features/main/presentation/widgets/sliver_app_bar.dart';
-import 'package:sakan/features/main/presentation/widgets/theme_widget.dart';
+import '../../../../../core/constant/constant.dart';
+import '../../bloc/local/widget_bloc.dart';
+import '../../widgets/sliver_app_bar.dart';
+import '../../widgets/theme_widget.dart';
 
 class ThemePage extends StatelessWidget {
   const ThemePage({super.key});

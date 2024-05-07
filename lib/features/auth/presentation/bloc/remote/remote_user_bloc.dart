@@ -1,9 +1,9 @@
-import 'package:sakan/core/resource/dart_state.dart';
-import 'package:sakan/features/auth/domain/usecases/login.dart';
-import 'package:sakan/features/auth/domain/usecases/register.dart';
-import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_event.dart';
+import '../../../../../core/resource/dart_state.dart';
+import '../../../domain/usecases/login.dart';
+import '../../../domain/usecases/register.dart';
+import 'remote_user_event.dart';
 import 'package:bloc/bloc.dart';
-import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_state.dart';
+import 'remote_user_state.dart';
 
 class RemoteUserBloc extends Bloc<RemoteUserEvent, RemoteUserState> {
   final LoginUseCase _loginUseCase;

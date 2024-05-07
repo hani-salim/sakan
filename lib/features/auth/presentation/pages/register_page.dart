@@ -1,15 +1,15 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sakan/config/theme/header_widget.dart';
-import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/core/widgets/box_decoration.dart';
-import 'package:sakan/core/widgets/button_box_decoration.dart';
-import 'package:sakan/core/widgets/button_style.dart';
-import 'package:sakan/core/widgets/drop_down_text_field.dart';
-import 'package:sakan/core/widgets/text_input_decoration.dart';
-import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_bloc.dart';
-import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_state.dart';
+import 'package:sakan/core/widgets/drop_down_form_field_widget.dart.dart';
+import '../../../../config/theme/header_widget.dart';
+import '../../../../core/constant/constant.dart';
+import '../../../../core/widgets/box_decoration.dart';
+import '../../../../core/widgets/button_box_decoration.dart';
+import '../../../../core/widgets/button_style.dart';
+import '../../../../core/widgets/text_input_decoration.dart';
+import '../bloc/remote/remote_user_bloc.dart';
+import '../bloc/remote/remote_user_state.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -256,7 +256,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Visibility(
         visible: _jobController == "موظف" ? true : false,
         child: Column(children: [
-          dropdownButtonFormFieldWidget(
+          DropDownButtonFormFieldWidget(
               items: items,
               selectedItem: _typeJobController,
               labelText: "نوع العمل"),
@@ -543,7 +543,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   SizedBox _headerWidget() {
-    return const SizedBox(height: 200, child: HeaderWidget(height: 200));
+    return  SizedBox(height: MediaQuery.of(context).size.height/3, child: HeaderWidget(height: MediaQuery.of(context).size.height/3));
   }
 }
 

@@ -1,4 +1,4 @@
-import 'package:sakan/features/auth/domain/entities/user.dart';
+import '../../../domain/entities/user.dart';
 
 abstract class RemoteUserEvent {
   RemoteUserEvent();

@@ -2,20 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
-import 'package:sakan/core/colors/colors.dart';
-import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/features/main/presentation/bloc/widget_bloc.dart';
-import 'package:sakan/features/main/presentation/pages/main_pages/main_page.dart';
+import '../../core/colors/colors.dart';
+import '../../core/constant/constant.dart';
+import '../../features/main/presentation/bloc/local/widget_bloc.dart';
+import '../../features/main/presentation/pages/main_pages/main_page.dart';
 
+// ignore: must_be_immutable
 class HeaderWidget extends StatelessWidget {
   final double height;
   final bool? showAnimated;
   final String? lottieFilePath;
+   final bool? isMainPage ;
 
-  const HeaderWidget({
+  const  HeaderWidget({
     required this.height,
     this.showAnimated,
     this.lottieFilePath,
+    this.isMainPage,
     super.key,
   });
 
@@ -90,13 +93,13 @@ class HeaderWidget extends StatelessWidget {
               ),
             ),
           ),
-          _showAnimated(context),
+          _showAnimated(context,isMainPage),
         ],
       ).animate().slideY(),
     );
   }
 
-  Visibility _showAnimated(BuildContext context) {
+  Visibility _showAnimated(BuildContext context,bool? isMainPage) {
     return Visibility(
       visible: showAnimated ?? false,
       child: SizedBox(
@@ -106,33 +109,39 @@ class HeaderWidget extends StatelessWidget {
             Center(
               child: Lottie.asset(
                   lottieFilePath ?? 'assets/lottieFiles/sakan.json',
-                  width: MediaQuery.of(context).size.width / 4,
-                  height: MediaQuery.of(context).size.width / 4),
+                  width:MediaQuery.of(context).size.width,
+                  height: isMainPage??false ? height/2.5 :height-8),
             ),
-            Visibility(
-              visible:
-                  BlocProvider.of<WidgetBloc>(context).mainPage is MainPage &&
-                      BlocProvider.of<WidgetBloc>(context).selectedPage == 2 &&
-                      ModalRoute.of(context)!.settings.name == homePage,
-              child: Column(
-                children: [
-                  const Text(
-                    "يجب التسجيل على السكن للحصول على الخدمات",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  TextButton(
-                      onPressed: () {},
-                      child: Text("التسجيل الآن",
-                              style: TextStyle(color: Colors.amber[400]))
-                          .animate()
-                          .shake()),
-                ],
-              ),
-            ),
+            _registerOnSakan(context),
           ],
         ),
       ),
     );
+  }
+
+  Visibility _registerOnSakan(BuildContext context) {
+    return Visibility(
+            visible:
+                BlocProvider.of<WidgetBloc>(context).mainPage is MainPage &&
+                    BlocProvider.of<WidgetBloc>(context).selectedPage == 2 &&
+                    ModalRoute.of(context)!.settings.name == homePage,
+            child: Column(
+              children: [
+                const Text(
+                  "يجب التسجيل على السكن للحصول على الخدمات",
+                  style: TextStyle(color: Colors.white),
+                ),
+                TextButton(
+                    onPressed: () {
+                     
+                    },
+                    child: Text("التسجيل الآن",
+                            style: TextStyle(color: Colors.amber[400]))
+                        .animate()
+                        .shake()),
+              ],
+            ),
+          );
   }
 }
 

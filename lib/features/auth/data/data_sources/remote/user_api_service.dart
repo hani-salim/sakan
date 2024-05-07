@@ -1,8 +1,8 @@
 
 import 'package:dio/dio.dart';
-import 'package:sakan/core/network/remote/dio_helper.dart';
-import 'package:sakan/core/resource/dart_state.dart';
-import 'package:sakan/features/auth/data/models/user.dart';
+import '../../../../../core/network/remote/dio_helper.dart';
+import '../../../../../core/resource/dart_state.dart';
+import '../../models/user.dart';
 
 abstract class UserApiService {
   DataState login({required String number, required String password});

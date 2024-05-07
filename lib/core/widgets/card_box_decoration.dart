@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:sakan/core/colors/colors.dart';
+import '../colors/colors.dart';
 
 BoxDecoration cardDecoration({
   HexColor? primaryColor,

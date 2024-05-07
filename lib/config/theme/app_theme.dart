@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sakan/core/colors/colors.dart';
+import '../../core/colors/colors.dart';
 
 ThemeData get appTheme {
   return ThemeData(

@@ -1,9 +1,9 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/features/main/presentation/bloc/widget_bloc.dart';
-import 'package:sakan/features/main/presentation/widgets/convex_app_bar.dart';
+import '../../../../../core/constant/constant.dart';
+import '../../bloc/local/widget_bloc.dart';
+import '../../widgets/convex_app_bar.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});

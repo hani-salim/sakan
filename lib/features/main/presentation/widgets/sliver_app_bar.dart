@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:sakan/config/theme/header_widget.dart';
-import 'package:sakan/features/main/presentation/widgets/menu_widget.dart';
+import '../../../../config/theme/header_widget.dart';
+import 'menu_widget.dart';
 
 class SliverAppBarWidget extends StatelessWidget {
   final String title;
@@ -99,6 +99,7 @@ class SliverAppBarWidget extends StatelessWidget {
         height: MediaQuery.of(context).size.height / 4,
         lottieFilePath: lottieFilePath,
         showAnimated: showAnimated,
+        isMainPage:true
       ),
     );
   }

@@ -1,11 +1,15 @@
-import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/features/auth/presentation/pages/forget_password_page.dart';
-import 'package:sakan/features/auth/presentation/pages/forgot_password_verivacation_page.dart';
-import 'package:sakan/features/auth/presentation/pages/login_page.dart';
-import 'package:sakan/features/auth/presentation/pages/register_page.dart';
-import 'package:sakan/features/main/presentation/pages/main_pages/home_page.dart';
-import 'package:sakan/features/main/presentation/pages/main_pages/services_page.dart';
-import 'package:sakan/features/main/presentation/pages/sevices_pages/bread_request_page.dart';
+import 'package:sakan/features/main/presentation/pages/sevices_pages/complaint_page.dart';
+import 'package:sakan/features/main/presentation/pages/sevices_pages/repaire_request_page.dart';
+import 'package:sakan/features/main/presentation/pages/sevices_pages/work_permit_page.dart';
+
+import '../../core/constant/constant.dart';
+import '../../features/auth/presentation/pages/forget_password_page.dart';
+import '../../features/auth/presentation/pages/forgot_password_verivacation_page.dart';
+import '../../features/auth/presentation/pages/login_page.dart';
+import '../../features/auth/presentation/pages/register_page.dart';
+import '../../features/main/presentation/pages/main_pages/home_page.dart';
+import '../../features/main/presentation/pages/main_pages/services_page.dart';
+import '../../features/main/presentation/pages/sevices_pages/bread_request_page.dart';
 
 var routes = {
   loginPage: (context) => const LoginPage(),
@@ -16,4 +20,7 @@ var routes = {
   homePage: (context) => const HomePage(),
   breadRequestPage: (context) => const BreadRequestPage(),
   sevicesPage: (context) => const ServicesPage(),
+  workPermitPage: (context) => const WorkPermitPage(),
+  complaintPage: (context) => const ComplaintPage(),
+  repaireRequestPage: (context) => const RepaireRequestPage(),
 };
