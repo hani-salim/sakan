@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
+import 'package:sakan/features/main/presentation/bloc/local/presentation_bloc.dart';
 import '../../core/colors/colors.dart';
 import '../../core/constant/constant.dart';
-import '../../features/main/presentation/bloc/local/widget_bloc.dart';
 import '../../features/main/presentation/pages/main_pages/main_page.dart';
 
-// ignore: must_be_immutable
 class HeaderWidget extends StatelessWidget {
   final double height;
   final bool? showAnimated;
@@ -25,7 +24,7 @@ class HeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    return BlocConsumer<WidgetBloc, WidgetState>(
+    return BlocConsumer<PresentationBloc, PresentationState>(
       listener: (context, state) {},
       builder: (context, state) => Stack(
         alignment: Alignment.center,
@@ -122,8 +121,8 @@ class HeaderWidget extends StatelessWidget {
   Visibility _registerOnSakan(BuildContext context) {
     return Visibility(
             visible:
-                BlocProvider.of<WidgetBloc>(context).mainPage is MainPage &&
-                    BlocProvider.of<WidgetBloc>(context).selectedPage == 2 &&
+                BlocProvider.of<PresentationBloc>(context).mainPage is MainPage &&
+                    BlocProvider.of<PresentationBloc>(context).selectedPage == 2 &&
                     ModalRoute.of(context)!.settings.name == homePage,
             child: Column(
               children: [
@@ -133,7 +132,7 @@ class HeaderWidget extends StatelessWidget {
                 ),
                 TextButton(
                     onPressed: () {
-                     
+                     Navigator.pushNamed(context, registerOnSakanDetailesPage);
                     },
                     child: Text("التسجيل الآن",
                             style: TextStyle(color: Colors.amber[400]))
@@ -146,6 +145,7 @@ class HeaderWidget extends StatelessWidget {
 }
 
 class ShapeClipper extends CustomClipper<Path> {
+  // ignore: prefer_final_fields
   List<Offset> _offsets = [];
   ShapeClipper(this._offsets);
   @override

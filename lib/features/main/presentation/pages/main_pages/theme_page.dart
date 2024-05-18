@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sakan/features/main/presentation/bloc/local/presentation_bloc.dart';
 import '../../../../../core/constant/constant.dart';
-import '../../bloc/local/widget_bloc.dart';
 import '../../widgets/sliver_app_bar.dart';
 import '../../widgets/theme_widget.dart';
 
@@ -11,28 +11,17 @@ class ThemePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<WidgetBloc, WidgetState>(
+    return BlocConsumer<PresentationBloc, PresentationState>(
       listener: (context, state) {},
       builder: (contextm, state) => Scaffold(
-        body: Stack(
-          children: [
-            // Container(
-            //   decoration: BoxDecoration(
-            //       gradient: LinearGradient(colors: [
-            //     MyColors.primaryColor.withOpacity(0.3),
-            //     MyColors.secondaryColor.withOpacity(0.4)
-            //   ])),
-            // ),
-            CustomScrollView(slivers: [
-              SliverAppBarWidget(
-                title: 'الثيمات',
-                collapsedHeight: MediaQuery.of(context).size.height / 4,
-                pinned: true,
-              ),
-              _buildThemeItems()
-            ]),
-          ],
-        ),
+        body: CustomScrollView(slivers: [
+          SliverAppBarWidget(
+            title: 'الثيمات',
+            collapsedHeight: MediaQuery.of(context).size.height / 4,
+            pinned: true,
+          ),
+          _buildThemeItems()
+        ]),
       ),
     );
   }

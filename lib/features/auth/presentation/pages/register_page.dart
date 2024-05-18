@@ -1,13 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:sakan/core/widgets/button_weidget.dart';
 import 'package:sakan/core/widgets/drop_down_form_field_widget.dart.dart';
+import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_event.dart';
 import '../../../../config/theme/header_widget.dart';
 import '../../../../core/constant/constant.dart';
 import '../../../../core/widgets/box_decoration.dart';
-import '../../../../core/widgets/button_box_decoration.dart';
-import '../../../../core/widgets/button_style.dart';
-import '../../../../core/widgets/text_input_decoration.dart';
+import '../../../../core/widgets/input_decoration_widget.dart';
 import '../bloc/remote/remote_user_bloc.dart';
 import '../bloc/remote/remote_user_state.dart';
 
@@ -34,19 +37,20 @@ class _RegisterPageState extends State<RegisterPage> {
   String? _univercityController;
   String? _facultyController;
   String? _sectionController;
-  // String? _campusHousingController;
-  // String? _unitController;
-  // String? _cityController;
-  // String? _yearController;
+
   final TextEditingController _passwordController = TextEditingController();
 
   bool checkboxValue = false;
   bool showPassword = true;
-  var profileImage;
+  XFile? profileImage;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RemoteUserBloc, RemoteUserState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if(state is ChooseProfielImageSuccess){
+          profileImage =state.profileImage;
+        }
+      },
       builder: (context, state) {
         return Scaffold(
           key: _scaffoldKey,
@@ -133,33 +137,8 @@ class _RegisterPageState extends State<RegisterPage> {
         ));
   }
 
-  Container _registerButton(RemoteUserState state) {
-    return Container(
-      decoration: buttonBoxDecorationWidget(),
-      child: ElevatedButton(
-        style: buttonStyleWidget(),
-        child: Padding(
-            padding: const EdgeInsets.fromLTRB(40, 10, 40, 10),
-            child: state is RemoteUserLoadingState
-                ? const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
-                    ),
-                  )
-                : const Text(
-                    "تسجيل",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  )),
-        onPressed: () {
-          Navigator.pushNamed(context, homePage);
-          if (_formKey.currentState!.validate()) {}
-        },
-      ),
-    );
+  ButtonWeidget _registerButton(RemoteUserState state) {
+    return ButtonWeidget(title: 'إنشاء حساب', onPressed: (){Navigator.pushNamed(context, homePage);});
   }
 
   FormField<bool> _checkBox(BuildContext context) {
@@ -256,7 +235,8 @@ class _RegisterPageState extends State<RegisterPage> {
     return Visibility(
         visible: _jobController == "موظف" ? true : false,
         child: Column(children: [
-          DropDownButtonFormFieldWidget(
+          dropDownButtonFormFieldWidget(
+            isValidate: true,
               items: items,
               selectedItem: _typeJobController,
               labelText: "نوع العمل"),
@@ -270,7 +250,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Container(
       decoration: inputBoxDecorationShaddowWidget(),
       child: DropdownButtonFormField(
-        decoration: textInputDecorationWidget(labelText: "الاختصاص (إن وجد)"),
+        decoration: inputDecorationWidget(labelText: "الاختصاص (إن وجد)"),
         value: _sectionController,
         items: items
             .map((e) => DropdownMenuItem(
@@ -294,7 +274,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Container(
       decoration: inputBoxDecorationShaddowWidget(),
       child: DropdownButtonFormField(
-        decoration: textInputDecorationWidget(labelText: "الكلية"),
+        decoration: inputDecorationWidget(labelText: "الكلية"),
         validator: (value) {
           if (value!.isEmpty) {
             return validate;
@@ -324,7 +304,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Container(
       decoration: inputBoxDecorationShaddowWidget(),
       child: DropdownButtonFormField(
-        decoration: textInputDecorationWidget(labelText: "الجامعة"),
+        decoration: inputDecorationWidget(labelText: "الجامعة"),
         validator: (value) {
           if (value!.isEmpty) {
             return validate;
@@ -354,7 +334,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Container(
       decoration: inputBoxDecorationShaddowWidget(),
       child: DropdownButtonFormField(
-        decoration: textInputDecorationWidget(labelText: "العمل"),
+        decoration: inputDecorationWidget(labelText: "العمل"),
         value: _jobController,
         items: items
             .map((e) => DropdownMenuItem(
@@ -379,7 +359,7 @@ class _RegisterPageState extends State<RegisterPage> {
       decoration: inputBoxDecorationShaddowWidget(),
       child: TextFormField(
         controller: _idNationalNumberController,
-        decoration: textInputDecorationWidget(
+        decoration: inputDecorationWidget(
             labelText: "رقم الهوية الوطني", hintText: "ادخل رقم الهوية الوطني"),
         keyboardType: TextInputType.phone,
         validator: (value) {
@@ -397,7 +377,7 @@ class _RegisterPageState extends State<RegisterPage> {
       decoration: inputBoxDecorationShaddowWidget(),
       child: TextFormField(
         controller: _emailController,
-        decoration: textInputDecorationWidget(
+        decoration: inputDecorationWidget(
             labelText: "البريد الالكتروني", hintText: "ادخل البريد الالكتروني"),
         keyboardType: TextInputType.emailAddress,
         validator: (value) {
@@ -417,7 +397,7 @@ class _RegisterPageState extends State<RegisterPage> {
       decoration: inputBoxDecorationShaddowWidget(),
       child: TextFormField(
         controller: _phoneController,
-        decoration: textInputDecorationWidget(
+        decoration: inputDecorationWidget(
             labelText: "رقم الهاتف", hintText: "ادخل رقم الهاتف"),
         keyboardType: TextInputType.phone,
         validator: (value) {
@@ -441,7 +421,7 @@ class _RegisterPageState extends State<RegisterPage> {
           }
           return null;
         },
-        decoration: textInputDecorationWidget(
+        decoration: inputDecorationWidget(
             labelText: 'اسم و نسبةالأم', hintText: "ادخل اسم و نسبة الأم"),
       ),
     );
@@ -458,7 +438,7 @@ class _RegisterPageState extends State<RegisterPage> {
           }
           return null;
         },
-        decoration: textInputDecorationWidget(
+        decoration: inputDecorationWidget(
             labelText: 'اسم الأب', hintText: 'ادخل اسم الأب'),
       ),
     );
@@ -475,7 +455,7 @@ class _RegisterPageState extends State<RegisterPage> {
           }
           return null;
         },
-        decoration: textInputDecorationWidget(
+        decoration: inputDecorationWidget(
             labelText: 'الاسم الأخير', hintText: 'ادخل الاسم الأخير'),
       ),
     );
@@ -492,7 +472,7 @@ class _RegisterPageState extends State<RegisterPage> {
           }
           return null;
         },
-        decoration: textInputDecorationWidget(
+        decoration: inputDecorationWidget(
             labelText: 'الاسم الأول', hintText: 'ادخل الاسم الأول'),
       ),
     );
@@ -516,7 +496,7 @@ class _RegisterPageState extends State<RegisterPage> {
             if (profileImage != null)
               CircleAvatar(
                 radius: 64,
-                backgroundImage: FileImage(profileImage),
+                backgroundImage: FileImage(File(profileImage!.path)),
               ),
             if (profileImage == null)
               CircleAvatar(
@@ -534,7 +514,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 color: Theme.of(context).primaryColor,
                 size: 30.0,
               ),
-              onPressed: () {},
+              onPressed: () {
+                context.read<RemoteUserBloc>().add(ChooseProfielImage(profileImage: profileImage));
+              },
             ),
           ],
         ),
@@ -543,7 +525,7 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   SizedBox _headerWidget() {
-    return  SizedBox(height: MediaQuery.of(context).size.height/3, child: HeaderWidget(height: MediaQuery.of(context).size.height/3));
+    return  SizedBox(height: MediaQuery.of(context).size.height/4, child: HeaderWidget(height: MediaQuery.of(context).size.height/4));
   }
 }
 

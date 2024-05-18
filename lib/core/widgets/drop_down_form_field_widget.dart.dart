@@ -1,41 +1,36 @@
 import 'package:flutter/material.dart';
-import 'text_input_decoration.dart';
-// ignore: must_be_immutable
-class DropDownButtonFormFieldWidget extends StatelessWidget {
-  final List<String> items;
-   String? selectedItem;
-  final String labelText;
-  final FormFieldValidator? validator;
-   DropDownButtonFormFieldWidget({
-    required this.items,
-    required this.selectedItem,
-    required this.labelText,
-    this.validator,
-    super.key,
-  });
+import 'package:sakan/core/constant/constant.dart';
+import 'package:sakan/core/widgets/input_decoration_widget.dart';
 
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButtonFormField(
-      validator: validator,
-      focusColor: Colors.white,
-      decoration: textInputDecorationWidget(
-        labelText: labelText,
-      ),
-      value: selectedItem,
-      items: items
-          .map((e) => DropdownMenuItem(
-                value: e,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: Text(e),
-                ),
-              ))
-          .toList(),
-      onChanged: (value) {
-        selectedItem = value;
-      },
-    );
- 
-  }
+DropdownButtonFormField<String> dropDownButtonFormFieldWidget(
+    {required List<String> items,
+    required String? selectedItem,
+    required String labelText,
+   bool? isValidate}) {
+  return DropdownButtonFormField<String>(
+    validator: isValidate??false ? (value){
+      if(value == null){
+        return validate;
+      } 
+      return null;
+    }
+    :null
+    ,
+    focusColor: Colors.white,
+    decoration: inputDecorationWidget(
+      labelText: labelText,
+    ),
+    items: items
+        .map((e) => DropdownMenuItem<String>(
+              value: e,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: Text(e),
+              ),
+            ))
+        .toList(),
+    onChanged: (value) {
+      selectedItem=value;
+    },
+  );
 }

@@ -1,8 +1,8 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sakan/features/main/presentation/bloc/local/presentation_bloc.dart';
 import '../../../../core/colors/colors.dart';
-import '../bloc/local/widget_bloc.dart';
 
 class ConvexAppBarWidget extends StatelessWidget {
   final List<TabItem> tapItems;
@@ -26,7 +26,7 @@ class ConvexAppBarWidget extends StatelessWidget {
       items: tapItems,
       onTap: (index) {
         context
-            .read<WidgetBloc>()
+            .read<PresentationBloc>()
             .add(ChangeBottomNavicaitonBar(selectedPage: index));
       },
     );

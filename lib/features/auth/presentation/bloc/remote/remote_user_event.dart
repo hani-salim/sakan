@@ -1,3 +1,5 @@
+import 'package:image_picker/image_picker.dart';
+
 import '../../../domain/entities/user.dart';
 
 abstract class RemoteUserEvent {
@@ -15,4 +17,8 @@ class Register extends RemoteUserEvent {
   Register({required this.userEntities});
 }
 
+ class ChooseProfielImage extends RemoteUserEvent{
+   XFile? profileImage;
+  ChooseProfielImage({required this.profileImage});
+ }
 

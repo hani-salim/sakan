@@ -12,7 +12,7 @@ import 'package:sakan/features/main/presentation/pages/main_pages/news_page.dart
 import 'package:sakan/features/main/presentation/pages/main_pages/notification_page.dart';
 import 'package:sakan/features/main/presentation/pages/main_pages/profile_page.dart';
 import 'package:sakan/features/main/presentation/pages/main_pages/services_page.dart';
-import 'package:sakan/features/main/presentation/pages/main_pages/setting_page.dart';
+import 'package:sakan/features/main/presentation/pages/main_pages/settings_page.dart';
 
 //api
 const String baseUrl = "http://20.20.127.214:9000/api/";
@@ -29,6 +29,8 @@ const String sevicesPage = "servicesPage";
 const String complaintPage = "complaintPage";
 const String workPermitPage = "workPermitPage";
 const String repaireRequestPage = "repaireRequestPage";
+const String registerOnSakanDetailesPage= "registerOnSakanDetailesPage";
+const String settingsPage= "settingsPage";
 
 //constant
 const String validate = "❗❗ حقل مطلوب";
@@ -92,7 +94,7 @@ List pages = const [
   LogPage(),
   ServicesPage(),
   NewsPage(),
-  SettingPage(),
+  SettingsPage(),
   NotificationPage(),
   HelpPage(),
   AboutUsPage()

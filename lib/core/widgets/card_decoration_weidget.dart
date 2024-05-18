@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../colors/colors.dart';
 
-BoxDecoration cardDecoration({
+BoxDecoration cardDecorationWeidget({
   HexColor? primaryColor,
   HexColor? secondaryColor
 }) {

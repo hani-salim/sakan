@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sakan/features/main/presentation/bloc/local/presentation_bloc.dart';
 import '../../../../../core/colors/colors.dart';
 import '../../../domain/entities/menu_item.dart';
-import '../../bloc/local/widget_bloc.dart';
 
 class MenuPage extends StatelessWidget {
   final MenuItem? currentItem;
@@ -60,7 +60,7 @@ class MenuPage extends StatelessWidget {
             item.title,
           ),
           onTap: () {
-            context.read<WidgetBloc>().add(ChangeDrwerItem(item: item));
+            context.read<PresentationBloc>().add(ChangeDrwerItem(item: item));
           },
         ),
       );

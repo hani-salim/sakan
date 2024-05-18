@@ -1,3 +1,5 @@
+import 'package:image_picker/image_picker.dart';
+
 import '../../../../../core/resource/dart_state.dart';
 import '../../../domain/usecases/login.dart';
 import '../../../domain/usecases/register.dart';
@@ -13,8 +15,19 @@ class RemoteUserBloc extends Bloc<RemoteUserEvent, RemoteUserState> {
       : super(RemoteUserInitilalState()) {
     on<Login>(onLogin);
     on<Register>(onRegister);
+    on<ChooseProfielImage>(onChooseProfileImage);
 
   }
+  onChooseProfileImage( ChooseProfielImage event, Emitter<RemoteUserState> emit)async{
+  emit(RemoteUserInitilalState());
+  ImagePicker picker=ImagePicker();
+   await picker.pickImage(source: ImageSource.gallery).then((value) {
+   
+        emit(ChooseProfielImageSuccess(profileImage: XFile(value!.path)));
+  }).catchError((e){
+    emit(ChooseProfileImageError(e: e.toString()));
+  });  
+}
 
   void onLogin(Login event, Emitter<RemoteUserState> emit) async {
     emit(RemoteUserLoadingState());

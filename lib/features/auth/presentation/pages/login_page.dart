@@ -2,12 +2,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:sakan/core/widgets/button_weidget.dart';
 import '../../../../core/colors/colors.dart';
 import '../../../../core/constant/constant.dart';
 import '../../../../core/widgets/box_decoration.dart';
-import '../../../../core/widgets/button_box_decoration.dart';
-import '../../../../core/widgets/button_style.dart';
-import '../../../../core/widgets/text_input_decoration.dart';
+
+import '../../../../core/widgets/input_decoration_widget.dart';
 import '../bloc/remote/remote_user_bloc.dart';
 import '../bloc/remote/remote_user_state.dart';
 import '../../../../config/theme/header_widget.dart';
@@ -91,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
           _password(),
           _sizedBox(),
           _forgetPassword(context),
-          _loginButton(state, context),
+          _loginButton( context),
           _createNewAccount(context),
         ],
       ),
@@ -124,33 +124,13 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Container _loginButton(RemoteUserState state, BuildContext context) {
-    return Container(
-      decoration: buttonBoxDecorationWidget(),
-      child: ElevatedButton(
-          style: buttonStyleWidget(),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(40, 10, 40, 10),
-            child: state is RemoteUserLoadingState
-                ? Center(
-                    child:
-                        CircularProgressIndicator(color: MyColors.primaryColor),
-                  )
-                : Text(
-                    'تسجيل الدخول',
-                    style: Theme.of(context).textTheme.labelLarge,
-                  ),
-          ),
-          onPressed: () async {
-            Navigator.pushNamed(context, homePage);
-            //  DioHelper.postData(url: "login/", data: {
-            //     "email": "garethbale26221@gmail.com",
-            //     "password": "1234567"
-            //   });
+  ButtonWeidget _loginButton(BuildContext context) {
+    return ButtonWeidget(formKey: formKey,title: 'تسجيل الدخول', onPressed: (){
+                          if (formKey.currentState!.validate()) {
+                            
+                          }
 
-            //   if (formKey.currentState!.validate()) {}
-          }),
-    );
+      Navigator.pushNamed(context, homePage);});
   }
 
   Container _forgetPassword(BuildContext context) {
@@ -178,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
         controller: passwordController,
         keyboardType: TextInputType.visiblePassword,
         obscureText: !showPassword,
-        decoration: textInputDecorationWidget(
+        decoration: inputDecorationWidget(
           obSecure: true,
           showPassword: showPassword,
           suffixIcon: IconButton(
@@ -207,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
       decoration: inputBoxDecorationShaddowWidget(),
       child: TextFormField(
         controller: emailController,
-        decoration: textInputDecorationWidget(
+        decoration: inputDecorationWidget(
             labelText: "البريد الالكتروني", hintText: "ادخل البريد الالكتروني"),
         keyboardType: TextInputType.emailAddress,
         validator: (value) {

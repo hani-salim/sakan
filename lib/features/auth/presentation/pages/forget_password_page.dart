@@ -1,21 +1,20 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:sakan/core/constant/constant.dart';
+import 'package:sakan/core/widgets/button_weidget.dart';
 import '../../../../config/theme/header_widget.dart';
-import '../../../../core/constant/constant.dart';
 import '../../../../core/widgets/box_decoration.dart';
-import '../../../../core/widgets/button_box_decoration.dart';
-import '../../../../core/widgets/button_style.dart';
-import '../../../../core/widgets/text_input_decoration.dart';
+import '../../../../core/widgets/input_decoration_widget.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
   ForgotPasswordPage({super.key});
 
-  final phoneController = TextEditingController();
+  final _emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    double headerHeight = MediaQuery.of(context).size.height/3;
+    double headerHeight = MediaQuery.of(context).size.height / 3;
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
@@ -23,7 +22,7 @@ class ForgotPasswordPage extends StatelessWidget {
             children: [
               SizedBox(
                   height: headerHeight,
-                  child:  HeaderWidget(
+                  child: HeaderWidget(
                     height: headerHeight,
                     lottieFilePath: "assets/lottieFiles/forgetPassword.json",
                     showAnimated: true,
@@ -77,44 +76,31 @@ class ForgotPasswordPage extends StatelessWidget {
                             Container(
                               decoration: inputBoxDecorationShaddowWidget(),
                               child: TextFormField(
-                                controller: phoneController,
-                                decoration: textInputDecorationWidget(
-                                    labelText: "رقم الهاتف",
-                                    hintText: "ادخل رقم الهاتف"),
+                                controller: _emailController,
+                                decoration: inputDecorationWidget(
+                                    labelText: "البريد الالكتروني",
+                                    hintText: "ادخل البريد الالكتروني"),
                                 keyboardType: TextInputType.emailAddress,
                                 validator: (value) {
                                   if ((value!.isEmpty) ||
-                                      !RegExp(r"^(\d+)*$").hasMatch(value)) {
-                                    return "ادخل رثم هاتف صالح";
+                                      !RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
+                                          .hasMatch(value)) {
+                                    return "ادخل إيميل صالح";
                                   }
                                   return null;
                                 },
                               ),
                             ),
                             const SizedBox(height: 40.0),
-                            Container(
-                              decoration: buttonBoxDecorationWidget(),
-                              child: ElevatedButton(
-                                style: buttonStyleWidget(),
-                                child: const Padding(
-                                  padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
-                                  child: Text(
-                                    "إرسال",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
+                            ButtonWeidget(
+                              formKey: _formKey,
+                                title: 'إرسال',
                                 onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    Navigator.pushNamed(context,
-                                        forgotPasswwordVerificationPage);
-                                  }
-                                },
-                              ),
-                            ),
+                          if (_formKey.currentState!.validate()) {
+                                  
+                                  Navigator.pushNamed(
+                                      context, forgotPasswordPage);
+                                }}),
                             const SizedBox(height: 30.0),
                             Text.rich(
                               TextSpan(

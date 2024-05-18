@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sakan/core/widgets/loading_widget.dart';
+import 'package:sakan/core/widgets/button_weidget.dart';
 import 'package:sakan/core/widgets/show_toast.dart';
-import 'package:sakan/features/main/presentation/bloc/local/widget_bloc.dart';
+import 'package:sakan/features/main/presentation/bloc/remote/bloc/services_bloc.dart';
+import 'package:sakan/features/main/presentation/bloc/remote/bloc/services_state.dart';
 import 'package:sakan/features/main/presentation/widgets/bread_request_widget.dart';
 import '../../../../../core/colors/colors.dart';
 import '../../../../../core/widgets/appbar.dart';
-import '../../../../../core/widgets/button_box_decoration.dart';
-import '../../../../../core/widgets/button_style.dart';
-import '../../../../../core/widgets/text_input_decoration.dart';
+
+import '../../../../../core/widgets/input_decoration_widget.dart';
 import '../../widgets/empty_widget.dart';
 
 class BreadRequestPage extends StatelessWidget {
@@ -20,11 +20,8 @@ class BreadRequestPage extends StatelessWidget {
     GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     GlobalKey<FormState> formKey = GlobalKey<FormState>();
     TextEditingController quentityController = TextEditingController();
-   
-   
-    
 
-    return BlocConsumer<WidgetBloc, WidgetState>(
+    return BlocConsumer<ServicesBloc, ServicesState>(
       listener: (context, state) {
         if (state is AddBreadRequesetSuccessState) {
           showToast(color: Colors.green, msg: 'تم إرسال الطلب بنجاح  ');
@@ -35,32 +32,37 @@ class BreadRequestPage extends StatelessWidget {
           key: scaffoldKey,
           appBar: appBarWidget(text: 'تقديم طلب خبز', context: context),
           body:
-              BlocProvider.of<WidgetBloc>(context).isFloatingActionbuttonShow ? _empty() :  BreadRequestCard(role: '1', date: '3/3/2022', time: '10:10 AM',),
-          floatingActionButton: BlocProvider.of<WidgetBloc>(context).isFloatingActionbuttonShow
-              ? _floatingActionButton( scaffoldKey, formKey,
-                  quentityController, context, state)
-              : null,
+              BlocProvider.of<ServicesBloc>(context).isFloatingActionbuttonShow
+                  ? _empty()
+                  : BreadRequestCard(
+                      role: '1',
+                      date: '3/3/2022',
+                      time: '10:10 AM',
+                    ),
+          floatingActionButton:
+              BlocProvider.of<ServicesBloc>(context).isFloatingActionbuttonShow
+                  ? _floatingActionButton(
+                      scaffoldKey, formKey, quentityController, context, state)
+                  : null,
         );
       },
     );
   }
 
   Padding _floatingActionButton(
-     
-    
       GlobalKey<ScaffoldState> scaffoldKey,
       GlobalKey<FormState> formKey,
       TextEditingController quentityController,
       BuildContext context,
-      WidgetState state) {
+      ServicesState state) {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: FloatingActionButton(
         backgroundColor: MyColors.primaryColor,
         splashColor: MyColors.secondaryColor,
-        child: BlocProvider.of<WidgetBloc>(context).bottomSheetIcon,
+        child: BlocProvider.of<ServicesBloc>(context).bottomSheetIcon,
         onPressed: () {
-          if (!BlocProvider.of<WidgetBloc>(context).isShowBottomSheet) {
+          if (!BlocProvider.of<ServicesBloc>(context).isShowBottomSheet) {
             scaffoldKey.currentState!
                 .showBottomSheet(
                   (context) =>
@@ -69,15 +71,15 @@ class BreadRequestPage extends StatelessWidget {
                 .closed
                 .then((value) {
               context
-                  .read<WidgetBloc>()
+                  .read<ServicesBloc>()
                   .add(const ChangeBottomSheet(isShow: false));
             });
             context
-                .read<WidgetBloc>()
+                .read<ServicesBloc>()
                 .add(const ChangeBottomSheet(isShow: true));
           } else {
             context
-                .read<WidgetBloc>()
+                .read<ServicesBloc>()
                 .add(const ChangeBottomSheet(isShow: false));
             Navigator.pop(context);
           }
@@ -96,7 +98,7 @@ class BreadRequestPage extends StatelessWidget {
       GlobalKey<FormState> formKey,
       TextEditingController quentityController,
       BuildContext context,
-      WidgetState state) {
+      ServicesState state) {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -131,8 +133,8 @@ class BreadRequestPage extends StatelessWidget {
                     child: TextFormField(
                       maxLength: 1,
                       controller: quentityController,
-                      decoration: textInputDecorationWidget(
-                          labelText: "", hintText: ""),
+                      decoration:
+                          inputDecorationWidget(labelText: "", hintText: ""),
                       keyboardType: TextInputType.number,
                       validator: (value) {
                         if ((value!.isEmpty) ||
@@ -171,37 +173,20 @@ class BreadRequestPage extends StatelessWidget {
     );
   }
 
-  Container _addRequestButton(
+  ButtonWeidget _addRequestButton(
       {required GlobalKey<FormState> formKey,
       required BuildContext context,
       required TextEditingController controller,
-      required WidgetState state}) {
-    return Container(
-      decoration: buttonBoxDecorationWidget(),
-      child: ElevatedButton(
-          style: buttonStyleWidget(),
-          child: state is AddBreadRequesetLoadingState
-              ? const LoadingWidget()
-              : const Padding(
-                  padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
-                  child: Text(
-                    "إضافة طلب",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-          onPressed: () {
-            if (formKey.currentState!.validate()) {
-              context.read<WidgetBloc>().add(AddBreadRequeset(
-                  date: 'date',
-                  time: 'time',
-                  numberOfBread: controller.toString()));
-                  Navigator.pop(context);
-            }
-          }),
-    );
+      required ServicesState state}) {
+    return ButtonWeidget(
+        formKey: formKey,
+        title: 'إضافة طلب',
+        onPressed: () {
+          context.read<ServicesBloc>().add(AddBreadRequeset(
+              date: 'date',
+              time: 'time',
+              numberOfBread: controller.toString()));
+          Navigator.pop(context);
+        });
   }
 }

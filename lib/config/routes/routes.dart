@@ -1,3 +1,4 @@
+import 'package:sakan/features/main/presentation/pages/registere%20_on_sakan_pages/register_detailes_page.dart';
 import 'package:sakan/features/main/presentation/pages/sevices_pages/complaint_page.dart';
 import 'package:sakan/features/main/presentation/pages/sevices_pages/repaire_request_page.dart';
 import 'package:sakan/features/main/presentation/pages/sevices_pages/work_permit_page.dart';
@@ -23,4 +24,6 @@ var routes = {
   workPermitPage: (context) => const WorkPermitPage(),
   complaintPage: (context) => const ComplaintPage(),
   repaireRequestPage: (context) => const RepaireRequestPage(),
+  registerOnSakanDetailesPage: (context) => const RegisterOnSakanDetailesPage(),
+ // settingsPage: (context) => const SettingsPage(),
 };

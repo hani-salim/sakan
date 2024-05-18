@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:sakan/core/widgets/card_decoration_weidget.dart';
 import '../../../../../core/constant/constant.dart';
-import '../../../../../core/widgets/card_box_decoration.dart';
 import '../../widgets/service_widget.dart';
 import '../../widgets/sliver_app_bar.dart';
 
@@ -32,7 +32,7 @@ Widget _servicesList() => SliverToBoxAdapter(
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Container(
-          decoration: cardDecoration(),
+          decoration: cardDecorationWeidget(),
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: GridView.count(

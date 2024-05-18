@@ -1,8 +1,8 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sakan/features/main/presentation/bloc/local/presentation_bloc.dart';
 import '../../../../../core/constant/constant.dart';
-import '../../bloc/local/widget_bloc.dart';
 import '../../widgets/convex_app_bar.dart';
 
 class MainPage extends StatelessWidget {
@@ -10,12 +10,14 @@ class MainPage extends StatelessWidget {
 
   @override
   build(BuildContext context) {
-    return BlocConsumer<WidgetBloc, WidgetState>(
-      listener: (context, state) {},
+    int selectedPage = BlocProvider.of<PresentationBloc>(context).selectedPage;
+
+    return BlocConsumer<PresentationBloc, PresentationState>(
+      listener: (context, state) {
+      },
       builder: (context, state) {
-        int selectedPage = BlocProvider.of<WidgetBloc>(context).selectedPage;
         return Scaffold(
-          body: pages[selectedPage],
+          body: pages[BlocProvider.of<PresentationBloc>(context).selectedPage],
           bottomNavigationBar: ConvexAppBarWidget(
             selectedPage: selectedPage,
             tapItems: _tapItems,

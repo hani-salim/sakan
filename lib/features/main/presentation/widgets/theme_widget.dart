@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:lottie/lottie.dart';
+import 'package:sakan/features/main/presentation/bloc/local/presentation_bloc.dart';
 import '../../domain/entities/theme_item.dart';
-import '../bloc/local/widget_bloc.dart';
 
 class ThemeWidget extends StatelessWidget {
   final String primaryColor;
@@ -17,12 +17,12 @@ class ThemeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<WidgetBloc, WidgetState>(
+    return BlocConsumer<PresentationBloc, PresentationState>(
       listener: (context, state) {},
       builder: (context, state) {
         return GestureDetector(
           onTap: () {
-            context.read<WidgetBloc>().add(ChangeTheme(item: item));
+            context.read<PresentationBloc>().add(ChangeTheme(item: item));
           },
           child: Container(
               height: 100,
