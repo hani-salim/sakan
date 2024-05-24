@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 
-MaterialButton buildAccountOptionWidget({required String title, Function? onTap}) {
+ buildAccountOptionWidget({required String title, Function? onTap}) {
   return MaterialButton(
     onPressed: () {
       onTap;
@@ -24,5 +25,5 @@ MaterialButton buildAccountOptionWidget({required String title, Function? onTap}
         ],
       ),
    
-  );
+  ).animate().slide(duration: Durations.short1);
 }

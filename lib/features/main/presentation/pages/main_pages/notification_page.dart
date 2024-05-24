@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sakan/features/main/presentation/widgets/empty_widget.dart';
 import '../../../../../core/constant/constant.dart';
 import '../../../../../core/widgets/appbar.dart';
 import '../../widgets/menu_widget.dart';
@@ -11,13 +12,7 @@ class NotificationPage extends StatelessWidget {
     return Scaffold(
       appBar: appBarWidget(
           text: titles[5], context: context, leading: const MenuWidget()),
-      body: const Center(
-        child: Icon(
-          Icons.notifications,
-          color: Colors.black,
-          size: 200,
-        ),
-      ),
+      body: const EmptyWidget(title: 'لا يوجد إشعارات')
     );
   }
 }

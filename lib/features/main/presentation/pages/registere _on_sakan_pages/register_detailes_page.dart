@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sakan/config/theme/header_widget.dart';
+import 'package:sakan/core/constant/constant.dart';
 import 'package:sakan/core/widgets/button_weidget.dart';
 import 'package:sakan/core/widgets/card_decoration_weidget.dart';
 
@@ -106,7 +107,8 @@ class RegisterOnSakanDetailesPage extends StatelessWidget {
               ),
             ),
             ButtonWeidget( title: 'الانتقال إلى صفحة التسجيل', onPressed:() {
-                    
+    
+                    Navigator.pushNamed(context, registerOnSakanPage);
                   },)
           ],
         ),

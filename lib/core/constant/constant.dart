@@ -31,6 +31,7 @@ const String workPermitPage = "workPermitPage";
 const String repaireRequestPage = "repaireRequestPage";
 const String registerOnSakanDetailesPage= "registerOnSakanDetailesPage";
 const String settingsPage= "settingsPage";
+const String registerOnSakanPage= "registerOnSakanPage";
 
 //constant
 const String validate = "❗❗ حقل مطلوب";
