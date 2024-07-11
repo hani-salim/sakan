@@ -2,20 +2,22 @@
 
 import 'package:flutter/material.dart';
 import 'package:sakan/core/colors/colors.dart';
-import 'package:sakan/features/main/domain/entities/card_detailes_item.dart';
-import 'package:sakan/features/main/domain/entities/service_item.dart';
-import 'package:sakan/features/main/domain/entities/theme_item.dart';
-import 'package:sakan/features/main/presentation/pages/main_pages/about_us_page.dart';
-import 'package:sakan/features/main/presentation/pages/main_pages/help_page.dart';
-import 'package:sakan/features/main/presentation/pages/main_pages/log_page.dart';
-import 'package:sakan/features/main/presentation/pages/main_pages/news_page.dart';
-import 'package:sakan/features/main/presentation/pages/main_pages/notification_page.dart';
-import 'package:sakan/features/main/presentation/pages/main_pages/profile_page.dart';
-import 'package:sakan/features/main/presentation/pages/main_pages/services_page.dart';
-import 'package:sakan/features/main/presentation/pages/main_pages/settings_page.dart';
+import 'package:sakan/core/network/local/local_storage.dart';
+import 'package:sakan/features/auth/data/models/user.dart';
+import 'package:sakan/features/auth/data/models/user_detailes.dart';
+import 'package:sakan/features/student/domain/entities/service_entities.dart';
+import 'package:sakan/features/student/domain/entities/theme_entities.dart';
+import 'package:sakan/features/student/presentation/pages/main_pages/about_us_page.dart';
+import 'package:sakan/features/student/presentation/pages/main_pages/help_page.dart';
+import 'package:sakan/features/student/presentation/pages/main_pages/log_page.dart';
+import 'package:sakan/features/student/presentation/pages/main_pages/news_page.dart';
+import 'package:sakan/features/student/presentation/pages/main_pages/notification_page.dart';
+import 'package:sakan/features/student/presentation/pages/main_pages/profile_page.dart';
+import 'package:sakan/features/student/presentation/pages/main_pages/services_page.dart';
+import 'package:sakan/features/student/presentation/pages/main_pages/settings_page.dart';
 
 //api
-const String baseUrl = "http://20.20.127.214:9000/api/";
+const String baseUrl = "https://mhmd26221.pythonanywhere.com/api/";
 
 //pages for routes
 const String loginPage = "LoginPage";
@@ -111,50 +113,24 @@ final List<String> titles = [
   "مساعدة",
   "حول التطبيق",
 ];
-//list of card detailes
-List<CardDetailesEntities> listTiles = [
-  CardDetailesEntities(
-      title: 'العنوان',
-      subTiltle: 'الشيخ بدر',
-      leading: const Icon(Icons.room)),
-  CardDetailesEntities(
-      title: 'البريد الإلكتروني',
-      subTiltle: 'hanisalm@gmail.com',
-      leading: const Icon(Icons.email)),
-  CardDetailesEntities(
-      title: 'رقم الهاتف',
-      subTiltle: '0982668276',
-      leading: const Icon(Icons.phone)),
-  CardDetailesEntities(
-      title: 'الجامعة',
-      subTiltle: 'تشرين',
-      leading: const Icon(Icons.location_city)),
-  CardDetailesEntities(
-      title: 'الوحدة',
-      subTiltle: 'الثامنة عشر ذكور (داخل الحرم)',
-      leading: const Icon(Icons.house_siding_sharp)),
-  CardDetailesEntities(
-      title: 'رقم الغرفة',
-      subTiltle: '517',
-      leading: const Icon(Icons.numbers_rounded)),
-  CardDetailesEntities(
-      title: 'رقم الغرفة',
-      subTiltle: '517',
-      leading: const Icon(Icons.numbers_rounded)),
-  CardDetailesEntities(
-      title: 'رقم الغرفة',
-      subTiltle: '517',
-      leading: const Icon(Icons.numbers_rounded)),
-  CardDetailesEntities(
-      title: 'رقم الغرفة',
-      subTiltle: '517',
-      leading: const Icon(Icons.numbers_rounded)),
-  CardDetailesEntities(
-      title: 'رقم الغرفة',
-      subTiltle: '517',
-      leading: const Icon(Icons.numbers_rounded)),
-  CardDetailesEntities(
-      title: 'رقم الغرفة',
-      subTiltle: '517',
-      leading: const Icon(Icons.numbers_rounded)),
-];
+
+//user
+ late UserModel user ;
+  
+  //list of user detailes
+  List<UserDetailes> userDetailes=[
+    UserDetailes(leading:const Icon(Icons.title), title: 'الاسم الأول', subtitle: '${user.firstName}'),
+    UserDetailes(leading:const Icon(Icons.title), title: 'الاسم الأخير', subtitle: '${user.lastName}'),
+    UserDetailes(leading:const Icon(Icons.title), title: 'اسم الأم', subtitle: '${user.motherName}'),
+    UserDetailes(leading:const Icon(Icons.title), title: 'الاسم الأب', subtitle: '${user.fatherName}'),
+    UserDetailes(leading:const Icon(Icons.phone_android), title: 'رقم الهاتف', subtitle: '${user.phoneNumber}'),
+    UserDetailes(leading:const Icon(Icons.numbers), title: 'رقم الهوية الوطني', subtitle: '${user.idNationalNumber}'),
+    UserDetailes(leading:const Icon(Icons.home_max_outlined), title: 'الجامعة', subtitle: '${user.university}'),
+    UserDetailes(leading:const Icon(Icons.home_outlined), title: 'الكلية', subtitle: '${user.faculty}'),
+    UserDetailes(leading:const Icon(Icons.engineering_outlined), title: 'الاختصاص', subtitle: '${user.section}'),
+    UserDetailes(leading:const Icon(Icons.home), title: 'رقم الوحدة', subtitle: '${user.unitNumber}'),
+    UserDetailes(leading:const Icon(Icons.room), title: 'رقم الغرفة', subtitle: '${user.roomNumber}'),
+    UserDetailes(leading:const Icon(Icons.location_city), title: 'المدينة', subtitle: '${user.city}'),
+    UserDetailes(leading:const Icon(Icons.history), title: 'السنة الدراسية', subtitle: '${user.year}'),
+    UserDetailes(leading:const Icon(Icons.work), title: 'العمل', subtitle: '${user.job}'),
+  ];

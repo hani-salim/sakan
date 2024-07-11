@@ -7,9 +7,9 @@ abstract class RemoteUserEvent {
 }
 
 class Login extends RemoteUserEvent {
-  final String number;
+  final String email;
   final String password;
-  Login({required this.number, required this.password});
+  Login({required this.email, required this.password});
 }
 
 class Register extends RemoteUserEvent {

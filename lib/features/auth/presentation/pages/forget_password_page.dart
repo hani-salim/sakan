@@ -99,7 +99,7 @@ class ForgotPasswordPage extends StatelessWidget {
                           if (_formKey.currentState!.validate()) {
                                   
                                   Navigator.pushNamed(
-                                      context, forgotPasswordPage);
+                                      context, forgotPasswwordVerificationPage);
                                 }}),
                             const SizedBox(height: 30.0),
                             Text.rich(

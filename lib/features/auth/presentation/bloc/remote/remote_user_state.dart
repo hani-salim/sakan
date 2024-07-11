@@ -6,7 +6,8 @@ import '../../../domain/entities/user.dart';
 abstract class RemoteUserState extends Equatable {
   final UserEntities? userEntities;
 
-  final DioException? exception;
+  // ignore: prefer_typing_uninitialized_variables
+  final  exception;
   const RemoteUserState({this.userEntities, this.exception});
 
   @override
@@ -23,7 +24,7 @@ class RemoteUserSuccessState extends RemoteUserState {
 }
 
 class RemoteUserErrorState extends RemoteUserState {
-  const RemoteUserErrorState(DioException exception)
+  const RemoteUserErrorState(exception)
       : super(exception: exception);
 }
 

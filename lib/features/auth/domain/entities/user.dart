@@ -8,20 +8,19 @@ class UserEntities extends Equatable {
   final String? fatherName;
   final String? motherName;
   final int? phoneNumber;
-  final int? idNumber;
   final int? idNationalNumber;
-  final String? univercity;
+  final String? university;
   final String? faculty;
   final String? section;
-  final String? campus;
-  final int? unitNumber;
-  final int? roomNumber;
+  final String? unitNumber;
+  final String? roomNumber;
   final String? city;
   final int? year;
   final String? status;
   final String? job;
   final String? typeJob;
   final String? token;
+  final  String? img;
 
   const UserEntities(
       {
@@ -30,12 +29,10 @@ class UserEntities extends Equatable {
        this.fatherName,
        this.motherName,
        this.phoneNumber,
-       this.idNumber,
        this.idNationalNumber,
-       this.univercity,
+       this.university,
        this.faculty,
        this.section,
-       this.campus,
        this.unitNumber,
        this.roomNumber,
        this.city,
@@ -43,7 +40,8 @@ class UserEntities extends Equatable {
        this.status,
        this.job,
        this.typeJob,
-       this.token});
+       this.token,
+       this.img});
 
   @override
   List<Object?> get props => [
@@ -53,18 +51,18 @@ class UserEntities extends Equatable {
         motherName,
         phoneNumber,
         idNationalNumber,
-        idNumber,
-        univercity,
+
+        university,
         faculty,
         section,
-        campus,
         unitNumber,
         roomNumber,
         city,
+        job,
         year,
         status,
-        job,
         typeJob,
-        token
+        token,
+        img
       ];
 }

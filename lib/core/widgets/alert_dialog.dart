@@ -8,7 +8,7 @@ AlertDialog alertDialogWidget(
     actions: [
       TextButton(
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.black38)),
+            backgroundColor: WidgetStateProperty.all(Colors.black38)),
         onPressed: () {
           Navigator.of(context).pop();
         },

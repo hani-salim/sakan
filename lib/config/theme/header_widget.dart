@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
-import 'package:sakan/features/main/presentation/bloc/local/presentation_bloc.dart';
+import 'package:sakan/features/student/presentation/bloc/local/presentation_bloc.dart';
 import '../../core/colors/colors.dart';
 import '../../core/constant/constant.dart';
-import '../../features/main/presentation/pages/main_pages/main_page.dart';
+import '../../features/student/presentation/pages/main_pages/main_page.dart';
 
 class HeaderWidget extends StatelessWidget {
   final double height;
@@ -122,8 +122,8 @@ class HeaderWidget extends StatelessWidget {
     return Visibility(
             visible:
                 BlocProvider.of<PresentationBloc>(context).mainPage is MainPage &&
-                    BlocProvider.of<PresentationBloc>(context).selectedPage == 2 &&
-                    ModalRoute.of(context)!.settings.name == homePage,
+                    BlocProvider.of<PresentationBloc>(context).selectedPage == 2 
+                  && ModalRoute.of(context)!.settings.name == homePage,
             child: Column(
               children: [
                 const Text(

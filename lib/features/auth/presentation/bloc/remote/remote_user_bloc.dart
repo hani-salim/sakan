@@ -1,4 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sakan/core/constant/constant.dart';
+import 'package:sakan/core/network/local/local_storage.dart';
+import 'package:sakan/features/auth/data/models/user.dart';
 
 import '../../../../../core/resource/dart_state.dart';
 import '../../../domain/usecases/login.dart';
@@ -31,14 +35,21 @@ class RemoteUserBloc extends Bloc<RemoteUserEvent, RemoteUserState> {
 
   void onLogin(Login event, Emitter<RemoteUserState> emit) async {
     emit(RemoteUserLoadingState());
-    DataState dataState =
-        await _loginUseCase(number: event.number, password: event.password);
-    if (dataState is DataSuccess && dataState.data!.isNotEmpty) {
+    try{
+ final dataState =await _loginUseCase(email: event.email, password: event.password);
+    if (dataState is DataSuccess) { 
+      print(LocalStorage.getData(key: 'user'));
       emit(RemoteUserSuccessState(dataState.data));
     }
-    if (dataState is DataFailed) {
+    else if (dataState is DataFailed) {
       emit(RemoteUserErrorState(dataState.error!));
+    }else {
+      emit(RemoteUserErrorState(dataState));
     }
+    }catch(e){
+print(e.toString());
+    }
+      
   }
 
   void onRegister(Register event, Emitter<RemoteUserState> emit) async {

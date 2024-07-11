@@ -3,6 +3,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:sakan/core/widgets/button_weidget.dart';
+import 'package:sakan/core/widgets/loading_widget.dart';
+import 'package:sakan/core/widgets/show_toast.dart';
+import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_event.dart';
+
 import '../../../../core/colors/colors.dart';
 import '../../../../core/constant/constant.dart';
 import '../../../../core/widgets/box_decoration.dart';
@@ -31,7 +35,19 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<RemoteUserBloc, RemoteUserState>(
+      body: BlocConsumer<RemoteUserBloc, RemoteUserState>(
+        listener: (BuildContext context, RemoteUserState state) {
+          if (state is RemoteUserLoadingState) {
+            showLoadingWidget(context: context);
+          }
+          if (state is RemoteUserSuccessState) {
+            showToast(color: Colors.green, msg: 'تم تسجيل الدخول بنجاح');
+            Navigator.pushNamed(context, homePage);
+          } else if (state is RemoteUserErrorState) {
+            Navigator.pop(context);
+            showToast(color: Colors.red, msg: state.exception.toString());
+          }
+        },
         builder: (context, state) {
           return SingleChildScrollView(
             child: Column(
@@ -43,12 +59,11 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-
- SizedBox _headerWidget(BuildContext context) {
-    return   SizedBox(
-        height: MediaQuery.of(context).size.height/3,
-        child:  HeaderWidget(
-          height: MediaQuery.of(context).size.height/3,
+  SizedBox _headerWidget(BuildContext context) {
+    return SizedBox(
+        height: MediaQuery.of(context).size.height / 3,
+        child: HeaderWidget(
+          height: MediaQuery.of(context).size.height / 3,
           showAnimated: true,
           lottieFilePath: "assets/lottieFiles/login.json",
         ));
@@ -59,6 +74,7 @@ class _LoginPageState extends State<LoginPage> {
       height: 30.0,
     );
   }
+
   SafeArea _body(BuildContext context, RemoteUserState state) {
     return SafeArea(
         child: Container(
@@ -91,14 +107,12 @@ class _LoginPageState extends State<LoginPage> {
           _password(),
           _sizedBox(),
           _forgetPassword(context),
-          _loginButton( context),
+          _loginButton(context),
           _createNewAccount(context),
         ],
       ),
     );
   }
-
- 
 
   Container _createNewAccount(BuildContext context) {
     return Container(
@@ -125,12 +139,17 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   ButtonWeidget _loginButton(BuildContext context) {
-    return ButtonWeidget(formKey: formKey,title: 'تسجيل الدخول', onPressed: (){
-                          if (formKey.currentState!.validate()) {
-                            
-                          }
-
-      Navigator.pushNamed(context, homePage);});
+    return ButtonWeidget(
+        formKey: formKey,
+        title: 'تسجيل الدخول',
+        onPressed: () async {
+          if (formKey.currentState!.validate()) {
+            context.read<RemoteUserBloc>().add(Login(
+                email: emailController.text,
+                password: passwordController.text));
+          }
+         
+        });
   }
 
   Container _forgetPassword(BuildContext context) {
