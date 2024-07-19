@@ -11,9 +11,9 @@ class HeaderWidget extends StatelessWidget {
   final double height;
   final bool? showAnimated;
   final String? lottieFilePath;
-   final bool? isMainPage ;
+  final bool? isMainPage;
 
-  const  HeaderWidget({
+  const HeaderWidget({
     required this.height,
     this.showAnimated,
     this.lottieFilePath,
@@ -92,13 +92,13 @@ class HeaderWidget extends StatelessWidget {
               ),
             ),
           ),
-          _showAnimated(context,isMainPage),
+          _showAnimated(context, isMainPage),
         ],
       ).animate().slideY(),
     );
   }
 
-  Visibility _showAnimated(BuildContext context,bool? isMainPage) {
+  Visibility _showAnimated(BuildContext context, bool? isMainPage) {
     return Visibility(
       visible: showAnimated ?? false,
       child: SizedBox(
@@ -108,8 +108,8 @@ class HeaderWidget extends StatelessWidget {
             Center(
               child: Lottie.asset(
                   lottieFilePath ?? 'assets/lottieFiles/sakan.json',
-                  width:MediaQuery.of(context).size.width,
-                  height: isMainPage??false ? height/2.5 :height-8),
+                  width: MediaQuery.of(context).size.width,
+                  height: isMainPage ?? false ? height / 2.5 : height - 8),
             ),
             _registerOnSakan(context),
           ],
@@ -120,27 +120,28 @@ class HeaderWidget extends StatelessWidget {
 
   Visibility _registerOnSakan(BuildContext context) {
     return Visibility(
-            visible:
-                BlocProvider.of<PresentationBloc>(context).mainPage is MainPage &&
-                    BlocProvider.of<PresentationBloc>(context).selectedPage == 2 
-                  && ModalRoute.of(context)!.settings.name == homePage,
-            child: Column(
-              children: [
-                const Text(
-                  "يجب التسجيل على السكن للحصول على الخدمات",
-                  style: TextStyle(color: Colors.white),
-                ),
-                TextButton(
-                    onPressed: () {
-                     Navigator.pushNamed(context, registerOnSakanDetailesPage);
-                    },
-                    child: Text("التسجيل الآن",
-                            style: TextStyle(color: Colors.amber[400]))
-                        .animate()
-                        .shake()),
-              ],
-            ),
-          );
+      visible: user == null
+          ? false
+          : user!.status == 'غير مسجل في السكن'
+              ? true
+              : false,
+      child: Column(
+        children: [
+          const Text(
+            "يجب التسجيل على السكن للحصول على الخدمات",
+            style: TextStyle(color: Colors.white),
+          ),
+          TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, registerOnSakanDetailesPage);
+              },
+              child: Text("التسجيل الآن",
+                      style: TextStyle(color: Colors.amber[400]))
+                  .animate()
+                  .shake()),
+        ],
+      ),
+    );
   }
 }
 

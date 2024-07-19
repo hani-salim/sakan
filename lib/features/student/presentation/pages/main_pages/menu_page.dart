@@ -38,12 +38,12 @@ class MenuPage extends StatelessWidget {
                                 image: DecorationImage(
                                     image: imageProvider, fit: BoxFit.cover)),
                           ),
-                      imageUrl: user.img ?? 'https://i.imgflip.com/3f2lx0.jpg'),
+                      imageUrl: user!.img ?? 'https://i.imgflip.com/3f2lx0.jpg'),
                 ),
               ),
              const SizedBox(height: 8,),
                Text(
-              '${user.firstName} ${user.lastName}',
+              '${user!.firstName} ${user!.lastName}',
                 style: const TextStyle(
                     fontSize: 16,
                     color: Colors.white,

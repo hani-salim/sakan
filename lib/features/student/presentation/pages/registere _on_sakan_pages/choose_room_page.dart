@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:sakan/core/widgets/drop_down_form_field_widget.dart.dart';
 import 'package:sakan/features/student/domain/entities/room_entities.dart';
 import 'package:sakan/features/student/presentation/widgets/room_widget.dart';
+
 
 // ignore: must_be_immutable
 class ChooseRoomPage extends StatelessWidget {
@@ -10,44 +10,52 @@ class ChooseRoomPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String univercityName = '';
+    String universityName = '';
     String unitName = '';
-    return
-     Padding(
-      padding: const EdgeInsets.all(8.0),
-      child:  SingleChildScrollView(
-        child: Column(
-            children: [
-              dropDownButtonFormFieldWidget(
-                  items: ['ee', 'ww'],
-                  selectedItem: univercityName,
-                  labelText: 'الجامعة'),
-              const SizedBox(
-                height: 20,
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            collapsedHeight: 200,
+            pinned: true,
+            flexibleSpace: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  dropDownButtonFormFieldWidget(
+                      items: [],
+                      selectedItem: universityName,
+                      labelText: 'اسم الجامعة'),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  dropDownButtonFormFieldWidget(
+                      items: [],
+                      selectedItem: unitName,
+                      labelText: 'اسم الوحدة'),
+                ],
               ),
-              dropDownButtonFormFieldWidget(
-                  items: ['ee', 'ww'],
-                  selectedItem: unitName,
-                  labelText: 'الوحدة السكنية'),
-                Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: GridView.count(
-
-                  crossAxisCount: 4,
-                  shrinkWrap: true,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  children: [
-                    ...rooms.map((e) => RoomWidget(roomItem: e))
-                  ]
-                      .animate(interval: Durations.short1)
-                      .moveX(curve: Curves.easeIn, begin: -200, end: 0),
-                ),
-              ),
-            ],
+            ),
           ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  GridView.count(
+                    physics: const NeverScrollableScrollPhysics(),
+                    crossAxisCount: 5,
+                    crossAxisSpacing: 8,
+                    shrinkWrap: true,
+                    mainAxisSpacing: 8,
+                    children: [...rooms.map((e) => RoomWidget(roomItem: e))],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
-    
     );
   }
 

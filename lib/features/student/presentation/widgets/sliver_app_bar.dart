@@ -82,7 +82,7 @@ class SliverAppBarWidget extends StatelessWidget {
                                 image: DecorationImage(
                                     image: imageProvider, fit: BoxFit.cover)),
                           ),
-                      imageUrl: user.img ?? 'https://i.imgflip.com/3f2lx0.jpg'),
+                      imageUrl: user!.img ?? 'https://i.imgflip.com/3f2lx0.jpg'),
                 ),
               ),
             ).animate().flipV(),
@@ -91,14 +91,14 @@ class SliverAppBarWidget extends StatelessWidget {
               height: 15,
             ),
             Text(
-              '${user.firstName} ${user.lastName}',
+              '${user!.firstName} ${user!.lastName}',
               style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ).animate().fade(),
             const SizedBox(
               height: 10,
             ),
             Text(
-              '${user.job}',
+              '${user!.job}',
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ).animate().fade(delay: const Duration(microseconds: 100)),
           ],

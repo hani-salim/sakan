@@ -18,15 +18,14 @@ part 'presentation_event.dart';
 part 'presentation_state.dart';
 
 class PresentationBloc extends Bloc<PresentationEvent, PresentationState> {
-    int selectedPage =2;
-    
+  int selectedPage = 2;
+
   Widget mainPage = const MainPage();
   MenuEntities? currentItem = MenuItems.services;
   PresentationBloc() : super(PresentationInitial()) {
     on<ChangeDrwerItem>(onChangeDrawerItem);
     on<ChangeBottomNavicaitonBar>(onChangeBottomNavicationBar);
     on<ChangeTheme>(onChangeTheme);
-    
   }
 
   onChangeTheme(ChangeTheme event, Emitter<PresentationState> emit) {
@@ -54,12 +53,13 @@ class PresentationBloc extends Bloc<PresentationEvent, PresentationState> {
       case MenuItems.services:
         mainPage = const MainPage();
         currentItem = event.item;
-        selectedPage = 2;
+        MainPage.appKey.currentState!.tap(2);
         break;
       case MenuItems.settings:
-        selectedPage = 4;
         currentItem = event.item;
         mainPage = const MainPage();
+        MainPage.appKey.currentState!.tap(4);
+
         break;
       case MenuItems.themes:
         currentItem = event.item;
@@ -94,7 +94,4 @@ class PresentationBloc extends Bloc<PresentationEvent, PresentationState> {
     }
     emit(ChangeBottomNavicaitonBarState());
   }
-
-
-
 }

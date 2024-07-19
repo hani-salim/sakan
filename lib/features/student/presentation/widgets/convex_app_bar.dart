@@ -6,14 +6,16 @@ import '../../../../core/colors/colors.dart';
 
 class ConvexAppBarWidget extends StatelessWidget {
   final List<TabItem> tapItems;
+  final GlobalKey<ConvexAppBarState>  appKey;
   const ConvexAppBarWidget(
-      {super.key, required this.selectedPage, required this.tapItems});
+      {super.key, required this.selectedPage, required this.tapItems, required this.appKey});
 
   final int selectedPage;
 
   @override
   Widget build(BuildContext context) {
     return ConvexAppBar(
+      key: appKey,
       initialActiveIndex: selectedPage,
       style: TabStyle.textIn,
       gradient: LinearGradient(

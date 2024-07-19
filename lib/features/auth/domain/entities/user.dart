@@ -15,7 +15,7 @@ class UserEntities extends Equatable {
   final String? unitNumber;
   final String? roomNumber;
   final String? city;
-  final int? year;
+  final String? year;
   final String? status;
   final String? job;
   final String? typeJob;

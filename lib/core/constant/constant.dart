@@ -115,22 +115,22 @@ final List<String> titles = [
 ];
 
 //user
- late UserModel user ;
+  UserModel? user ;
   
   //list of user detailes
   List<UserDetailes> userDetailes=[
-    UserDetailes(leading:const Icon(Icons.title), title: 'الاسم الأول', subtitle: '${user.firstName}'),
-    UserDetailes(leading:const Icon(Icons.title), title: 'الاسم الأخير', subtitle: '${user.lastName}'),
-    UserDetailes(leading:const Icon(Icons.title), title: 'اسم الأم', subtitle: '${user.motherName}'),
-    UserDetailes(leading:const Icon(Icons.title), title: 'الاسم الأب', subtitle: '${user.fatherName}'),
-    UserDetailes(leading:const Icon(Icons.phone_android), title: 'رقم الهاتف', subtitle: '${user.phoneNumber}'),
-    UserDetailes(leading:const Icon(Icons.numbers), title: 'رقم الهوية الوطني', subtitle: '${user.idNationalNumber}'),
-    UserDetailes(leading:const Icon(Icons.home_max_outlined), title: 'الجامعة', subtitle: '${user.university}'),
-    UserDetailes(leading:const Icon(Icons.home_outlined), title: 'الكلية', subtitle: '${user.faculty}'),
-    UserDetailes(leading:const Icon(Icons.engineering_outlined), title: 'الاختصاص', subtitle: '${user.section}'),
-    UserDetailes(leading:const Icon(Icons.home), title: 'رقم الوحدة', subtitle: '${user.unitNumber}'),
-    UserDetailes(leading:const Icon(Icons.room), title: 'رقم الغرفة', subtitle: '${user.roomNumber}'),
-    UserDetailes(leading:const Icon(Icons.location_city), title: 'المدينة', subtitle: '${user.city}'),
-    UserDetailes(leading:const Icon(Icons.history), title: 'السنة الدراسية', subtitle: '${user.year}'),
-    UserDetailes(leading:const Icon(Icons.work), title: 'العمل', subtitle: '${user.job}'),
+    UserDetailes(leading:const Icon(Icons.title), title: 'الاسم الأول', subtitle: '${user!.firstName}'),
+    UserDetailes(leading:const Icon(Icons.title), title: 'الاسم الأخير', subtitle: '${user!.lastName}'),
+    UserDetailes(leading:const Icon(Icons.title), title: 'اسم الأم', subtitle: '${user!.motherName}'),
+    UserDetailes(leading:const Icon(Icons.title), title: 'الاسم الأب', subtitle: '${user!.fatherName}'),
+    UserDetailes(leading:const Icon(Icons.phone_android), title: 'رقم الهاتف', subtitle: '${user!.phoneNumber}'),
+    UserDetailes(leading:const Icon(Icons.numbers), title: 'رقم الهوية الوطني', subtitle: '${user!.idNationalNumber}'),
+    UserDetailes(leading:const Icon(Icons.home_max_outlined), title: 'الجامعة', subtitle: '${user!.university}'),
+    UserDetailes(leading:const Icon(Icons.home_outlined), title: 'الكلية', subtitle: '${user!.faculty}'),
+    UserDetailes(leading:const Icon(Icons.engineering_outlined), title: 'الاختصاص', subtitle: '${user!.section}'),
+    UserDetailes(leading:const Icon(Icons.home), title: 'رقم الوحدة', subtitle: '${user!.unitNumber}'),
+    UserDetailes(leading:const Icon(Icons.room), title: 'رقم الغرفة', subtitle: '${user!.roomNumber}'),
+    UserDetailes(leading:const Icon(Icons.location_city), title: 'المدينة', subtitle: '${user!.city}'),
+    UserDetailes(leading:const Icon(Icons.history), title: 'السنة الدراسية', subtitle: '${user!.year}'),
+    UserDetailes(leading:const Icon(Icons.work), title: 'العمل', subtitle: '${user!.job}'),
   ];

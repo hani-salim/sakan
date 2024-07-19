@@ -7,6 +7,7 @@ import '../../widgets/convex_app_bar.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
+  static GlobalKey<ConvexAppBarState> appKey =GlobalKey<ConvexAppBarState>();
 
   @override
   build(BuildContext context) {
@@ -20,8 +21,7 @@ class MainPage extends StatelessWidget {
           body: pages[BlocProvider.of<PresentationBloc>(context).selectedPage],
           bottomNavigationBar: ConvexAppBarWidget(
             selectedPage: selectedPage,
-            tapItems: _tapItems,
-          ),
+            tapItems: _tapItems, appKey:appKey ),
         );
       },
     );
