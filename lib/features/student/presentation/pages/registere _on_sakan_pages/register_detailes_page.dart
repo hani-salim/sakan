@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sakan/config/theme/header_widget.dart';
 import 'package:sakan/core/constant/constant.dart';
 import 'package:sakan/core/widgets/button_weidget.dart';
 import 'package:sakan/core/widgets/card_decoration_weidget.dart';
+import 'package:sakan/features/student/presentation/bloc/remote/bloc/services_bloc.dart';
 
 class RegisterOnSakanDetailesPage extends StatelessWidget {
   const RegisterOnSakanDetailesPage({super.key});
@@ -110,7 +112,8 @@ class RegisterOnSakanDetailesPage extends StatelessWidget {
             ),
             ButtonWeidget(
               title: 'الانتقال إلى صفحة التسجيل',
-              onPressed: () {
+              onPressed: (){
+                context.read<ServicesBloc>().add(GetUniversities());
                 Navigator.pushNamed(context, registerOnSakanPage);
               },
             )

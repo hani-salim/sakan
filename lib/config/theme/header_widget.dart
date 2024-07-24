@@ -5,7 +5,6 @@ import 'package:lottie/lottie.dart';
 import 'package:sakan/features/student/presentation/bloc/local/presentation_bloc.dart';
 import '../../core/colors/colors.dart';
 import '../../core/constant/constant.dart';
-import '../../features/student/presentation/pages/main_pages/main_page.dart';
 
 class HeaderWidget extends StatelessWidget {
   final double height;
@@ -138,7 +137,7 @@ class HeaderWidget extends StatelessWidget {
               child: Text("التسجيل الآن",
                       style: TextStyle(color: Colors.amber[400]))
                   .animate()
-                  .shake()),
+                  .shake(duration: const Duration(milliseconds: 10))),
         ],
       ),
     );

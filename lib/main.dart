@@ -8,7 +8,6 @@ import 'package:sakan/features/auth/data/models/user.dart';
 import 'package:sakan/features/student/presentation/bloc/local/presentation_bloc.dart';
 import 'package:sakan/features/student/presentation/bloc/remote/bloc/services_bloc.dart';
 import 'package:sakan/features/student/presentation/pages/main_pages/home_page.dart';
-import 'package:sakan/features/student/presentation/pages/main_pages/main_page.dart';
 import 'bloc_observer.dart';
 import 'config/routes/routes.dart';
 import 'core/network/local/local_storage.dart';
@@ -53,7 +52,7 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider<PresentationBloc>(
               create: (context) => PresentationBloc()),
-          BlocProvider<ServicesBloc>(create: (context) => ServicesBloc()),
+          BlocProvider<ServicesBloc>(create: (context) => ServicesBloc(sl(),sl(),sl())),
         ],
         child: GetMaterialApp(
           textDirection: TextDirection.rtl,

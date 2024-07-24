@@ -7,10 +7,7 @@ import '../../models/user.dart';
 
 abstract class UserApiService {
   login({required String email, required String password});
-  DataState register({required UserModel userModel});
-  getUnivercities();
-  getUnits({required String univercityName});
-  getRoomsNumber({required String unitNumber, required String univercityName});
+   register({required UserModel userModel});
 }
 
 class UserApiServiceWitDio implements UserApiService {
@@ -24,23 +21,6 @@ class UserApiServiceWitDio implements UserApiService {
     
   }
 
-  @override
-  getRoomsNumber({required String unitNumber, required String univercityName}) {
-    // TODO: implement getRoomsNumber
-    throw UnimplementedError();
-  }
-
-  @override
-  getUnits({required String univercityName}) {
-    // TODO: implement getUnits
-    throw UnimplementedError();
-  }
-
-  @override
-  getUnivercities() {
-    // TODO: implement getUnivercities
-    throw UnimplementedError();
-  }
 
   @override
   DataState register({required UserModel userModel}) {
@@ -49,7 +29,7 @@ class UserApiServiceWitDio implements UserApiService {
   }
 }
 
-DataState chekResponse({required  response, int statusCode = 200}) {
+ DataState chekResponse({required  response, int statusCode = 200}) {
   if (response.statusCode == statusCode) {
     print('-----------------succsess-----------------------');
     print(response.data);

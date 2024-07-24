@@ -44,7 +44,7 @@ class ThemePage extends StatelessWidget {
                         item: e,
                       )),
                 ]
-                    .animate(interval: Durations.short1)
+                    .animate(interval:const Duration(milliseconds: 10))
                     .moveX(curve: Curves.easeIn, begin: -200, end: 0),
               ),
             ),

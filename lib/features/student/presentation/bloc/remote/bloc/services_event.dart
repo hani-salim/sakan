@@ -33,3 +33,16 @@ class SelectRoom extends ServicesEvent {
   SelectRoom({required this.roomEntities});
 }
 
+class GetUniversities extends ServicesEvent{}
+
+
+class GetUnities extends ServicesEvent{
+  final String university;
+  GetUnities({required this.university});
+}
+
+class GetRooms extends ServicesEvent{
+  final String university;
+  final String unit;
+  GetRooms({required this.unit, required this.university});
+}

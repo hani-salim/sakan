@@ -53,12 +53,12 @@ class PresentationBloc extends Bloc<PresentationEvent, PresentationState> {
       case MenuItems.services:
         mainPage = const MainPage();
         currentItem = event.item;
-        MainPage.appKey.currentState!.tap(2);
+        MainPage.appKey.currentState?.tap(2);
         break;
       case MenuItems.settings:
         currentItem = event.item;
         mainPage = const MainPage();
-        MainPage.appKey.currentState!.tap(4);
+      MainPage.appKey.currentState?.tap(4);
 
         break;
       case MenuItems.themes:

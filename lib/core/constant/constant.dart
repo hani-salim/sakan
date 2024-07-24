@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:sakan/core/colors/colors.dart';
-import 'package:sakan/core/network/local/local_storage.dart';
 import 'package:sakan/features/auth/data/models/user.dart';
 import 'package:sakan/features/auth/data/models/user_detailes.dart';
 import 'package:sakan/features/student/domain/entities/service_entities.dart';
@@ -37,6 +36,7 @@ const String registerOnSakanPage= "registerOnSakanPage";
 
 //constant
 const String validate = "❗❗ حقل مطلوب";
+const String errorMessage= "خطأ في الاتصال في الانترنيت";
 
 const int currentIndex = 0;
 const double iconAppBarSize = 30;

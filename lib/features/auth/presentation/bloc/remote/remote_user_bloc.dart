@@ -38,7 +38,6 @@ class RemoteUserBloc extends Bloc<RemoteUserEvent, RemoteUserState> {
     try{
  final dataState =await _loginUseCase(email: event.email, password: event.password);
     if (dataState is DataSuccess) { 
-      print(LocalStorage.getData(key: 'user'));
       emit(RemoteUserSuccessState(dataState.data));
     }
     else if (dataState is DataFailed) {

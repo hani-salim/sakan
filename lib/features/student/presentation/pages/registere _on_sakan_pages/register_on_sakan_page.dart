@@ -52,8 +52,8 @@ class _RegisterOnSakanPageState extends State<RegisterOnSakanPage> {
                   child: PageView(
                 controller: _controller,
                 children: [
-                  ChooseRoomPage(),
                   const SendAttachmentPage(),
+                  ChooseRoomPage(),
                   const PaidPage(),
                 ],
               )),

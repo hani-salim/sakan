@@ -63,6 +63,12 @@ flutter_native_splash:
   image: 'assets/images/splash.png'
   android: true
   color: "#42a5f5"
+  android_12:
+    image: 'assets/images/splash.png'
+    android: true
+    color: "#42a5f5"
+    android_gravity: center
+    
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
