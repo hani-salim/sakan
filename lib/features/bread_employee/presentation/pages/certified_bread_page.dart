@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sakan/core/colors/colors.dart';
-import 'package:sakan/core/widgets/appbar.dart';
-import 'package:sakan/core/widgets/button_box_decoration.dart';
-import 'package:sakan/core/widgets/button_style.dart';
-import 'package:sakan/core/widgets/input_decoration_widget.dart';
+import '../../../../core/colors/colors.dart';
+import '../../../../core/widgets/appbar.dart';
+import '../../../../core/widgets/button_box_decoration.dart';
+import '../../../../core/widgets/button_style.dart';
+import '../../../../core/widgets/input_decoration_widget.dart';
 
 class CertifiedBreadPage extends StatelessWidget {
   const CertifiedBreadPage({super.key});

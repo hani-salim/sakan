@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:sakan/core/colors/colors.dart';
+import '../../../../../core/colors/colors.dart';
 
 class StepProgressPage extends StatefulWidget {
   final double currentStep;

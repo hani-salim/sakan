@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sakan/features/student/presentation/bloc/local/presentation_bloc.dart';
+import '../../bloc/local/presentation_bloc.dart';
 import '../../../../../core/constant/constant.dart';
 import '../../widgets/sliver_app_bar.dart';
 import '../../widgets/theme_widget.dart';

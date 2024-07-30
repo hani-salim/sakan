@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sakan/core/colors/colors.dart';
+import '../../../../../core/colors/colors.dart';
 
-import 'package:sakan/core/widgets/appbar.dart';
-import 'package:sakan/features/student/presentation/bloc/remote/bloc/services_bloc.dart';
-import 'package:sakan/features/student/presentation/bloc/remote/bloc/services_state.dart';
-import 'package:sakan/features/student/presentation/pages/registere%20_on_sakan_pages/choose_room_page.dart';
-import 'package:sakan/features/student/presentation/pages/registere%20_on_sakan_pages/paid_page.dart';
-import 'package:sakan/features/student/presentation/pages/registere%20_on_sakan_pages/send_attachment_page.dart';
-import 'package:sakan/features/student/presentation/pages/registere%20_on_sakan_pages/step_progress_page.dart';
-import 'package:sakan/features/student/presentation/widgets/buttom_buttons_widget.dart';
+import '../../../../../core/widgets/appbar.dart';
+import '../../bloc/remote/bloc/student_bloc.dart';
+import '../../bloc/remote/bloc/student_state.dart';
+import '../registere%20_on_sakan_pages/choose_room_page.dart';
+import '../registere%20_on_sakan_pages/paid_page.dart';
+import '../registere%20_on_sakan_pages/send_attachment_page.dart';
+import '../registere%20_on_sakan_pages/step_progress_page.dart';
+import '../../widgets/buttom_buttons_widget.dart';
 
 class RegisterOnSakanPage extends StatefulWidget {
   const RegisterOnSakanPage({super.key});
@@ -34,7 +34,7 @@ class _RegisterOnSakanPageState extends State<RegisterOnSakanPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ServicesBloc, ServicesState>(
+    return BlocConsumer<StudentBloc, StudentState>(
       listener: (context, state) {
         selectRoom(context, state);
       },
@@ -51,10 +51,10 @@ class _RegisterOnSakanPageState extends State<RegisterOnSakanPage> {
               Expanded(
                   child: PageView(
                 controller: _controller,
-                children: [
-                  const SendAttachmentPage(),
+                children: const [
+                  SendAttachmentPage(),
                   ChooseRoomPage(),
-                  const PaidPage(),
+                  PaidPage(),
                 ],
               )),
               ButtomButtons(
@@ -68,7 +68,7 @@ class _RegisterOnSakanPageState extends State<RegisterOnSakanPage> {
   }
 }
 
-selectRoom(BuildContext context, ServicesState state) {
+selectRoom(BuildContext context, StudentState state) {
   if (state is SelectRoomState) {
     if ((state.roomEntities.status == 'خاصة') ||
         (state.roomEntities.status == 'ممتلئة')) {

@@ -1,11 +1,11 @@
 
 import 'package:get_it/get_it.dart';
-import 'package:sakan/features/student/data/data_sources/remote/student_api_service.dart';
-import 'package:sakan/features/student/data/repository/student_repository_impl.dart';
-import 'package:sakan/features/student/domain/repository/studnet_respository.dart';
-import 'package:sakan/features/student/domain/useCases/get_rooms.dart';
-import 'package:sakan/features/student/domain/useCases/get_unities.dart';
-import 'package:sakan/features/student/domain/useCases/get_universities.dart';
+import 'features/student/data/data_sources/remote/student_api_service.dart';
+import 'features/student/data/repository/student_repository_impl.dart';
+import 'features/student/domain/repository/studnet_respository.dart';
+import 'features/student/domain/useCases/get_rooms.dart';
+import 'features/student/domain/useCases/get_unities.dart';
+import 'features/student/domain/useCases/get_universities.dart';
 import 'features/auth/data/data_sources/remote/user_api_service.dart';
 import 'features/auth/data/repository/user_repository_impl.dart';
 import 'features/auth/domain/repository/user_repository.dart';

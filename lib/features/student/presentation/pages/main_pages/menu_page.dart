@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
-import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/features/student/presentation/bloc/local/presentation_bloc.dart';
+import '../../../../../core/constant/constant.dart';
+import '../../bloc/local/presentation_bloc.dart';
 import '../../../../../core/colors/colors.dart';
 import '../../../domain/entities/menu_entities.dart';
 

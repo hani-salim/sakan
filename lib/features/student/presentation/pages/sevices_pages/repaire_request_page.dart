@@ -1,17 +1,17 @@
-import 'dart:io';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:sakan/core/colors/colors.dart';
-import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/core/widgets/appbar.dart';
-import 'package:sakan/core/widgets/button_weidget.dart';
-import 'package:sakan/core/widgets/drop_down_form_field_widget.dart.dart';
-import 'package:sakan/core/widgets/input_decoration_widget.dart';
-import 'package:sakan/features/auth/presentation/pages/register_page.dart';
-import 'package:sakan/features/student/presentation/bloc/remote/bloc/services_bloc.dart';
-import 'package:sakan/features/student/presentation/bloc/remote/bloc/services_state.dart';
+import 'package:sakan/features/student/presentation/widgets/picture_widget.dart';
+import '../../../../../core/colors/colors.dart';
+import '../../../../../core/constant/constant.dart';
+import '../../../../../core/widgets/appbar.dart';
+import '../../../../../core/widgets/button_weidget.dart';
+import '../../../../../core/widgets/drop_down_form_field_widget.dart.dart';
+import '../../../../../core/widgets/input_decoration_widget.dart';
+import '../../../../auth/presentation/pages/register_page.dart';
+import '../../bloc/remote/bloc/student_bloc.dart';
+import '../../bloc/remote/bloc/student_state.dart';
 
 class RepaireRequestPage extends StatelessWidget {
   const RepaireRequestPage({super.key});
@@ -19,18 +19,19 @@ class RepaireRequestPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var repaireController = TextEditingController();
+    var bloc = BlocProvider.of<StudentBloc>(context);
     String unitController = '';
     String roomNumberController = '';
-    XFile? attachedImage;
+   
     var formKey = GlobalKey<FormState>();
-    return BlocConsumer<ServicesBloc, ServicesState>(
+    return BlocConsumer<StudentBloc, StudentState>(
       listener: (context, state) {
         if (state is ChooseAttachSuccess) {
-          attachedImage = state.attach;
+         
         }
       },
       builder: (context, state) {
-        return BlocConsumer<ServicesBloc, ServicesState>(
+        return BlocConsumer<StudentBloc, StudentState>(
           listener: (context, state) {},
           builder: (context, state) {
             return Scaffold(
@@ -91,7 +92,7 @@ class RepaireRequestPage extends StatelessWidget {
                                 validator: (value) {
                                   if (value!.isEmpty) {
                                     return validate;
-                                  } else if (attachedImage == null) {
+                                  } else if (bloc.attachedRepaire == null) {
                                     return 'يجب عليك إرسال صورة العطل';
                                   }
                                   return null;
@@ -101,29 +102,16 @@ class RepaireRequestPage extends StatelessWidget {
                             IconButton(
                               onPressed: () {
                                 context
-                                    .read<ServicesBloc>()
-                                    .add(ChooseAttach(attach: attachedImage));
+                                    .read<StudentBloc>()
+                                    .add(ChooseAttach(attach: 'repaireRequest'));
                               },
                               icon: const Icon(Icons.attach_file),
                               color: MyColors.primaryColor,
                             )
                           ],
                         ),
-                        if (attachedImage != null)
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(100, 10, 100, 0),
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                              ),
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              height: 150,
-                              child: Image(
-                                  image: FileImage(File(attachedImage!.path)),
-                                  fit: BoxFit.cover),
-                            ),
-                          ),
+                        if (bloc.attachedRepaire != null)
+                          PictureWidget(attachedImage: bloc.attachedRepaire, event: ChooseAttach(attach: 'repaireRequest'),),
                         const SizedBox(
                           height: 20,
                         ),

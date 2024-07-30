@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sakan/core/colors/colors.dart';
-import 'package:sakan/core/widgets/appbar.dart';
 
-import 'package:sakan/core/widgets/button_weidget.dart';
-import 'package:sakan/core/widgets/input_decoration_widget.dart';
-import 'package:sakan/features/student/presentation/bloc/remote/bloc/services_bloc.dart';
-import 'package:sakan/features/student/presentation/bloc/remote/bloc/services_state.dart';
+import '../../../../../core/colors/colors.dart';
+import '../../../../../core/widgets/appbar.dart';
+import '../../../../../core/widgets/button_weidget.dart';
+import '../../../../../core/widgets/input_decoration_widget.dart';
+import '../../bloc/remote/bloc/student_bloc.dart';
+import '../../bloc/remote/bloc/student_state.dart';
 
 class ComplaintPage extends StatelessWidget {
   const ComplaintPage({super.key});
@@ -15,7 +15,7 @@ class ComplaintPage extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController complaintController = TextEditingController();
     GlobalKey<FormState> formKey = GlobalKey<FormState>();
-    return BlocConsumer<ServicesBloc, ServicesState>(
+    return BlocConsumer<StudentBloc, StudentState>(
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(

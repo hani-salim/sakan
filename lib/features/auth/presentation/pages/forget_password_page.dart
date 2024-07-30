@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/core/widgets/button_weidget.dart';
+import '../../../../core/constant/constant.dart';
+import '../../../../core/widgets/button_weidget.dart';
 import '../../../../config/theme/header_widget.dart';
 import '../../../../core/widgets/box_decoration.dart';
 import '../../../../core/widgets/input_decoration_widget.dart';

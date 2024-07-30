@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/core/network/local/local_storage.dart';
-import 'package:sakan/features/auth/data/models/user.dart';
+import '../../../../core/constant/constant.dart';
+import '../../../../core/network/local/local_storage.dart';
+import '../models/user.dart';
 
 import '../../../../core/resource/dart_state.dart';
 import '../data_sources/remote/user_api_service.dart';

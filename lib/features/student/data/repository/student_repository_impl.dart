@@ -1,10 +1,9 @@
 import 'dart:io';
 
-import 'package:dio/dio.dart';
-import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/core/resource/dart_state.dart';
-import 'package:sakan/features/student/data/data_sources/remote/student_api_service.dart';
-import 'package:sakan/features/student/domain/repository/studnet_respository.dart';
+import '../../../../core/constant/constant.dart';
+import '../../../../core/resource/dart_state.dart';
+import '../data_sources/remote/student_api_service.dart';
+import '../../domain/repository/studnet_respository.dart';
 
 class StudentRepositoryImpl implements  StudnetRepository{
   final StudentApiService _studentApiService;
@@ -13,18 +12,18 @@ class StudentRepositoryImpl implements  StudnetRepository{
   @override
   getRooms({required String university, required String unitName}) async{
    final response = await _studentApiService.getRooms(university: university, unitName: unitName);
-   checkResponse(response: response);
+   return checkResponse(response: response);
   }
   @override
   getUnities({required String university}) async{
  final response = await _studentApiService.getUnits(university: university);
- checkResponse(response: response);
+ return checkResponse(response: response);
   }
 
   @override
   getUnversities() async{
-    final  response = await _studentApiService.getUnversities();
-    checkResponse(response: response);
+    final  DataState response = await _studentApiService.getUnversities();
+   return checkResponse(response: response);
   }
 
   @override
@@ -66,9 +65,12 @@ class StudentRepositoryImpl implements  StudnetRepository{
 }
 
 checkResponse({response}){
-  if(response is DataSuccess && response.data.isNotEmpty){
-      return DataSuccess(response.data) ;
+  if(response is DataSuccess ){
+      return response ;
     }else{
+      print('errorMesss is :  ' );
+      print(errorMessage);
       return errorMessage;
+      
     }
 }

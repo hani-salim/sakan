@@ -1,4 +1,4 @@
-import 'package:sakan/features/student/domain/repository/studnet_respository.dart';
+import '../repository/studnet_respository.dart';
 
 class GetUnitiesUseCase {
   final StudnetRepository _studetnRepository;

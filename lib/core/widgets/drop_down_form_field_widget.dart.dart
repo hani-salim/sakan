@@ -1,27 +1,28 @@
-import 'dart:js_interop';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/core/widgets/input_decoration_widget.dart';
-import 'package:sakan/features/student/presentation/bloc/remote/bloc/services_bloc.dart';
+import '../constant/constant.dart';
+import 'input_decoration_widget.dart';
+import '../../features/student/presentation/bloc/remote/bloc/student_bloc.dart';
 
 DropdownButtonFormField<String> dropDownButtonFormFieldWidget(
     {required List<String> items,
     required String? selectedItem,
     required String labelText,
-     BuildContext? context,
-     ServicesEvent? event,
-   bool? isValidate}) {
+    String? university,
+    BuildContext? context,
+    String? event,
+    String? value,
+    bool? isValidate}) {
   return DropdownButtonFormField<String>(
-    validator: isValidate??false ? (value){
-      if(value == null){
-        return validate;
-      } 
-      return null;
-    }
-    :null
-    ,
+    value: value,
+    validator: isValidate ?? false
+        ? (value) {
+            if (value == null) {
+              return validate;
+            }
+            return null;
+          }
+        : null,
     focusColor: Colors.white,
     decoration: inputDecorationWidget(
       labelText: labelText,
@@ -32,10 +33,9 @@ DropdownButtonFormField<String> dropDownButtonFormFieldWidget(
               child: Center(child: Text(e)),
             ))
         .toList(),
-
-    onChanged: (value) {
-      selectedItem=value;
-      context?.read<ServicesBloc>().add(event!);
+    onChanged: (v) async {
+      selectedItem = v;
     },
+    
   );
 }

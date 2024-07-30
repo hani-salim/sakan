@@ -19,7 +19,8 @@ class UserEntities extends Equatable {
   final String? status;
   final String? job;
   final String? typeJob;
-  final String? token;
+  final String? accessToken;
+  final String? refreshToken;
   final  String? img;
 
   const UserEntities(
@@ -40,7 +41,8 @@ class UserEntities extends Equatable {
        this.status,
        this.job,
        this.typeJob,
-       this.token,
+       this.accessToken,
+       this.refreshToken,
        this.img});
 
   @override
@@ -51,7 +53,7 @@ class UserEntities extends Equatable {
         motherName,
         phoneNumber,
         idNationalNumber,
-
+        refreshToken,
         university,
         faculty,
         section,
@@ -62,7 +64,7 @@ class UserEntities extends Equatable {
         year,
         status,
         typeJob,
-        token,
+        accessToken,
         img
       ];
 }

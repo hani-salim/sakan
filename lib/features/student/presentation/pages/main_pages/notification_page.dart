@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sakan/features/student/presentation/widgets/empty_widget.dart';
+import '../../widgets/empty_widget.dart';
 import '../../../../../core/constant/constant.dart';
 import '../../../../../core/widgets/appbar.dart';
 import '../../widgets/menu_widget.dart';

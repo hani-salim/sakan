@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sakan/core/widgets/button_box_decoration.dart';
-import 'package:sakan/core/widgets/button_style.dart';
+import 'button_box_decoration.dart';
+import 'button_style.dart';
 
 class ButtonWeidget extends StatelessWidget {
    const ButtonWeidget({

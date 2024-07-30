@@ -1,9 +1,9 @@
-import 'package:sakan/features/student/presentation/pages/main_pages/settings_page.dart';
-import 'package:sakan/features/student/presentation/pages/registere%20_on_sakan_pages/register_detailes_page.dart';
-import 'package:sakan/features/student/presentation/pages/registere%20_on_sakan_pages/register_on_sakan_page.dart';
-import 'package:sakan/features/student/presentation/pages/sevices_pages/complaint_page.dart';
-import 'package:sakan/features/student/presentation/pages/sevices_pages/repaire_request_page.dart';
-import 'package:sakan/features/student/presentation/pages/sevices_pages/work_permit_page.dart';
+import '../../features/student/presentation/pages/main_pages/settings_page.dart';
+import '../../features/student/presentation/pages/registere%20_on_sakan_pages/register_detailes_page.dart';
+import '../../features/student/presentation/pages/registere%20_on_sakan_pages/register_on_sakan_page.dart';
+import '../../features/student/presentation/pages/sevices_pages/complaint_page.dart';
+import '../../features/student/presentation/pages/sevices_pages/repaire_request_page.dart';
+import '../../features/student/presentation/pages/sevices_pages/work_permit_page.dart';
 
 import '../../core/constant/constant.dart';
 import '../../features/auth/presentation/pages/forget_password_page.dart';

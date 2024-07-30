@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sakan/core/widgets/button_weidget.dart';
-import 'package:sakan/core/widgets/show_toast.dart';
-import 'package:sakan/features/student/presentation/bloc/remote/bloc/services_bloc.dart';
-import 'package:sakan/features/student/presentation/bloc/remote/bloc/services_state.dart';
-import 'package:sakan/features/student/presentation/widgets/bread_request_widget.dart';
+import '../../../../../core/widgets/button_weidget.dart';
+import '../../../../../core/widgets/show_toast.dart';
+import '../../bloc/remote/bloc/student_bloc.dart';
+import '../../bloc/remote/bloc/student_state.dart';
+import '../../widgets/bread_request_widget.dart';
 import '../../../../../core/colors/colors.dart';
 import '../../../../../core/widgets/appbar.dart';
 
@@ -21,7 +21,7 @@ class BreadRequestPage extends StatelessWidget {
     GlobalKey<FormState> formKey = GlobalKey<FormState>();
     TextEditingController quentityController = TextEditingController();
 
-    return BlocConsumer<ServicesBloc, ServicesState>(
+    return BlocConsumer<StudentBloc, StudentState>(
       listener: (context, state) {
         if (state is AddBreadRequesetSuccessState) {
           showToast(color: Colors.green, msg: 'تم إرسال الطلب بنجاح  ');
@@ -32,7 +32,7 @@ class BreadRequestPage extends StatelessWidget {
           key: scaffoldKey,
           appBar: appBarWidget(text: 'تقديم طلب خبز', context: context),
           body:
-              BlocProvider.of<ServicesBloc>(context).isFloatingActionbuttonShow
+              BlocProvider.of<StudentBloc>(context).isFloatingActionbuttonShow
                   ? _empty()
                   : BreadRequestCard(
                       role: '1',
@@ -40,7 +40,7 @@ class BreadRequestPage extends StatelessWidget {
                       time: '10:10 AM',
                     ),
           floatingActionButton:
-              BlocProvider.of<ServicesBloc>(context).isFloatingActionbuttonShow
+              BlocProvider.of<StudentBloc>(context).isFloatingActionbuttonShow
                   ? _floatingActionButton(
                       scaffoldKey, formKey, quentityController, context, state)
                   : null,
@@ -54,15 +54,15 @@ class BreadRequestPage extends StatelessWidget {
       GlobalKey<FormState> formKey,
       TextEditingController quentityController,
       BuildContext context,
-      ServicesState state) {
+      StudentState state) {
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: FloatingActionButton(
         backgroundColor: MyColors.primaryColor,
         splashColor: MyColors.secondaryColor,
-        child: BlocProvider.of<ServicesBloc>(context).bottomSheetIcon,
+        child: BlocProvider.of<StudentBloc>(context).bottomSheetIcon,
         onPressed: () {
-          if (!BlocProvider.of<ServicesBloc>(context).isShowBottomSheet) {
+          if (!BlocProvider.of<StudentBloc>(context).isShowBottomSheet) {
             scaffoldKey.currentState!
                 .showBottomSheet(
                   (context) =>
@@ -71,15 +71,15 @@ class BreadRequestPage extends StatelessWidget {
                 .closed
                 .then((value) {
               context
-                  .read<ServicesBloc>()
+                  .read<StudentBloc>()
                   .add(const ChangeBottomSheet(isShow: false));
             });
             context
-                .read<ServicesBloc>()
+                .read<StudentBloc>()
                 .add(const ChangeBottomSheet(isShow: true));
           } else {
             context
-                .read<ServicesBloc>()
+                .read<StudentBloc>()
                 .add(const ChangeBottomSheet(isShow: false));
             Navigator.pop(context);
           }
@@ -98,7 +98,7 @@ class BreadRequestPage extends StatelessWidget {
       GlobalKey<FormState> formKey,
       TextEditingController quentityController,
       BuildContext context,
-      ServicesState state) {
+      StudentState state) {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -177,12 +177,12 @@ class BreadRequestPage extends StatelessWidget {
       {required GlobalKey<FormState> formKey,
       required BuildContext context,
       required TextEditingController controller,
-      required ServicesState state}) {
+      required StudentState state}) {
     return ButtonWeidget(
         formKey: formKey,
         title: 'إضافة طلب',
         onPressed: () {
-          context.read<ServicesBloc>().add(AddBreadRequeset(
+          context.read<StudentBloc>().add(AddBreadRequeset(
               date: 'date',
               time: 'time',
               numberOfBread: controller.toString()));

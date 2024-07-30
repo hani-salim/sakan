@@ -1,14 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:bloc/bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/core/network/local/local_storage.dart';
-import 'package:sakan/features/auth/data/models/user.dart';
 
 import '../../../../../core/resource/dart_state.dart';
 import '../../../domain/usecases/login.dart';
 import '../../../domain/usecases/register.dart';
 import 'remote_user_event.dart';
-import 'package:bloc/bloc.dart';
 import 'remote_user_state.dart';
 
 class RemoteUserBloc extends Bloc<RemoteUserEvent, RemoteUserState> {

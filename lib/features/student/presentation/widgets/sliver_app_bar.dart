@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:sakan/core/constant/constant.dart';
+import '../../../../core/constant/constant.dart';
 import '../../../../config/theme/header_widget.dart';
 import 'menu_widget.dart';
 

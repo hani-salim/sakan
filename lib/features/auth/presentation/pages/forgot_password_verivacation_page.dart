@@ -1,7 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '../../../../config/theme/header_widget.dart';
 import 'package:otp_text_field/otp_field.dart';
+
+import '../../../../config/theme/header_widget.dart';
 import '../../../../core/widgets/alert_dialog.dart';
 import '../../../../core/widgets/button_box_decoration.dart';
 import '../../../../core/widgets/button_style.dart';

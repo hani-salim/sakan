@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:sakan/core/widgets/card_decoration_weidget.dart';
+import '../../../../../core/widgets/card_decoration_weidget.dart';
 import '../../../../../core/constant/constant.dart';
 import '../../widgets/service_widget.dart';
 import '../../widgets/sliver_app_bar.dart';

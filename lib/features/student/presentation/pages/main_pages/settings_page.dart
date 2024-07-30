@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sakan/core/colors/colors.dart';
-import 'package:sakan/core/widgets/option_settings_widget.dart';
-import 'package:sakan/features/student/presentation/widgets/sliver_app_bar.dart';
+import '../../../../../core/colors/colors.dart';
+import '../../../../../core/widgets/option_settings_widget.dart';
+import '../../widgets/sliver_app_bar.dart';
 
 class SettingsPage extends StatefulWidget {
   

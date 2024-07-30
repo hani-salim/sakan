@@ -29,7 +29,7 @@ Widget _body({required BuildContext context}) {
 SliverAppBarWidget _sliverAppBar({required BuildContext context}) {
   return  const SliverAppBarWidget(
     title: 'الملف الشخصي',
-    expandHeight: 300,
+    expandHeight: 310,
     isProfilePage: true,
   
   );

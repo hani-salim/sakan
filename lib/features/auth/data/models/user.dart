@@ -17,9 +17,9 @@ class UserModel extends UserEntities {
       super.year,
       super.status,
       super.job,
-      super.token,
-      super.img
-      });
+      super.accessToken,
+      super.refreshToken,
+      super.img});
   factory UserModel.fromJson(Map<String, dynamic> map) {
     return UserModel(
         firstName: map['firstName'] ?? "",
@@ -37,14 +37,15 @@ class UserModel extends UserEntities {
         year: map['year'],
         status: map['status'] ?? "",
         job: map['job'] ?? "",
-        token: map['access_token'] ?? "",
+        accessToken: map['token'] ?? "",
+        refreshToken: map['refresh_token'] ?? "",
         img: map['img'] ?? "https://i.imgflip.com/3f2lx0.jpg");
   }
   toMap() {
     return {
       'firstName': firstName,
       'lastName': lastName,
-      'fatherName':fatherName,
+      'fatherName': fatherName,
       'motherName': motherName,
       'phoneNumber': phoneNumber,
       'idNationalNumber': idNationalNumber,
@@ -58,7 +59,8 @@ class UserModel extends UserEntities {
       'status': status,
       'job': job,
       'typeJob': typeJob,
-      'token': token,
+      'accessToken': accessToken,
+      'refreshToken': refreshToken,
       'img': img
     };
   }

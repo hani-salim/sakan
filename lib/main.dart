@@ -2,12 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sakan/config/theme/app_theme.dart';
-import 'package:sakan/core/constant/constant.dart';
-import 'package:sakan/features/auth/data/models/user.dart';
-import 'package:sakan/features/student/presentation/bloc/local/presentation_bloc.dart';
-import 'package:sakan/features/student/presentation/bloc/remote/bloc/services_bloc.dart';
-import 'package:sakan/features/student/presentation/pages/main_pages/home_page.dart';
+import 'package:web_socket_channel/io.dart';
+import 'config/theme/app_theme.dart';
+import 'core/constant/constant.dart';
+import 'features/auth/data/models/user.dart';
+import 'features/student/presentation/bloc/local/presentation_bloc.dart';
+import 'features/student/presentation/bloc/remote/bloc/student_bloc.dart';
+import 'features/student/presentation/pages/main_pages/home_page.dart';
 import 'bloc_observer.dart';
 import 'config/routes/routes.dart';
 import 'core/network/local/local_storage.dart';
@@ -18,6 +19,19 @@ import 'injection_container.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
+// final channel= IOWebSocketChannel.connect('wss://mhmd26221.pythonanywhere.com/api/');
+// channel.stream.listen(
+//   (message){
+//     print('Recivewd : $message');
+//   },
+//   onError: (error){
+//     print('Error : $error');
+//   },
+//   onDone: (){
+//     print('Web Socket closed');
+//   },
+// );
+// channel.sink.add('Hello , everyone');
   WidgetsFlutterBinding.ensureInitialized();
   await DioHelper.init();
   await LocalStorage.init();
@@ -32,6 +46,7 @@ void main() async {
   LocalStorage.getData(key: 'user') == null
       ? startPage = const LoginPage()
       : startPage = const HomePage();
+    
 
   
   runApp(MyApp(
@@ -52,7 +67,7 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider<PresentationBloc>(
               create: (context) => PresentationBloc()),
-          BlocProvider<ServicesBloc>(create: (context) => ServicesBloc(sl(),sl(),sl())),
+          BlocProvider<StudentBloc>(create: (context) => StudentBloc(sl(),sl(),sl())),
         ],
         child: GetMaterialApp(
           textDirection: TextDirection.rtl,

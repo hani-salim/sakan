@@ -2,10 +2,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:sakan/core/widgets/button_weidget.dart';
-import 'package:sakan/core/widgets/loading_widget.dart';
-import 'package:sakan/core/widgets/show_toast.dart';
-import 'package:sakan/features/auth/presentation/bloc/remote/remote_user_event.dart';
+import '../../../../core/widgets/button_weidget.dart';
+import '../../../../core/widgets/loading_widget.dart';
+import '../../../../core/widgets/show_toast.dart';
+import '../bloc/remote/remote_user_event.dart';
 
 import '../../../../core/colors/colors.dart';
 import '../../../../core/constant/constant.dart';

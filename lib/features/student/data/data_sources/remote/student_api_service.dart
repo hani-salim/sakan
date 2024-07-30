@@ -1,8 +1,9 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:sakan/core/network/remote/dio_helper.dart';
-import 'package:sakan/core/resource/dart_state.dart';
+import '../../../../../core/network/remote/dio_helper.dart';
+import '../../../../../core/resource/dart_state.dart';
 
 abstract class StudentApiService{
     getUnversities();
@@ -21,22 +22,32 @@ abstract class StudentApiService{
 }
 
 class StudentApiServiceWithDio extends StudentApiService{
+  
   @override
   getRooms({required String university, required String unitName}) async{
-final response = await DioHelper.request(url: 'rooms/', method: 'POST');
-   chekResponse(response: response);
+     print('service api university name is ');
+    print(university);
+     print('service api unit name is ');
+    print(unitName);
+    var data = json.encode({"university_name":university,"unit_number":unitName});
+final response = await DioHelper.request(url: 'rooms/', method: 'POST',data: data);
+ return  chekResponse(response: response);
   }
 
   @override
   getUnits({required String university}) async{
-      final response = await DioHelper.request(url: 'unites/', method: 'POST');
-   chekResponse(response: response);
+    print('service api unveersity name is ');
+    print(university);
+
+    var data = json.encode({"university_name":university});
+          final response = await DioHelper.request(url: 'unites/', method: 'POST',data:data);
+   return chekResponse(response: response);
   }
 
   @override
   getUnversities() async{
    final  response = await DioHelper.request(url: 'universities/', method: 'GET');
-    chekResponse(response: response);
+   return chekResponse(response: response);
   }
 
   @override

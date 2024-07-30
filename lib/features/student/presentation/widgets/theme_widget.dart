@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:lottie/lottie.dart';
-import 'package:sakan/features/student/presentation/bloc/local/presentation_bloc.dart';
+import '../bloc/local/presentation_bloc.dart';
 import '../../domain/entities/theme_entities.dart';
 
 class ThemeWidget extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:sakan/features/student/domain/repository/studnet_respository.dart';
+import '../repository/studnet_respository.dart';
 
 class GetRoomsUseCase {
   final StudnetRepository _studetnRepository;
