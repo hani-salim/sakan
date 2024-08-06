@@ -101,17 +101,20 @@ class HeaderWidget extends StatelessWidget {
     return Visibility(
       visible: showAnimated ?? false,
       child: SizedBox(
-        height: height,
-        child: Column(
-          children: [
-            Center(
-              child: Lottie.asset(
-                  lottieFilePath ?? 'assets/lottieFiles/sakan.json',
-                  width: MediaQuery.of(context).size.width,
-                  height: isMainPage ?? false ? height / 2.5 : height - 8),
-            ),
-            _registerOnSakan(context),
-          ],
+        height: height-10,
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: [
+              Center(
+                child: Lottie.asset(
+                    lottieFilePath ?? 'assets/lottieFiles/sakan.json',
+                    width: MediaQuery.of(context).size.width,
+                    height: isMainPage ?? false ? height /2 : height /1.5),
+              ),
+              _registerOnSakan(context),
+            ],
+          ),
         ),
       ),
     );

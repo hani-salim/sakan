@@ -9,14 +9,6 @@ sealed class StudentEvent  {
   ChooseAttach({required this.attach});
  }
 
- class AddBreadRequeset extends StudentEvent{
-  final String date;
-  final String time;
-  final String numberOfBread;
-
-  const AddBreadRequeset({required this.date, required this.time, required this.numberOfBread});
-}
-
 class ChangeBottomSheet extends StudentEvent{
   final bool isShow;
   const ChangeBottomSheet({required this.isShow}); 
@@ -50,4 +42,10 @@ class GetRooms extends StudentEvent{
 class SelectRegisterType extends StudentEvent{
   final String registerType;
   SelectRegisterType({required this.registerType});
+}
+
+class SubmitABreadOrder extends StudentEvent{
+final String phone;
+final int breadTies;
+SubmitABreadOrder({required this.phone,required this.breadTies});
 }

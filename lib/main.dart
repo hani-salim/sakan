@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:web_socket_channel/io.dart';
+
 import 'config/theme/app_theme.dart';
 import 'core/constant/constant.dart';
 import 'features/auth/data/models/user.dart';
@@ -19,33 +21,28 @@ import 'injection_container.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
-// final channel= IOWebSocketChannel.connect('wss://mhmd26221.pythonanywhere.com/api/');
-// channel.stream.listen(
-//   (message){
-//     print('Recivewd : $message');
-//   },
-//   onError: (error){
-//     print('Error : $error');
-//   },
-//   onDone: (){
-//     print('Web Socket closed');
-//   },
-// );
-// channel.sink.add('Hello , everyone');
+
   WidgetsFlutterBinding.ensureInitialized();
   await DioHelper.init();
   await LocalStorage.init();
   await initializDependencies();
+  await Firebase.initializeApp();
+
   Bloc.observer = MyBlocObserver();
   Widget startPage;
 
+FirebaseMessaging.onMessage.listen((message){
+  print('-------------------On Messaging----------------');
+  print(message.toString());
+});
   LocalStorage.getData(key: 'user') != null
       ? user =UserModel.fromJson(jsonDecode(LocalStorage.getData(key: 'user'))) 
       : null;
 
+
   LocalStorage.getData(key: 'user') == null
       ? startPage = const LoginPage()
-      : startPage = const HomePage();
+      :startPage = const HomePage();
     
 
   
@@ -67,7 +64,7 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider<PresentationBloc>(
               create: (context) => PresentationBloc()),
-          BlocProvider<StudentBloc>(create: (context) => StudentBloc(sl(),sl(),sl())),
+          BlocProvider<StudentBloc>(create: (context) => StudentBloc(sl(),sl(),sl(),sl())),
         ],
         child: GetMaterialApp(
           textDirection: TextDirection.rtl,

@@ -33,40 +33,36 @@ class ForgotPasswordPage extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   child: Column(
                     children: [
-                      Container(
-                        alignment: Alignment.topLeft,
-                        margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                        child: const Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'هل نسيت كلمة المرور',
-                              style: TextStyle(
-                                  fontSize: 35,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black54),
+                      const Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'هل نسيت كلمة المرور',
+                            style: TextStyle(
+                                fontSize: 35,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black54),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'من فضلك ادخل البريد الالكتروني ',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black54),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'سوف نرسل رمز للتحقق',
+                            style: TextStyle(
+                              color: Colors.black38,
                             ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              'رقم الهاتف',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black54),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              'سوف نرسله إليك',
-                              style: TextStyle(
-                                color: Colors.black38,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 40.0),
                       Form(

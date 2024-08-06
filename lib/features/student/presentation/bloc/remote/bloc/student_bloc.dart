@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sakan/features/student/domain/useCases/submit_bread_order.dart';
 import '../../../../../../core/resource/dart_state.dart';
 import '../../../../domain/entities/room_entities.dart';
 import '../../../../domain/useCases/get_rooms.dart';
@@ -14,7 +15,8 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
   final GetUniversitiesUseCase _getUniversitiesUseCase;
   final GetUnitiesUseCase _getUnitiesUseCase;
   final GetRoomsUseCase _getRoomsUseCase;
-  
+  final SubmitABreadOrderUseCase _submitABreadOrderUseCase;
+
   //lists
   var universities = [];
   var unities = [];
@@ -22,14 +24,14 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
 //controllers
   String? universityName;
   String? unitName;
-   String? registerType;
+  String? registerType;
 
-   //attachments
-   XFile? attachedRepaire;
-   XFile? attachedPermit;
-   XFile? attachedfrontId;
-   XFile? attachedBackId;
-   XFile? attachedface;
+  //attachments
+  XFile? attachedRepaire;
+  XFile? attachedPermit;
+  XFile? attachedfrontId;
+  XFile? attachedBackId;
+  XFile? attachedface;
 
   bool isFloatingActionbuttonShow = true;
   bool isShowBottomSheet = false;
@@ -39,62 +41,65 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
   );
 
   StudentBloc(this._getUniversitiesUseCase, this._getUnitiesUseCase,
-      this._getRoomsUseCase)
+      this._getRoomsUseCase, this._submitABreadOrderUseCase)
       : super(StudentInitial()) {
     on<ChooseAttach>(onChooseAttach);
-    on<AddBreadRequeset>(onAddBreadRequest);
+    on<SubmitABreadOrder>(onSubmitAbreadOrder);
     on<ChangeBottomSheet>(onChangeBottomSheet);
     on<SelectRoom>(onSelectRoom);
     on<GetUniversities>(onGetUniversities);
     on<GetUnities>(onGetUnities);
     on<GetRooms>(onGetRooms);
     on<SelectRegisterType>(onSelectRegisterType);
-    
   }
-  
+
   onChooseAttach(ChooseAttach event, Emitter<StudentState> emit) async {
     emit(StudentInitial());
     ImagePicker picker = ImagePicker();
     await picker.pickImage(source: ImageSource.gallery).then((value) {
-      switch(event.attach){
+      switch (event.attach) {
         case 'repaireRequest':
-        attachedRepaire=XFile(value!.path);
-         emit(ChooseAttachSuccess(attach: attachedRepaire));
-         break;
-         case 'workPermit':
-        attachedPermit=XFile(value!.path);
-         emit(ChooseAttachSuccess(attach: attachedPermit));
-         break;
-         case 'frontId':
-        attachedfrontId=XFile(value!.path);
-         emit(ChooseAttachSuccess(attach: attachedfrontId));
-         break;
-         case 'backId':
-        attachedBackId=XFile(value!.path);
-         emit(ChooseAttachSuccess(attach: attachedBackId));
-         break;
-         case 'face':
-        attachedface=XFile(value!.path);
-         emit(ChooseAttachSuccess(attach: attachedface));
-         break;
+          attachedRepaire = XFile(value!.path);
+          emit(ChooseAttachSuccess(attach: attachedRepaire));
+          break;
+        case 'workPermit':
+          attachedPermit = XFile(value!.path);
+          emit(ChooseAttachSuccess(attach: attachedPermit));
+          break;
+        case 'frontId':
+          attachedfrontId = XFile(value!.path);
+          emit(ChooseAttachSuccess(attach: attachedfrontId));
+          break;
+        case 'backId':
+          attachedBackId = XFile(value!.path);
+          emit(ChooseAttachSuccess(attach: attachedBackId));
+          break;
+        case 'face':
+          attachedface = XFile(value!.path);
+          emit(ChooseAttachSuccess(attach: attachedface));
+          break;
       }
-      
-    
-     
     }).catchError((e) {
       emit(ChooseAttachError(exception: e));
     });
   }
 
-  onAddBreadRequest(AddBreadRequeset event, Emitter<StudentState> emit) {
-    emit(AddBreadRequesetLoadingState());
-    isFloatingActionbuttonShow = false;
-    emit(AddBreadRequesetSuccessState());
+  onSubmitAbreadOrder(SubmitABreadOrder event, Emitter<StudentState> emit) {
+    emit(SubmitABreadOrderLoadingState());
+    final dataState = _submitABreadOrderUseCase(
+        breadTies: event.breadTies, phone: event.phone);
+    if (dataState is DataSuccess) {
+          isFloatingActionbuttonShow = false;
+
+      emit(SubmitABreadOrderSuccessState(breadOrderEntities: dataState.data));
+    } else if (dataState is DataFailed) {
+      emit(SubmitABreadOrderErrorState(exception: dataState.error));
+    } else {
+      emit(SubmitABreadOrderErrorState(exception: dataState));
+    }
   }
 
   onChangeBottomSheet(ChangeBottomSheet event, Emitter<StudentState> emit) {
-    emit(StudentInitial());
-
     if (event.isShow) {
       isShowBottomSheet = event.isShow;
       bottomSheetIcon = const Icon(
@@ -108,13 +113,11 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
         Icons.add,
         color: Colors.white,
       );
-      emit(ChangeBottomSheetState());
     }
   }
 
   onSelectRoom(SelectRoom event, Emitter<StudentState> emit) {
     emit(StudentInitial());
-
     emit(SelectRoomState(roomEntities: event.roomEntities));
   }
 
@@ -156,7 +159,7 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
   }
 
   //Select Register type
-  onSelectRegisterType(SelectRegisterType event,Emitter<StudentState> emit){
+  onSelectRegisterType(SelectRegisterType event, Emitter<StudentState> emit) {
     emit((StudentInitial()));
 
     emit(SelectRegisterTypeState(registerType: event.registerType));

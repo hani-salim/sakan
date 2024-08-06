@@ -36,4 +36,14 @@ class UserRepositoryImpl implements UserRepository {
       return 'كلمة المرور المدخلة أو الإيميل غير صحيحين';
     }
   }
+  
+  @override
+  logout({required String refreshToken}) async{
+    final response = await _userApiService.logout(refreshToken: refreshToken);
+    if(response is DataSuccess){
+      return DataSuccess('تم تسجيل الخروج بنجاح');
+    }else{
+      return 'حدث خطأ أثناء تسجيل الخروج';
+    }
+  }
 }

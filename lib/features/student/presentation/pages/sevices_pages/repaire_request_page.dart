@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sakan/features/student/presentation/widgets/picture_widget.dart';
@@ -7,9 +5,7 @@ import '../../../../../core/colors/colors.dart';
 import '../../../../../core/constant/constant.dart';
 import '../../../../../core/widgets/appbar.dart';
 import '../../../../../core/widgets/button_weidget.dart';
-import '../../../../../core/widgets/drop_down_form_field_widget.dart.dart';
 import '../../../../../core/widgets/input_decoration_widget.dart';
-import '../../../../auth/presentation/pages/register_page.dart';
 import '../../bloc/remote/bloc/student_bloc.dart';
 import '../../bloc/remote/bloc/student_state.dart';
 
@@ -20,15 +16,12 @@ class RepaireRequestPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var repaireController = TextEditingController();
     var bloc = BlocProvider.of<StudentBloc>(context);
-    String unitController = '';
-    String roomNumberController = '';
-   
+
+
     var formKey = GlobalKey<FormState>();
     return BlocConsumer<StudentBloc, StudentState>(
       listener: (context, state) {
-        if (state is ChooseAttachSuccess) {
-         
-        }
+        if (state is ChooseAttachSuccess) {}
       },
       builder: (context, state) {
         return BlocConsumer<StudentBloc, StudentState>(
@@ -62,22 +55,6 @@ class RepaireRequestPage extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
-                        dropDownButtonFormFieldWidget(
-                            isValidate: true,
-                            items: items,
-                            selectedItem: unitController,
-                            labelText: 'اسم الوحدة'),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        dropDownButtonFormFieldWidget(
-                            isValidate: true,
-                            items: items,
-                            selectedItem: roomNumberController,
-                            labelText: 'رقم الغرفة'),
-                        const SizedBox(
-                          height: 20,
-                        ),
                         Row(
                           children: [
                             Expanded(
@@ -101,9 +78,8 @@ class RepaireRequestPage extends StatelessWidget {
                             ),
                             IconButton(
                               onPressed: () {
-                                context
-                                    .read<StudentBloc>()
-                                    .add(ChooseAttach(attach: 'repaireRequest'));
+                                context.read<StudentBloc>().add(
+                                    ChooseAttach(attach: 'repaireRequest'));
                               },
                               icon: const Icon(Icons.attach_file),
                               color: MyColors.primaryColor,
@@ -111,13 +87,16 @@ class RepaireRequestPage extends StatelessWidget {
                           ],
                         ),
                         if (bloc.attachedRepaire != null)
-                          PictureWidget(attachedImage: bloc.attachedRepaire, event: ChooseAttach(attach: 'repaireRequest'),),
+                          PictureWidget(
+                            attachedImage: bloc.attachedRepaire,
+                            event: ChooseAttach(attach: 'repaireRequest'),
+                          ),
                         const SizedBox(
                           height: 20,
                         ),
-                       ButtonWeidget(
+                        ButtonWeidget(
                             formKey: formKey,
-                             title: 'إضافة طلب',
+                            title: 'إضافة طلب',
                             onPressed: () {})
                       ],
                     ),

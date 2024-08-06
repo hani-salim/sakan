@@ -47,7 +47,7 @@ class _ForgotPasswordVerificationPageState
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Text(
-                              'تأكيد رقم الهاتف',
+                              'تأكيد الإيميل ',
                               style: TextStyle(
                                   fontSize: 35,
                                   fontWeight: FontWeight.bold,

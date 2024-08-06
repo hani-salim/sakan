@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sakan/core/constant/constant.dart';
+import 'package:sakan/core/formatters/formatter.dart';
+import 'package:sakan/core/widgets/loading_widget.dart';
+import 'package:sakan/features/student/domain/entities/bread_order.dart';
 import '../../../../../core/widgets/button_weidget.dart';
 import '../../../../../core/widgets/show_toast.dart';
 import '../../bloc/remote/bloc/student_bloc.dart';
 import '../../bloc/remote/bloc/student_state.dart';
-import '../../widgets/bread_request_widget.dart';
+import '../../widgets/bread_order_widget.dart';
 import '../../../../../core/colors/colors.dart';
 import '../../../../../core/widgets/appbar.dart';
 
 import '../../../../../core/widgets/input_decoration_widget.dart';
 import '../../widgets/empty_widget.dart';
 
-class BreadRequestPage extends StatelessWidget {
-  const BreadRequestPage({super.key});
+class BreadOrderPage extends StatelessWidget {
+  const BreadOrderPage({super.key, required this.breadOrderEntities});
+  final BreadOrderEntities breadOrderEntities;
 
   @override
   Widget build(BuildContext context) {
@@ -23,22 +28,27 @@ class BreadRequestPage extends StatelessWidget {
 
     return BlocConsumer<StudentBloc, StudentState>(
       listener: (context, state) {
-        if (state is AddBreadRequesetSuccessState) {
+        if (state is SubmitABreadOrderSuccessState) {
           showToast(color: Colors.green, msg: 'تم إرسال الطلب بنجاح  ');
+                    Navigator.pop(context);
+        } else if (state is SubmitABreadOrderLoadingState) {
+          const LoadingWidget();
+                    Navigator.pop(context);
+        }else if (state is SubmitABreadOrderErrorState &&
+            state.exception is String) {
+          showToast(color: Colors.green, msg: state.exception);
+          Navigator.pop(context);
         }
       },
       builder: (context, state) {
         return Scaffold(
           key: scaffoldKey,
           appBar: appBarWidget(text: 'تقديم طلب خبز', context: context),
-          body:
-              BlocProvider.of<StudentBloc>(context).isFloatingActionbuttonShow
-                  ? _empty()
-                  : BreadRequestCard(
-                      role: '1',
-                      date: '3/3/2022',
-                      time: '10:10 AM',
-                    ),
+          body: BlocProvider.of<StudentBloc>(context).isFloatingActionbuttonShow
+              ? _empty()
+              : BreadOrderWidget(
+                  breadOrderEntities: entities,
+                ),
           floatingActionButton:
               BlocProvider.of<StudentBloc>(context).isFloatingActionbuttonShow
                   ? _floatingActionButton(
@@ -182,11 +192,18 @@ class BreadRequestPage extends StatelessWidget {
         formKey: formKey,
         title: 'إضافة طلب',
         onPressed: () {
-          context.read<StudentBloc>().add(AddBreadRequeset(
-              date: 'date',
-              time: 'time',
-              numberOfBread: controller.toString()));
-          Navigator.pop(context);
+          if (formKey.currentState!.validate()) {
+context.read<StudentBloc>().add(SubmitABreadOrder(phone: user!.phoneNumber.toString(), breadTies: int.parse(controller.text)   )
+            );
+          }
+         
         });
   }
 }
+
+BreadOrderEntities entities = BreadOrderEntities(
+    breadTies: 1,
+    orderNumber: 101,
+    role: 100,
+    data: Formatter.formatDate(),
+    time: '10:40');

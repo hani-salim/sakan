@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "108657792016",
+    "project_id": "sakan-1142f",
+    "storage_bucket": "sakan-1142f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:108657792016:android:1d77b6c5d8bc6cf778a695",
+        "android_client_info": {
+          "package_name": "com.example.sakan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT0dwNLDEn1av36sbCpFoXjX1eVeNj7J8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

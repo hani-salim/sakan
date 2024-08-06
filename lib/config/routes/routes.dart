@@ -12,7 +12,6 @@ import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/register_page.dart';
 import '../../features/student/presentation/pages/main_pages/home_page.dart';
 import '../../features/student/presentation/pages/main_pages/services_page.dart';
-import '../../features/student/presentation/pages/sevices_pages/bread_request_page.dart';
 
 var routes = {
   loginPage: (context) => const LoginPage(),
@@ -21,7 +20,6 @@ var routes = {
   forgotPasswwordVerificationPage: (context) =>
       const ForgotPasswordVerificationPage(),
   homePage: (context) => const HomePage(),
-  breadRequestPage: (context) => const BreadRequestPage(),
   sevicesPage: (context) => const ServicesPage(),
   workPermitPage: (context) => const WorkPermitPage(),
   complaintPage: (context) => const ComplaintPage(),

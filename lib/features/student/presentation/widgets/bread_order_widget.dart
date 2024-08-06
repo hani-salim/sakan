@@ -1,21 +1,17 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-// Bread request
+
 import 'package:flutter/material.dart';
 
 import 'package:sakan/core/widgets/box_decoration.dart';
 import 'package:sakan/core/widgets/button_box_decoration.dart';
+import 'package:sakan/features/student/domain/entities/bread_order.dart';
 
 // ignore: must_be_immutable
-class BreadRequestCard extends StatelessWidget {
-  String role;
-  String date;
-  String time;
+class BreadOrderWidget extends StatelessWidget {
+  BreadOrderEntities breadOrderEntities;
   Function? onTap;
-  BreadRequestCard({
+  BreadOrderWidget({
     super.key,
-    required this.role,
-    required this.date,
-    required this.time,
+  required this.breadOrderEntities,
     this.onTap,
   });
 
@@ -50,7 +46,16 @@ class BreadRequestCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'يوجد $role بطاقة على الدور قبل وصول دوركم',
+                                'رقم الطلب : ${breadOrderEntities.orderNumber}',
+                                style: const TextStyle(
+                                  fontSize: 17.0,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 10,),
+                              Text(
+                                'يوجد ${breadOrderEntities.role} بطاقة على الدور قبل وصول دوركم',
                                 style: const TextStyle(
                                   fontSize: 17.0,
                                   color: Colors.white,
@@ -61,7 +66,7 @@ class BreadRequestCard extends StatelessWidget {
                                 height: 10,
                               ),
                               Text(
-                                date,
+                                breadOrderEntities.data,
                                 style: TextStyle(
                                   color: Colors.grey[300],
                                 ),
@@ -87,7 +92,7 @@ class BreadRequestCard extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      time,
+                      breadOrderEntities.time,
                       style:  const TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 13,

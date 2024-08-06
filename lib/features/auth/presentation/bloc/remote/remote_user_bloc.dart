@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sakan/features/auth/domain/usecases/logout.dart';
 
 import '../../../../../core/resource/dart_state.dart';
 import '../../../domain/usecases/login.dart';
@@ -10,13 +11,14 @@ import 'remote_user_state.dart';
 class RemoteUserBloc extends Bloc<RemoteUserEvent, RemoteUserState> {
   final LoginUseCase _loginUseCase;
   final RegisterUseCase _registerUseCase;
+  final LogoutUseCase _logoutUseCase;
 
-  RemoteUserBloc(this._loginUseCase, this._registerUseCase)
+  RemoteUserBloc(this._loginUseCase, this._registerUseCase, this._logoutUseCase)
       : super(RemoteUserInitilalState()) {
     on<Login>(onLogin);
     on<Register>(onRegister);
     on<ChooseProfielImage>(onChooseProfileImage);
-
+    on<Logout>(onLogout);
   }
   onChooseProfileImage( ChooseProfielImage event, Emitter<RemoteUserState> emit)async{
   emit(RemoteUserInitilalState());
@@ -31,7 +33,7 @@ class RemoteUserBloc extends Bloc<RemoteUserEvent, RemoteUserState> {
 
   void onLogin(Login event, Emitter<RemoteUserState> emit) async {
     emit(RemoteUserLoadingState());
-    try{
+   
  final dataState =await _loginUseCase(email: event.email, password: event.password);
     if (dataState is DataSuccess) { 
       emit(RemoteUserSuccessState(dataState.data));
@@ -41,12 +43,16 @@ class RemoteUserBloc extends Bloc<RemoteUserEvent, RemoteUserState> {
     }else {
       emit(RemoteUserErrorState(dataState));
     }
-    }catch(e){
-print(e.toString());
-    }
+   
       
   }
-
+void onLogout(Logout event,Emitter<RemoteUserState> emit)async{
+  emit(RemoteUserLoadingState());
+  final dataState = await _logoutUseCase(refreshToken: event.refreshToken);
+  if(dataState is DataSuccess){
+    emit(RemoteUserLogoutSuccess(message: dataState.data));
+  }
+}
   void onRegister(Register event, Emitter<RemoteUserState> emit) async {
     DataState dataState =
         await _registerUseCase(userEntities: event.userEntities);

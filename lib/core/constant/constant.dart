@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:sakan/core/colors/colors.dart';
 import 'package:sakan/features/auth/data/models/user.dart';
 import 'package:sakan/features/auth/data/models/user_detailes.dart';
+import 'package:sakan/features/auth/domain/entities/user.dart';
 import 'package:sakan/features/student/domain/entities/service_entities.dart';
 import 'package:sakan/features/student/domain/entities/theme_entities.dart';
 import 'package:sakan/features/student/presentation/pages/main_pages/about_us_page.dart';
@@ -18,6 +19,8 @@ import 'package:sakan/features/student/presentation/pages/main_pages/settings_pa
 //api
 const String baseUrl = "https://mhmd26221.pythonanywhere.com/api/";
 
+//header widget height
+
 //pages for routes
 const String loginPage = "LoginPage";
 const String registerPage = "RegisterPage";
@@ -25,7 +28,6 @@ const String forgotPasswordPage = "forgotPasswordPage";
 const String forgotPasswwordVerificationPage =
     "forgotPasswwordVerificationPage";
 const String homePage = "homePage";
-const String breadRequestPage = "breadRequestPage";
 const String sevicesPage = "servicesPage";
 const String complaintPage = "complaintPage";
 const String workPermitPage = "workPermitPage";
@@ -115,7 +117,7 @@ final List<String> titles = [
 ];
 
 //user
-  UserModel? user ;
+  UserEntities? user ;
   
   //list of user detailes
   List<UserDetailes> userDetailes=[

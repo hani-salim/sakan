@@ -57,7 +57,7 @@ class RegisterOnSakanDetailesPage extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        'اختيار غرفة ',
+                        'إرسال المرفقات (صورة الهوية وجه أمامي و خلفي ...)',
                         style: TextStyle(
                           color: Colors.black45,
                         ),
@@ -77,7 +77,7 @@ class RegisterOnSakanDetailesPage extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        'إرسال المرفقات (صورة الهوية وجه أمامي و خلفي ...)',
+                        'اختيار غرفة',
                         style: TextStyle(
                           color: Colors.black45,
                         ),
@@ -112,8 +112,7 @@ class RegisterOnSakanDetailesPage extends StatelessWidget {
             ),
             ButtonWeidget(
               title: 'الانتقال إلى صفحة التسجيل',
-              onPressed: (){
-                context.read<StudentBloc>().add(GetUniversities());
+              onPressed: () {
                 Navigator.pushNamed(context, registerOnSakanPage);
               },
             )

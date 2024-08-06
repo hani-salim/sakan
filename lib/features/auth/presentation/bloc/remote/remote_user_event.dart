@@ -22,3 +22,8 @@ class Register extends RemoteUserEvent {
   ChooseProfielImage({required this.profileImage});
  }
 
+ class Logout extends RemoteUserEvent{
+  String refreshToken;
+  Logout({required this.refreshToken});
+ }
+

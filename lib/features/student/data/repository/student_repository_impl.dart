@@ -1,11 +1,14 @@
 import 'dart:io';
 
+import 'package:sakan/features/student/data/models/bread_order.dart';
+import 'package:sakan/features/student/domain/entities/bread_order.dart';
+
 import '../../../../core/constant/constant.dart';
 import '../../../../core/resource/dart_state.dart';
 import '../data_sources/remote/student_api_service.dart';
 import '../../domain/repository/studnet_respository.dart';
 
-class StudentRepositoryImpl implements  StudnetRepository{
+class StudentRepositoryImpl implements  StudentRepository{
   final StudentApiService _studentApiService;
   StudentRepositoryImpl(this._studentApiService);
 
@@ -26,11 +29,6 @@ class StudentRepositoryImpl implements  StudnetRepository{
    return checkResponse(response: response);
   }
 
-  @override
-  logout({required String refreshToken}) {
-    // TODO: implement logout
-    throw UnimplementedError();
-  }
 
   @override
   registerOnSakan({required String email, required String unitversityName, required String unitNumber, required String roomNumber}) {
@@ -39,9 +37,14 @@ class StudentRepositoryImpl implements  StudnetRepository{
   }
 
   @override
-  submitABreadOrder({required String phone, required int breadTies}) {
-    // TODO: implement submitABreadOrder
-    throw UnimplementedError();
+  submitABreadOrder({required String phone, required int breadTies})async {
+   final response = await _studentApiService.submitABreadOrder(phone: phone, breadTies: breadTies);
+   if(response is DataSuccess){
+    return DataSuccess(BreadOrderModel.fromJson(response.data));
+   }else{
+    return response;
+   }
+   
   }
 
   @override

@@ -138,8 +138,11 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   ButtonWeidget _registerButton(RemoteUserState state) {
-    return ButtonWeidget(title: 'إنشاء حساب', onPressed: (){Navigator.pushNamed(context, homePage);});
-  }
+    return ButtonWeidget(title: 'إنشاء حساب', onPressed: (){
+      if(_formKey.currentState!.validate()){
+
+      }});
+    }
 
   FormField<bool> _checkBox(BuildContext context) {
     return FormField<bool>(

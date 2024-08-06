@@ -64,4 +64,4 @@ class ButtomButtons extends StatelessWidget {
   }
 }
 
-List<String> titles = ['اختيار غرفة', 'إرسال المرفقات', 'دفع الرسوم'];
+List<String> titles = ['إرسال المرفقات','اختيار غرفة', 'دفع الرسوم'];

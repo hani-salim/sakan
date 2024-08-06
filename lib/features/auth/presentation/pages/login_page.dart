@@ -1,4 +1,5 @@
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -24,6 +25,8 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
+
+
 class _LoginPageState extends State<LoginPage> {
   var numberController = TextEditingController();
   var emailController = TextEditingController();
@@ -31,6 +34,24 @@ class _LoginPageState extends State<LoginPage> {
   var formKey = GlobalKey<FormState>();
 
   bool showPassword = false;
+   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+
+      void _requestPermission() async {
+       NotificationSettings settings = await _firebaseMessaging.requestPermission();
+
+       if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+         print('User granted permission');
+       } else {
+         print('User declined or has not accepted permission');
+       }
+     }
+   
+   
+  @override
+  void initState() {
+   _requestPermission();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

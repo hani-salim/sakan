@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../domain/entities/user.dart';
@@ -7,7 +6,7 @@ abstract class RemoteUserState extends Equatable {
   final UserEntities? userEntities;
 
   // ignore: prefer_typing_uninitialized_variables
-  final  exception;
+  final exception;
   const RemoteUserState({this.userEntities, this.exception});
 
   @override
@@ -23,17 +22,21 @@ class RemoteUserSuccessState extends RemoteUserState {
       : super(userEntities: userEntities);
 }
 
-class RemoteUserErrorState extends RemoteUserState {
-  const RemoteUserErrorState(exception)
-      : super(exception: exception);
+class RemoteUserLogoutSuccess extends RemoteUserState {
+  final String message;
+  const RemoteUserLogoutSuccess({required this.message});
 }
 
- class ChooseProfielImageSuccess extends RemoteUserState{
+class RemoteUserErrorState extends RemoteUserState {
+  const RemoteUserErrorState(exception) : super(exception: exception);
+}
+
+class ChooseProfielImageSuccess extends RemoteUserState {
   final XFile? profileImage;
   const ChooseProfielImageSuccess({required this.profileImage});
- }
+}
 
- class ChooseProfileImageError extends RemoteUserState{
+class ChooseProfileImageError extends RemoteUserState {
   final String e;
   const ChooseProfileImageError({required this.e});
- }
+}

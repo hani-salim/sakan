@@ -34,7 +34,7 @@ class SendAttachmentPage extends StatelessWidget {
                   decoration: inputDecorationWidget(
                     labelText: 'نوع التسجيل',
                   ),
-                  items: ['قدامى']
+                  items: ['استمرارية']
                       .map((e) => DropdownMenuItem<String>(
                             value: e,
                             child: Padding(
@@ -54,7 +54,7 @@ class SendAttachmentPage extends StatelessWidget {
                   height: 20,
                 ),
                 Visibility(
-                    visible: bloc.registerType == 'قدامى',
+                    visible: bloc.registerType == 'استمرارية',
                     child: Column(
                       children: [
                         bloc.attachedfrontId == null

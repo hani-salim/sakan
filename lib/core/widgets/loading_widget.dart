@@ -11,6 +11,9 @@ class LoadingWidget extends StatelessWidget {
 }
 
 showLoadingWidget({required BuildContext context}){
-  showDialog(context: context, builder: (context)=>
-    Center(child: LottieBuilder.asset('assets/lottieFiles/loading.json')));
+showGeneralDialog(context: context, pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) { 
+  return LottieBuilder.asset('assets/lottieFiles/loading.json');
+ });
+ 
 }
+

@@ -1,10 +1,10 @@
-import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sakan/features/student/domain/entities/bread_order.dart';
 import '../../../../domain/entities/room_entities.dart';
 
 sealed class StudentState<T> extends Equatable {
-  final DioException? exception;
+  final T? exception;
   final T? data;
   const StudentState({this.exception, this.data});
 
@@ -25,14 +25,6 @@ class ChooseAttachError extends StudentState {
   const ChooseAttachError({required super.exception});
 }
 
-//add bread request
-final class AddBreadRequesetLoadingState extends StudentState {}
-
-final class AddBreadRequesetSuccessState extends StudentState {}
-
-final class AddBreadRequesetErrorState extends StudentState {
-  const AddBreadRequesetErrorState({required super.exception});
-}
 
 //change bottom sheet
 final class ChangeBottomSheetState extends StudentState {}
@@ -91,3 +83,15 @@ final class SelectRegisterTypeState extends StudentState {
   final String registerType;
   const SelectRegisterTypeState({required this.registerType});
 }
+
+//submit a bread order
+final class SubmitABreadOrderSuccessState extends StudentState {
+  final BreadOrderEntities breadOrderEntities;
+  const SubmitABreadOrderSuccessState( {required this.breadOrderEntities,});
+}
+
+final class SubmitABreadOrderErrorState extends StudentState {
+  const SubmitABreadOrderErrorState({required super.exception});
+}
+
+final class SubmitABreadOrderLoadingState extends StudentState {}

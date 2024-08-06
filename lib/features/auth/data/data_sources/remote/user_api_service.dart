@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:sakan/features/student/data/repository/student_repository_impl.dart';
 import '../../../../../core/network/remote/dio_helper.dart';
 import '../../../../../core/resource/dart_state.dart';
 import '../../models/user.dart';
@@ -8,6 +9,7 @@ import '../../models/user.dart';
 abstract class UserApiService {
   login({required String email, required String password});
    register({required UserModel userModel});
+   logout({required String refreshToken});
 }
 
 class UserApiServiceWitDio implements UserApiService {
@@ -24,8 +26,13 @@ class UserApiServiceWitDio implements UserApiService {
 
   @override
   DataState register({required UserModel userModel}) {
-    // TODO: implement register
     throw UnimplementedError();
+  }
+  
+  @override
+  logout({required String refreshToken})async {
+    final response = await DioHelper.request(url: 'logout/', method: 'post');
+    return checkResponse(response: response);
   }
 }
 
